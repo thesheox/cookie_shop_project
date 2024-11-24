@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فروشگاه کوکی</title>
+    <!-- لینک فایل CSS -->
+    <link rel="stylesheet" href="{% static 'FirstPage.css' %}">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="navbar">
+            <a href="{% url 'login' %}">
+                <h4 class="enter"> عضویت/ورود </h4>
+            </a>
+            <img class="search" src="{% static 'Pictures/search.svg' %}" width="24px" height="24px"/>
+        </div>
+        <div class="menu">
+            <img class="MiniLogo" src="{% static 'Pictures/logo_cropped.png' %}" width="40" height="40"/>
+            <img class="menuIcon" src="{% static 'Pictures/Menu.svg' %}" width="40" height="40"/>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section class="hero">
+        <img src="{% static 'Pictures/mainpicture.jpg' %}"/>
+    </section>
+
+    <section class="products">
+        <div class="product-item"><img src="{% static 'Pictures/cookie.png' %}" width="95px" height="86px"/><h5>cookie</h5></div>
+        <div class="product-item"><img class="tart" src="{% static 'Pictures/tart.png' %}" width="95px" height="86px"/><h5>coming soon</h5></div>
+        <div class="product-item"><img class="tart" src="{% static 'Pictures/cake.png' %}" width="95px" height="86px"/><h5>coming soon</h5></div>
+        <div class="product-item"><img class="tart" src="{% static 'Pictures/cupcake.png' %}" width="95px" height="86px"/><h5>coming soon</h5></div>
+    </section>
+    <div class="container"><h6 class="card">محصولات</h6></div>
+    <section class="newestProduct">
+        {% for product in products %}
+        <div class="cookies">
+           {% if product.image %}
+                <img class="cookieD" src="{{ product.image.url }}" width="125px" height="139px" style="border-radius: 3px;" />
+            {% else %}
+                <img class="cookieD" src="{% static 'Pictures/cookie.png' %}" width="125px" height="139px" style="border-radius: 3px;" />
+            {% endif %}
+            <h6 class="ProductTitle">{{ product.name }}</h6>
+            <h6 class="ProductTitle">{{ product.price }} هزارتومان</h6>
+            <h6 class="ProductTitle">{{ product.quantity }} موجودی : عدد</h6>
+            <a href="{% url 'buy_product' product.id %}" class="btn btn-primary" style="margin-top: 10px;">مشاهده محصول</a>
+        </div>
+
+        {% endfor %}
+    </section>
+
+    <section class="product-info">
+        <div class="info-box">
+            <img src="{% static 'Pictures/vector.svg' %}"/>
+            <h2 class="ItemTitle" >خرید به صورت آنلاین</h2>
+            <p class="ItemText">در طول شیانه روز می توانید با وارد شدن به سایت و باانتخاب محصول ، تاریخ و ساعت ، سفارش خود را ثبت نمایید</p>
+        </div>
+        <div class="info-box">
+            <img src="{% static 'Pictures/Frame 31.png' %}"/>
+            <h2 class="ItemTitle">محصولات به سبک خانگی</h2>
+            <p class="ItemText">تولید محصولات بدون مواد نگه دارنده و مرغوب ترین و تازه ترین مواد اولیه</p>
+        </div>
+        <div class="info-box">
+            <img src="{% static 'Pictures/Fast Delivery free icons designed by Irvan Kurnianto 1.png' %}"/>
+            <h2 class="ItemTitle">تحویل به صورت حضوری  و یا ارسال در محل</h2>
+            <p class="ItemText">از سه طریق مختلف می توانید محصول ثبت شده خود را دریافت نمایید(1.تحویل در یکی از شعب. 2.ارسال توسط ماشین حمل کیک. 3.ارسال توسط آژانس)</p>
+        </div>
+    </section>
+</main>
+<div class="container"><h6 class="card">تازه های بلاگ</h6></div>
+<section class="blog">
+    <div class="blog-item"><img class="image" src="{% static 'Pictures/blogBanana.png' %}" width="377px" height="227px"><p class="blogText">استفاده از بهترین و تازه ترین مواد اولیه</p><h5  class="blogText">1402/12/01</h5></div>
+        <div class="blog-item"><img class="image" src="{% static 'Pictures/pro.jpg' %}" width="377px" height="227px"><p  class="blogText">لذت کوکی با طعم قدرت</p><h5  class="blogText">1402/12/01</h5></div>
+        <div class="blog-item"><img class="image" src="{% static 'Pictures/cook.jpg' %}" width="377px" height="227px"><p  class="blogText">سفر به دنیای کوکی ها</p><h5  class="blogText">1402/12/01</h5></div>
+    </section>
+<footer>
+    <div class="footer-content">
+        <img class="logo" src="{% static 'Pictures/logo.jpg' %}" width="103.6px" height="99px"/>
+        <p class="footer-text">راه های ارتباطی <br/>شعبه 1 معالی آباد(بهاران)<br/>07136389655<br/>شماره واتس اپ سفارشات روزانه شعبه<br/>09308201660</p>
+        <p class="footer-text2">----------------------------<br/>شعبه2ابریشمی<br/>07132263829/07132263802<br/>شماره واتس اپ سفارشات روزانه شعبه<br/>09917578410<br/>ساعت کاری : 9 الی 22</p>
+        <p class="media">رسانه های اجتماعی<br/>(coming soon)</p>
+    </div>
+</footer>
+</body>
+</html>

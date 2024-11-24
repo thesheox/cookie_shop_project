@@ -1,0 +1,279 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: white;
+}
+@font-face {
+    font-family: 'Shabnam';
+    src: url("./Fonts/Shabnam.ttf");
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #CD9D65;
+    color: #CD9D65 ;
+    padding: 15px;
+}
+
+.enter {
+    font-size: 14px;
+    font-family:'Shabnam';
+    font-style: normal;
+    color: black;
+    background-color: #CD9D65;
+    margin-right: 20px;
+}
+.search{
+    background-color: #CD9D65;
+}
+.menuIcon{
+    background-color:#CD9D65;
+    color: #CD9D65;
+    float: right;
+}
+.MiniLogo{
+    background-color: #CD9D65;
+    float: left;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+}
+
+.hero img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.hero h1 {
+    margin-top: 20px;
+    color: #8b6c42;
+}
+
+/* Products Section */
+.products {
+    padding:  15px 16px;
+    background-color: #f4e6c3;
+    border-radius: 15px;
+    margin-right: 30px;
+    margin-left: 30px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 64px;
+    row-gap: 12px;
+
+}
+
+.product-item {
+    padding: 10px;
+    background-color: white;
+    border-radius: 20px;
+    border: 1.5px solid #733E20;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Shabnam';
+    color: black;
+    margin: 10px 0 5px;
+}
+.tart{
+    filter: blur(3px);
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-family: 'Shabnam';
+    color: white;
+    text-align:center;
+    justify-content: center;
+    width: 218px;
+    height: 44px;
+    padding: 8px 24px;
+    border: 0.5px solid #733E20 ;
+    border-radius: 16px;
+    background-color:#d9ae79 ;
+}
+.container {
+    display: flex;
+    justify-content: center; /* وسط‌چین افقی */
+    align-items: center; /* وسط‌چین عمودی */
+    padding: 40px 40px;
+}
+
+/* Cookies Section */
+.cookies {
+    display: grid;
+    padding: 8px 10px;
+    gap: 4px;
+    row-gap: 4px;
+    background-color: white;
+    border-radius: 8px;
+    text-align: center;
+    border: 1.5px solid #733E20;
+}
+.cookieD{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    padding: 4px;
+}
+
+.cookies > .btn-primary {
+    font-size: 16px;
+    font-family: 'Shabnam';
+    font-style: normal;
+    text-align: center;
+    color: white;
+    line-height: 28px;
+    background-color: #A66B37;
+    padding: 4px;
+    border-radius: 24px;
+}
+
+.ProductTitle {
+    font-family: 'Shabnam';
+    font-size: 16px;
+    font-style: normal;
+    text-align: center;
+    font-weight: 400;
+    line-height: 28px;
+    color: #705840;
+    padding: 4px;
+}
+
+/* Newest Product Section */
+.newestProduct {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    row-gap: 16px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+/* Product Info Section */
+.product-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    align-items: center;
+    justify-items: center;
+    padding: 30px 2px;
+    background-color: #DECFBA;
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+.info-box {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    border-radius: 40px;
+    padding: 20px;
+    border: 2px solid #2B170B;
+    text-align: right;
+}
+.ItemTitle{
+    font-family: 'Shabnam';
+    font-size: 24px;
+    color: #733E20;
+}
+.ItemText{
+    font-family: 'Shabnam';
+    font-size: 16px;
+    color:#2B170B;
+}
+    /* Blog Section */
+.blog {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* چیدمان کارت‌ها به‌طور داینامیک */
+    gap: 32px;
+    align-items: center;
+    justify-items: center;
+    background-color: white;
+    border-radius: 10px;
+    padding: 0px 41px;
+}
+
+.blog-item {
+    background-color: white;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 30px;
+    border: 1px solid #733E20;
+    display: flex;
+    gap: 18px;
+    padding-bottom: 19px;
+    flex-direction: column;
+    text-align: center;
+    overflow: hidden; /* هر چیزی که از مرز خارج شود، برش داده می‌شود */
+}
+
+.image {
+    width: 100%; /* عرض تصویر باید کاملاً برابر عرض کارت باشد */
+    height: 100%; /* ارتفاع تصویر برابر ارتفاع کارت */
+    object-fit: fill; /* تصویر کشیده می‌شود تا فضای موجود را پر کند */
+    display: block; /* حذف فاصله اضافی ناشی از ویژگی inline */
+}
+
+.blogText{
+    font-family: 'Shabnam';
+    font-size: 16px;
+    color: #733E20;
+}
+
+/* Footer */
+.footer-content {
+    background-color: #d9ae79;
+    color: black;
+    text-align: right;
+    padding: 10px;
+    font-size: 14px;
+    margin-top: 40px;
+}
+.footer-text {
+    background-color: #d9ae79;
+    color: black;
+    text-align: right;
+    padding: 10px;
+    font-size: 14px;
+    font-family: 'Shabnam';
+}
+.footer-text2 {
+    background-color: #d9ae79;
+    color: black;
+    text-align: right;
+    padding: 10px;
+    font-size: 14px;
+    font-family: 'Shabnam';
+    margin-right:110px;
+}
+.media{
+    background-color: #d9ae79;
+    color: black;
+    font-size: 14px;
+    font-family: 'Shabnam';
+}
+.logo{
+    float: right;
+    margin-left: 10px;
+    background-color: #d9ae79;
+        border: 4px solid #d9ae79;
+        border-radius: 50px;
+        color: #CD9D65;
+    }
