@@ -8,5 +8,6 @@ urlpatterns = [
     path('signup/', views.user_signup, name='signup'),  # Signup page
     path('buy/<int:product_id>/', views.buy_product, name='buy_product'),
     path('orders/', views.order_list, name='order_list'),
+    path('cart/', views.cart, name='cart'),
 
 ]

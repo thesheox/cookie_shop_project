@@ -13,10 +13,13 @@
 <header>
     <nav class="navbar">
         <div class="navbar">
-            <a href="{% url 'login' %}">
-                <h4 class="enter"> عضویت/ورود </h4>
+            <a class="enter" href="{% url 'login' %}">
+                عضویت/ورود
             </a>
             <img class="search" src="{% static 'Pictures/search.svg' %}" width="24px" height="24px"/>
+            <a class="enter" href="{% url 'cart' %}">
+                <img class="cart" src="{% static 'Pictures/cart.png' %}" width="32px" height="32px"/>
+            </a>
         </div>
         <div class="menu">
             <img class="MiniLogo" src="{% static 'Pictures/logo_cropped.png' %}" width="40" height="40"/>

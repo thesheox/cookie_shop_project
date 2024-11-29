@@ -27,9 +27,15 @@
     color: black;
     background-color: #CD9D65;
     margin-right: 20px;
+    text-decoration:none
 }
 .search{
     background-color: #CD9D65;
+
+}
+.cart{
+    background-color: #CD9D65;
+    margin-left: 20px;
 }
 .menuIcon{
     background-color:#CD9D65;
@@ -95,6 +101,7 @@
 .card{
     display: flex;
     flex-direction: column;
+    flex-direction: column;
     font-size: 16px;
     font-family: 'Shabnam';
     color: white;
@@ -142,6 +149,7 @@
     background-color: #A66B37;
     padding: 4px;
     border-radius: 24px;
+    text-decoration:none
 }
 
 .ProductTitle {

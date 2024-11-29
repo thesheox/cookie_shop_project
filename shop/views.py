@@ -59,6 +59,10 @@ def order_list(request):
     orders = Order.objects.filter(user=request.user)
     return render(request, 'shop/order_list.html', {'orders': orders})
 
+def cart(request):
+    return render(request, 'shop/cart.html')
+
+
 
 
 
