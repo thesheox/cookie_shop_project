@@ -35,13 +35,3 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('name',)  # Add search by product name
 
 # Admin for Order (Optional)
-@admin.register(Order)
-class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'order_group', 'product', 'quantity', 'total_price')  # Fields to display
-    list_filter = ('order_group', 'product')  # Add filters for product and order group
-    search_fields = ('product__name',)  # Add search by product name
-
-    # Calculate the total price of an individual order
-    def total_price(self, obj):
-        return obj.product.price * obj.quantity
-    total_price.short_description = 'Total Price'
