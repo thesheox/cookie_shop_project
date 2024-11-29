@@ -1,17 +1,25 @@
-<h1>Your Orders</h1>
-
-{% if orders %}
-    <ul>
-        {% for order in orders %}
-            <li>
-                {{ order.user.username }} bought {{ order.quantity }} x {{ order.product.name }} for a total price of ${{ order.total_price }}.
-            </li>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Your Orders</title>
+</head>
+<body>
+    <h2>Your Orders</h2>
+    {% if order_groups %}
+        {% for group in order_groups %}
+            <h3>Order Group {{ group.id }} ({{ group.created_at }})</h3>
+            <ul>
+                {% for order in group.orders.all %}
+                    <li>
+                        {{ order.product.name }} - {{ order.quantity }} x {{ order.product.price }} = {{ order.total_price }}
+                    </li>
+                {% endfor %}
+            </ul>
+            <hr>
         {% endfor %}
-    </ul>
-{% else %}
-    <p>You have not placed any orders yet.</p>
-{% endif %}
-
-<a href="{% url 'home' %}">
-    <button>Go to Home Page</button>
-</a>
+    {% else %}
+        <p>You have no orders yet.</p>
+    {% endif %}
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>

@@ -210,7 +210,7 @@
 .blog {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* چیدمان کارت‌ها به‌طور داینامیک */
-    gap: 32px;
+    gap: 100px;
     align-items: center;
     justify-items: center;
     background-color: white;

@@ -10,11 +10,26 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-class Order(models.Model):
+class OrderGroup(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Order Group {self.id} by {self.user.username}"
+
+    @property
+    def total_price(self):
+        # Calculate total price by summing the total_price of all related orders
+        return sum(order.total_price for order in self.orders.all())  # 'orders' is the related_name of Order model
+class Order(models.Model):
+    order_group = models.ForeignKey(OrderGroup, related_name='orders', on_delete=models.CASCADE,null=True,blank=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,null=True)
+    quantity = models.PositiveIntegerField(null=True)
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return f"{self.user.username} ordered {self.quantity} of {self.product.name}"
+        return f"{self.product.name} x {self.quantity} in Order Group {self.order_group.id}"
+
+    @property
+    def total(self):
+        return self.quantity * self.product.price
