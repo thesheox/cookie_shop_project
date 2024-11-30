@@ -1,5 +1,30 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+from django.conf import settings  # Import settings to use the custom user model
+
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+
+class CustomUser(AbstractUser):
+    full_name = models.CharField(max_length=255, verbose_name="full_name")
+    phone_number = models.CharField(max_length=15, verbose_name="phone_number")
+    email = models.EmailField(unique=True, verbose_name="email")
+
+    # Add related_name to avoid clashes with the default User model's groups and user_permissions
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='customuser_set',  # Custom related_name
+        blank=True,
+        verbose_name='گروه‌ها'
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='customuser_permissions_set',  # Custom related_name
+        blank=True,
+        verbose_name='دسترسی‌ها'
+    )
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
@@ -11,7 +36,7 @@ class Product(models.Model):
         return self.name
 
 class OrderGroup(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

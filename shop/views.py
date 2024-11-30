@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Product, Order
+from .models import Product, Order, CustomUser
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -71,20 +71,26 @@ def user_login(request):
         else:
             return render(request, 'shop/login.html', {'error': 'Invalid credentials'})
     return render(request, 'shop/login.html')
-
 def user_signup(request):
     if request.method == 'POST':
+        try:
+            full_name = request.POST['full_name']
+        except KeyError:
+            return render(request, 'shop/signup.html', {'error': 'Full name is required'})
+
         username = request.POST['username']
         password = request.POST['password']
         confirm_password = request.POST['confirm_password']
+        phone_number = request.POST['phone_number']
 
         if password != confirm_password:
             return render(request, 'shop/signup.html', {'error': 'Passwords do not match'})
 
-        if User.objects.filter(username=username).exists():
+        if CustomUser.objects.filter(username=username).exists():
             return render(request, 'shop/signup.html', {'error': 'Username already exists'})
 
-        user = User.objects.create_user(username=username, password=password)
+        # User creation logic
+        user = CustomUser.objects.create_user(username=username, password=password, full_name=full_name, phone_number=phone_number)
         user.save()
         login(request, user)
         return redirect('home')

@@ -22,7 +22,10 @@
             </a>
         </div>
         <div class="menu">
-            <img class="MiniLogo" src="{% static 'Pictures/logo_cropped.png' %}" width="40" height="40"/>
+            <a href="{% url 'home' %}" target="_blank">
+                <img class="MiniLogo" src="{% static 'Pictures/logo_cropped.png' %}" width="40" height="40"/>
+            </a>
+
             <img class="menuIcon" src="{% static 'Pictures/Menu.svg' %}" width="40" height="40"/>
         </div>
     </nav>
