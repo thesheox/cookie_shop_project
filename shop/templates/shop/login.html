@@ -1,13 +1,36 @@
-<h1>Login</h1>
-<form method="post">
-    {% csrf_token %}
-    <label for="username">Username:</label>
-    <input type="text" name="username" id="username">
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password">
-    <button type="submit">Login</button>
-</form>
-{% if error %}
-<p style="color: red;">{{ error }}</p>
-{% endif %}
-<a href="{% url 'signup' %}">Don't have an account? Sign up here.</a
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Lab</title>
+    <link rel="stylesheet" href="{% static 'Login.css' %}">
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <div class="logo">
+            <a href="{% url 'home' %}" target="_blank">
+                <img src="{% static 'Pictures/logo.jpg' %}" alt="Cookie Lab Logo">
+            </a>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <label for="username">شماره موبایل : </label>
+            <input type="text" name="username" id="username" >
+
+            <label for="password">رمز عبور : </label>
+            <input type="password" name="password" id="password" >
+
+            <div class="button-group">
+                 <button type="submit" class="login-btn">ورود</button>
+                 <a href="{% url 'signup' %}" class="signup-btn">عضویت</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+</body>
+</html>
