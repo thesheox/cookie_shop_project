@@ -18,28 +18,49 @@
 body {
     font-family: 'Arial', sans-serif;
     display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
     background-color: #f8f8f8;
     direction: rtl;
+    margin: 0;
+    direction: ltr;
 }
 
 .container {
-    display: grid;
-    place-items: center;
+    display: flex;
     width: 100%;
+
+}
+
+.photo-section {
+    flex: 1; /* Take up half of the screen */
+    background-image: url('Pictures/back.png'); /* Replace with your photo URL */
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Full height */
+}
+
+.card-section {
+    flex: 1; /* Take up the other half of the screen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
+    direction: rtl;
 }
 
 .card {
+    margin-left: 50px;
+    margin-right: 50px;
     background: #fff;
     width: 100%;
-    max-width: 400px;
+    max-width: 619px;
     border-radius: 15px;
-    padding: 20px;
+    padding: 32px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    border-radius: 35px;
+border: 1px solid #2B170B;
+background: #FFFCF7;
 }
 
 .logo img {
@@ -62,11 +83,11 @@ form input {
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #D8B98C33;
-    border-radius: 8px;
+    border-radius: 16px;
+background: rgba(242, 221, 194, 0.50);
     font-size: 14px;
     color: #555;
-    background-color: rgba(216, 185, 140, 0.20);
-;
+
 }
 
 form input::placeholder {
@@ -77,6 +98,7 @@ form input::placeholder {
     display: flex;
     gap: 10px;
     justify-content: space-between;
+
 }
 
 button {
@@ -86,22 +108,54 @@ button {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    color: white;
 }
 
 .signup-btn {
-    background-color: #D8B98C;
-    color: #000000;
+display: flex;
+height: 48px;
+padding: 8px 24px;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+flex: 1 0 0;
+    border-radius: 16px;
+background:  #BE8C60;
+    text-decoration:none;
+    color: white;
+
 }
 
-.login-btn {
-    background-color: #D8B98C;
-    color: #000000;
+.signup-btn:hover {
+    background-color: #C0A178; /* Darker shade for hover effect */
+    color: #000000; /* Keep the text black on hover */
 }
+
+
+
+
+
+
+.login-btn {
+display: flex;
+height: 48px;
+padding: 8px 24px;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+flex: 1 0 0;
+    border-radius: 16px;
+background:  #BE8C60;
+}
+.login-btn:hover {
+    background-color: #C0A178; /* Darker shade for hover effect */
+    color: #000000; /* Keep the text black on hover */
+}
+
 
 button:hover {
     opacity: 0.9;
 }
-
 #confirm-password {
     margin-bottom: 30px; /* Add space below the Confirm Password field */
 }
@@ -111,5 +165,19 @@ button:hover {
     .card {
         width: 90%;
         padding: 15px;
+    }
+
+    .container {
+        flex-direction: column; /* Stack photo and card vertically on small screens */
+        height: 100%; /* Ensure the container takes full height */
+    }
+
+    .photo-section {
+        height: 50vh; /* Adjust photo section height for smaller screens */
+        order: 1; /* Keep photo section first, above the card */
+    }
+
+    .card-section {
+        order: 2; /* Ensure the card section stays after the photo section */
     }
 }
