@@ -24,6 +24,8 @@ body {
     min-height: 100vh;
     background-color: #f8f8f8;
     direction: rtl;
+    background-image: url('Pictures/back.png');
+
 }
 
 .container {
@@ -31,14 +33,18 @@ body {
     place-items: center;
     width: 100%;
     padding: 20px;
+    gap: 48px;
 }
 
 .card {
     background: #fff;
     width: 100%;
-    max-width: 400px;
-    border-radius: 15px;
-    padding: 20px;
+    max-width: 576px;
+max-height: 645px;
+    border-radius: 24px;
+border: 1px solid  #733E20;
+background:  #FFFCF7;
+    padding: 56px 32px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -63,10 +69,11 @@ form input {
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #D8B98C33;
-    border-radius: 8px;
+    border-radius: 16px;
+background: rgba(242, 221, 194, 0.50);
     font-size: 14px;
     color: #555;
-    background-color: rgba(216, 185, 140, 0.20);
+
 ;
 }
 
@@ -78,6 +85,7 @@ form input::placeholder {
     display: flex;
     gap: 10px;
     justify-content: space-between;
+
 }
 
 button {
@@ -87,23 +95,22 @@ button {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    color: white;
 }
 
 .signup-btn {
-    display: flex;
-    justify-content: center; /* Center text inside the button */
-    align-items: center; /* Align text vertically */
-    gap: 10px;
-    width: 100%; /* Full width for a block-like button */
-    padding: 10px;
-    font-size: 16px;
-    font-family: 'Shabnam', sans-serif; /* Ensure consistent font */
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: #D8B98C; /* Light brown background */
-    color: #000000; /* Black text */
-    text-decoration: none; /* Remove underline for links */
+display: flex;
+height: 48px;
+padding: 8px 24px;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+flex: 1 0 0;
+    border-radius: 16px;
+background:  #BE8C60;
+    text-decoration:none;
+    color: white;
+
 }
 
 .signup-btn:hover {
@@ -117,8 +124,15 @@ button {
 
 
 .login-btn {
-    background-color: #D8B98C;
-    color: #000000;
+display: flex;
+height: 48px;
+padding: 8px 24px;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+flex: 1 0 0;
+    border-radius: 16px;
+background:  #BE8C60;
 }
 .login-btn:hover {
     background-color: #C0A178; /* Darker shade for hover effect */
