@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Product, Order, OrderGroup, CustomUser
-
+from .models import Product, Order, OrderGroup
 
 # Inline for Order
 class OrderInline(admin.TabularInline):
@@ -36,11 +35,3 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('name',)  # Add search by product name
 
 # Admin for Order (Optional)
-
-# Admin for CustomUser (Custom User Model)
-@admin.register(CustomUser)  # Register CustomUser model here
-class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'username', 'full_name', 'phone_number', 'is_active', 'date_joined')  # Display these fields
-    search_fields = ('username', 'full_name', 'phone_number')  # Allow search by these fields
-    readonly_fields = ('date_joined',)  # Make some fields read-only (e.g., date_joined)
-    ordering = ('-date_joined',)  # Order by the most recent joined users first
