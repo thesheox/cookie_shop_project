@@ -35,3 +35,14 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ('name',)  # Add search by product name
 
 # Admin for Order (Optional)
+from django.contrib import admin
+from .models import Profile
+
+
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'phone_number')  # Show user and phone_number in the list view
+    search_fields = ('user__username', 'phone_number')  # Allow searching by username and phone number
+    list_filter = ('user',)  # Filter by user
+
+
+admin.site.register(Profile, ProfileAdmin)  # Register the Profile model with custom admin options

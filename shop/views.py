@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Product, Order
+from .models import Product, Order, Profile
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -72,24 +72,43 @@ def user_login(request):
             return render(request, 'shop/login.html', {'error': 'Invalid credentials'})
     return render(request, 'shop/login.html')
 
+
 def user_signup(request):
     if request.method == 'POST':
+        # Get data from form
+        full_name = request.POST['full_name']
         username = request.POST['username']
         password = request.POST['password']
         confirm_password = request.POST['confirm_password']
+        phone_number = request.POST['phone_number']
+        email = request.POST['email']
 
+        # Check if password and confirm_password match
         if password != confirm_password:
             return render(request, 'shop/signup.html', {'error': 'Passwords do not match'})
 
+        # Check if username already exists
         if User.objects.filter(username=username).exists():
             return render(request, 'shop/signup.html', {'error': 'Username already exists'})
 
-        user = User.objects.create_user(username=username, password=password)
+        # Split full name into first name and last name
+        name_parts = full_name.split(' ', 1)
+        first_name = name_parts[0]
+        last_name = name_parts[1] if len(name_parts) > 1 else ''
+
+        # Create user
+        user = User.objects.create_user(username=username, password=password, first_name=first_name,
+                                        last_name=last_name, email=email)
+
         user.save()
+        Profile.objects.create(user=user,phone_number = phone_number )
+
+        # Log the user in
         login(request, user)
         return redirect('home')
 
     return render(request, 'shop/signup.html')
+
 
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
