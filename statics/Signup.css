@@ -49,8 +49,7 @@ body {
 }
 
 .card {
-    margin-left: 50px;
-    margin-right: 50px;
+
     background: #fff;
     width: 100%;
     max-width: 619px;
@@ -163,7 +162,7 @@ button:hover {
 /* Responsive Design */
 @media (max-width: 768px) {
     .card {
-        width: 90%;
+        width: 100%;
         padding: 15px;
     }
 
