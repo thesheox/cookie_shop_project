@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Groups</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Order Groups</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>User</th>
+                    <th>Created At</th>
+                    <th>Total Price</th>
+                    <th>Orders</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order_group in order_groups %}
+                <tr>
+                    <td>{{ order_group.id }}</td>
+                    <td>{{ order_group.user.username }}</td>
+                    <td>{{ order_group.created_at }}</td>
+                    <td>${{ order_group.total_price }}</td>
+                    <td>
+                        <ul>
+                            {% for order in order_group.orders.all %}
+                            <li>
+                                {{ order.product.name }} (x{{ order.quantity }}) - ${{ order.total_price }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">No Order Groups Found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'product_list' %}" class="btn btn-primary">Back to Products</a>
+    </div>
+</body>
+</html>

@@ -7,8 +7,59 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Product, Order, OrderGroup
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
+from .models import Product
+from .forms import ProductForm
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Product
+from .forms import ProductForm
 
+# View for listing all products
+from .models import OrderGroup, Order
+from django.shortcuts import render
 
+def admin_panel(request):
+    return render(request, 'shop/admin_panel.html')
+
+def order_group_list(request):
+    order_groups = OrderGroup.objects.all().order_by('-created_at')  # Order by newest first
+    return render(request, 'shop/order_group_list.html', {'order_groups': order_groups})
+
+def product_list(request):
+    products = Product.objects.all()
+    return render(request, 'shop/product_list.html', {'products': products})
+
+# View for adding a new product
+def product_add(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('product_list')
+    else:
+        form = ProductForm()
+    return render(request, 'shop/product_form.html', {'form': form, 'title': 'Add Product'})
+
+# View for editing an existing product
+def product_edit(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('product_list')
+    else:
+        form = ProductForm(instance=product)
+    return render(request, 'shop/product_form.html', {'form': form, 'title': 'Edit Product'})
+
+def product_delete(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == 'POST':  # Confirm deletion
+        product.delete()
+        messages.success(request, f'Product "{product.name}" has been deleted.')
+        return redirect('product_list')
+    return render(request, 'shop/product_confirm_delete.html', {'product': product})
 @login_required
 def checkout(request):
     # Get the cart stored in session

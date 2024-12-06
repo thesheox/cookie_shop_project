@@ -29,7 +29,12 @@
     margin-right: 20px;
     text-decoration:none
 }
+
 .search{
+    background-color: #CD9D65;
+
+}
+.admin{
     background-color: #CD9D65;
 
 }
