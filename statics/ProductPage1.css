@@ -27,20 +27,9 @@
     color: black;
     background-color: #CD9D65;
     margin-right: 20px;
-    text-decoration:none
 }
-
 .search{
     background-color: #CD9D65;
-
-}
-.admin{
-    background-color: #CD9D65;
-
-}
-.cart{
-    background-color: #CD9D65;
-    margin-left: 20px;
 }
 .menuIcon{
     background-color:#CD9D65;
@@ -51,7 +40,17 @@
     background-color: #CD9D65;
     float: left;
 }
-
+.title{
+    font-family: 'Shabnam';
+    font-style: normal;
+    font-size:32px ;
+    font-weight: 500;
+    line-height: 56px;
+    text-align: right;
+    color: #898989;
+    border-bottom: 1px solid #898989;
+    margin-top: 56px;
+}
 /* General Reset */
 body {
 
@@ -64,7 +63,7 @@ body {
 
 .container {
     font-family: 'Shabnam';
-    width: 80%;
+    width: 90%;
 
     margin: 0 auto;
     border-radius: 50px;
@@ -206,7 +205,7 @@ body {
 
 .product-description {
     font-family: 'Shabnam';
-    background: #fff8ed;
+    background: #f9f4ee;
     margin: 20px 0;
     padding: 20px;
     border-radius: 10px;
@@ -285,7 +284,7 @@ body {
     color: #3C1F11;
     line-height:25px;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
 }
 .text2{
@@ -293,7 +292,7 @@ body {
     color: #3C1F11;
     line-height:25px;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
 }
 .text3{
@@ -301,7 +300,7 @@ body {
     color: #3C1F11;
     line-height:25px;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
 }
 .text4{
@@ -309,7 +308,7 @@ body {
     color: #3C1F11;
     line-height:25px;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 2420;
     font-style: normal;
 }
 .textF{
