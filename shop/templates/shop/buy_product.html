@@ -1,26 +1,116 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <title>Buy Product</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h2>{{ product.name }}</h2>-->
+<!--    <p>Price: {{ product.price }}</p>-->
+<!--    <p>Available Stock: {{ product.quantity }}</p>-->
+<!--    <img src="{{ product.image.url }}" alt="{{ product.name }}" width="200">-->
+
+<!--    &lt;!&ndash; Form for selecting quantity &ndash;&gt;-->
+<!--    <form method="POST">-->
+<!--        {% csrf_token %}-->
+<!--        <label for="quantity">Choose Quantity:</label>-->
+<!--        <input type="number" id="quantity" name="quantity" value="1" min="1" max="{{ product.quantity }}">-->
+<!--        <button type="submit">Add to Cart</button>-->
+<!--    </form>-->
+
+<!--    {% if error %}-->
+<!--        <p style="color: red;">{{ error }}</p>-->
+<!--    {% endif %}-->
+
+<!--    <a href="{% url 'home' %}">Back to Home</a>-->
+<!--</body>-->
+<!--</html>-->
+
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
 <head>
-    <title>Buy Product</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فروشگاه کوکی</title>
+    <!-- لینک فایل CSS -->
+    <link rel="stylesheet" href="{% static 'ProductPage1.css' %}">
 </head>
 <body>
-    <h2>{{ product.name }}</h2>
-    <p>Price: {{ product.price }}</p>
-    <p>Available Stock: {{ product.quantity }}</p>
-    <img src="{{ product.image.url }}" alt="{{ product.name }}" width="200">
+<header>
+    <nav class="navbar">
+        <div class="menu">
+           <a href="{% url 'home' %}">
+                 <img class="MiniLogo" src="{% static 'Pictures/logo_cropped.png' %}" width="40" height="40"/>
+            </a>
 
-    <!-- Form for selecting quantity -->
-    <form method="POST">
-        {% csrf_token %}
-        <label for="quantity">Choose Quantity:</label>
-        <input type="number" id="quantity" name="quantity" value="1" min="1" max="{{ product.quantity }}">
-        <button type="submit">Add to Cart</button>
-    </form>
 
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
+        </div>
+        <div class="navbar">
+            {% if user.is_authenticated and user.is_superuser %}
+            <a class="admin" href="{% url 'admin_panel' %}">
+                <img class="cart" src="{% static 'Pictures/admin.png' %}" width="24px" height="24px"/>
+            </a>
+            {% endif %}
 
-    <a href="{% url 'home' %}">Back to Home</a>
+            <a class="enter" href="{% url 'cart' %}">
+                <img class="cart" src="{% static 'Pictures/cart.png' %}" width="24px" height="24px"/>
+            </a>
+            <img class="search" src="{% static 'Pictures/search.svg' %}" width="24px" height="24px"/>
+            <a class="enter" href="{% url 'login' %}">
+                عضویت/ورود
+            </a>
+        </div>
+
+    </nav>
+</header>
+
+
+<main class="product-details">
+  <div class="container grid middle">
+    <div class="product-image">
+      <img class=cookie-img src="{{ product.image.url }}" alt="{{ product.name }} ">
+      <div class="quality">
+        <img class="qualityP" src="{% static 'Pictures/quality.png' %}" />
+        <h3 class="text5">تضمین کیفیت</h3>
+        <img class="materialP" src="{% static 'Pictures/material.png' %}" />
+        <h3 class="text6"> تهیه شده از تازه ترین مواد اولیه</h3>
+      </div>
+    </div>
+
+    <div class="product-info">
+      <div class="name">
+        <div class="content">
+          <h3 class="text">{{ product.name }}</h3>
+          <img class="icon" src="{% static 'Pictures/iconH.svg' %}" width="40px" height="40px"/>
+
+
+        </div>
+      </div>
+      <h3 class="text2"> مواد اولیه</h3>
+      <h3 class="text3">قابل ارایه در وزن های 30 و 50 گرمی</h3>
+      <h3 class="text4"><rtl class="text4"> موجودی : {{ product.quantity }} عدد</rtl></h3>
+
+      <div class="click">
+        <h3 class="clickItem2Text">تعداد</h3>
+        <h3 class="clickItemText">افزودن به سبد خرید</h3>
+      </div>
+    </div>
+  </div>
+
+</main>
+<section class="product-description">
+  <p class="textF"><br/> ...تا حالا شده دلت بخواد &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br/><br/> در یک عصر سرد زمستانی، کنار دریا نشسته‌ باشی و گرمای بخار چای و غروب چهره‌ات رو نوازش کنه؟&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; با بافت لطیف ، عطر گرم و صمیمانه کوکی شکلات و گردو، کافیه هر جا که هستی&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; چشم‌هات رو ببندی تا غروبی شیرین برات بسازه&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/> برای ثبت سفارش با ما در ارتباط باشید&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br/><br/></p>
+
+</section>
+<footer>
+    <div class="footer-content">
+        <img class="logo" src="{% static 'Pictures/logo.jpg' %}" width="103.6px" height="99px"/>
+        <p class="footer-text">راه های ارتباطی <br/>شعبه 1 معالی آباد(بهاران)<br/>07136389655<br/>شماره واتس اپ سفارشات روزانه شعبه<br/>09308201660</p>
+        <p class="footer-text2">----------------------------<br/>شعبه2ابریشمی<br/>07132263829/07132263802<br/>شماره واتس اپ سفارشات روزانه شعبه<br/>09917578410<br/>ساعت کاری : 9 الی 22</p>
+        <p class="media">رسانه های اجتماعی<br/>(coming soon)</p>
+    </div>
+</footer>
 </body>
 </html>
+
