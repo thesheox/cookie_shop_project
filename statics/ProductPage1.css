@@ -117,7 +117,7 @@ body {
 }
 
 .product-details {
-    background-color: #fff8ed;
+
     padding: 20px 0;
 
 }
@@ -203,18 +203,23 @@ body {
 
     border: 2px solid #733E20;
     border-radius: 10px;
+    margin-bottom: 10px;
 
 
 }
 
 .product-description {
     font-family: 'Shabnam';
-    background: #f9f4ee;
     margin: 20px 0;
     padding: 20px;
     border-radius: 10px;
-    text-align: center;
+
+    background-image: url('Pictures/back-text.jpeg'); /* Replace with the actual path to your image */
+    background-size: cover; /* Ensures the image covers the entire container */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center; /* Centers the image */
 }
+
 
 
 .name{
@@ -226,7 +231,7 @@ body {
 .content {
     background-color: #FFFCF7;
     display: flex;
-    gap: 70px;
+    gap: 20px;
     align-items: center;
     position: relative; /* برای خط */
     padding-bottom: 10px; /* فاصله بین متن و خط */
@@ -238,8 +243,7 @@ body {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 70px;
-    width: 90%;
+    width: 70%;
     height: 2px; /* ضخامت خط */
     background-color: black; /* رنگ خط */
 }
@@ -323,4 +327,5 @@ body {
     font-weight: 500;
     font-height: 56px;
     color: black;
+    text-align: right;
 }
