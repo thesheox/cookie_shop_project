@@ -7,6 +7,7 @@
     <title>Cookie Lab</title>
     <link rel="stylesheet" href="{% static 'Signup.css' %}">
 
+</head>
 <body>
 <div class="container">
     <!-- Photo Section -->
@@ -23,33 +24,38 @@
                 </a>
             </div>
 
-           <form method="post">
-    {% csrf_token %}
+            <form method="post">
+                {% csrf_token %}
 
-    <label for="full_name">نام و نام خانوادگی :</label>
-    <input type="text" name="full_name" id="full_name" required placeholder="نام و نام خانوادگی خود را وارد کنید">
+                <label for="full_name">نام و نام خانوادگی :</label>
+                <input type="text" name="full_name" id="full_name" required placeholder="نام و نام خانوادگی خود را وارد کنید">
 
-    <label for="username">نام کاربری :</label>
-    <input type="text" name="username" id="username" required placeholder="نام کاربری خود را وارد کنید">
+                <label for="username">نام کاربری :</label>
+                <input type="text" name="username" id="username" required placeholder="نام کاربری خود را وارد کنید">
 
-    <label for="phone_number">شماره موبایل :</label>
-    <input type="text" name="phone_number" id="phone_number" required placeholder="شماره موبایل خود را وارد کنید">
+                <label for="phone_number">شماره موبایل :</label>
+                <input type="text" name="phone_number" id="phone_number" required placeholder="شماره موبایل خود را وارد کنید">
 
-    <label for="email">ایمیل :</label>
-    <input type="email" name="email" id="email" required placeholder="ایمیل خود را وارد کنید">
+                <label for="email">ایمیل :</label>
+                <input type="email" name="email" id="email" required placeholder="ایمیل خود را وارد کنید">
 
-    <label for="password">رمز عبور :</label>
-    <input type="password" name="password" id="password" required placeholder="رمز عبور خود را وارد کنید">
+                <label for="password">رمز عبور :</label>
+                <div class="password-container">
+                    <input type="password" name="password" id="password" required placeholder="رمز عبور خود را وارد کنید">
+                    <span class="eye-icon" onclick="togglePasswordVisibility('password')">👁️</span>
+                </div>
 
-    <label for="confirm-password">تایید رمز عبور :</label>
-    <input type="password" name="confirm_password" id="confirm-password" required placeholder="تایید رمز عبور خود را وارد کنید">
+                <label for="confirm-password">تایید رمز عبور :</label>
+                <div class="password-container">
+                    <input type="password" name="confirm_password" id="confirm-password" required placeholder="تایید رمز عبور خود را وارد کنید">
+                    <span class="eye-icon" onclick="togglePasswordVisibility('confirm-password')">👁️</span>
+                </div>
 
-    <div class="button-group">
-        <button type="submit" class="login-btn">ثبت نام</button>
-        <a href="{% url 'login' %}" class="signup-btn">قبلا ثبت نام کرده ام</a>
-    </div>
-</form>
-
+                <div class="button-group">
+                    <button type="submit" class="login-btn">ثبت نام</button>
+                    <a href="{% url 'login' %}" class="signup-btn">قبلا ثبت نام کرده ام</a>
+                </div>
+            </form>
 
             {% if messages %}
                 <div>
@@ -63,5 +69,21 @@
         </div>
     </div>
 </div>
+
+<script>
+    function togglePasswordVisibility(fieldId) {
+        var passwordField = document.getElementById(fieldId);
+        var eyeIcon = document.querySelector(`#${fieldId} + .eye-icon`);
+
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            eyeIcon.textContent = '🙈';  // Closed eye
+        } else {
+            passwordField.type = 'password';
+            eyeIcon.textContent = '👁️';  // Open eye
+        }
+    }
+</script>
+
 </body>
 </html>

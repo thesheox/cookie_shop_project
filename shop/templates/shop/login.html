@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cookie Lab</title>
     <link rel="stylesheet" href="{% static 'Login.css' %}">
-
 </head>
 <body>
 <div class="container">
@@ -19,16 +18,19 @@
 
         <form method="post">
             {% csrf_token %}
+
             <label for="username">نام کاربری :</label>
-<input type="text" name="username" id="username" required placeholder="نام کاربری خود را وارد کنید">
+            <input type="text" name="username" id="username" required placeholder="نام کاربری خود را وارد کنید">
 
-<label for="password">رمز عبور :</label>
-<input type="password" name="password" id="password" required placeholder="رمز عبور خود را وارد کنید">
-
+            <label for="password">رمز عبور :</label>
+            <div class="password-container">
+                <input type="password" name="password" id="password" required placeholder="رمز عبور خود را وارد کنید">
+                <span class="eye-icon" onclick="togglePasswordVisibility()">👁️</span>
+            </div>
 
             <div class="button-group">
-                 <button type="submit" class="login-btn">ورود</button>
-                 <a href="{% url 'signup' %}" class="signup-btn">عضویت</a>
+                <button type="submit" class="login-btn">ورود</button>
+                <a href="{% url 'signup' %}" class="signup-btn">عضویت</a>
             </div>
 
             {% if messages %}
@@ -43,5 +45,22 @@
         </form>
     </div>
 </div>
+
+<!-- JavaScript to toggle password visibility -->
+<script>
+    function togglePasswordVisibility() {
+        var passwordField = document.getElementById('password');
+        var eyeIcon = document.querySelector('.eye-icon');
+
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            eyeIcon.textContent = '🙈';  // Closed eye
+        } else {
+            passwordField.type = 'password';
+            eyeIcon.textContent = '👁️';  // Open eye
+        }
+    }
+</script>
+
 </body>
 </html>

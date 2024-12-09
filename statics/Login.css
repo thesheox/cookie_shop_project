@@ -150,6 +150,24 @@ background:  #BE8C60;
             text-align: center;
             direction: ltr;
         }
+  .password-container {
+            position: relative;
+        }
+
+        .password-container input {
+            width: 100%;
+            padding-right: 30px; /* Make space for the icon */
+            box-sizing: border-box; /* Ensure padding is included in width */
+        }
+
+        .password-container .eye-icon {
+            position: absolute;
+            left: 10px; /* Adjust this value to your preference */
+            top: 30%;
+            transform: translateY(-50%); /* Center the icon vertically */
+            cursor: pointer;
+            font-size: 20px;
+        }
 button:hover {
     opacity: 0.9;
 }
