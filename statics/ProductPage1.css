@@ -130,9 +130,11 @@ body {
 
 .product-info {
     display: grid;
-    padding: 10px 20px 20px 20px ;
+    padding: 30px 20px 10px 20px ;
     border-radius: 10px;
-    gap: 15px;
+    gap: 35px;
+    margin-top: 90px;
+    margin-bottom: 70px;
 }
 
 .product-info h1 {
@@ -149,7 +151,7 @@ body {
 .clickItemText{
     display: flex;
     height: 48px;
-    width: 200px;
+    width: 230px;
 
     flex-direction: row;
     justify-content: center;
@@ -195,7 +197,8 @@ body {
     padding: 30px 30px 10px 30px;
 }
 .cookie-img {
-    width: 60%;
+    min-width: 300px;
+    width: 70%;
     border-radius: 10px;
 
     border: 2px solid #733E20;
@@ -227,7 +230,8 @@ body {
     align-items: center;
     position: relative; /* برای خط */
     padding-bottom: 10px; /* فاصله بین متن و خط */
-    margin-top: 30px;
+    /*margin-top: 30px;*/
+    margin-bottom: 20px;
 }
 
 .content::after {
