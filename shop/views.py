@@ -18,6 +18,11 @@ from .forms import ProductForm
 # View for listing all products
 from .models import OrderGroup, Order
 from django.shortcuts import render
+from django.contrib.auth import logout
+
+def user_logout(request):
+    logout(request)
+    return redirect('home')  # پس از خروج، کاربر به صفحه اصلی هدایت می‌شود
 
 def admin_panel(request):
     return render(request, 'shop/admin_panel.html')
@@ -110,51 +115,76 @@ def order_list(request):
 def home(request):
     products = Product.objects.all()
     return render(request, 'shop/home.html', {'products': products})
+from django.contrib import messages
 
 def user_login(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+
+        if not username or not password:
+            messages.error(request, 'Both username and password are required.')
+            return render(request, 'shop/login.html')
+
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
+            messages.success(request, 'You have successfully logged in.')
             return redirect('home')
         else:
-            return render(request, 'shop/login.html', {'error': 'Invalid credentials'})
+            messages.error(request, 'Invalid username or password.')
+
     return render(request, 'shop/login.html')
 
 
 def user_signup(request):
     if request.method == 'POST':
-        # Get data from form
-        full_name = request.POST['full_name']
-        username = request.POST['username']
-        password = request.POST['password']
-        confirm_password = request.POST['confirm_password']
-        phone_number = request.POST['phone_number']
-        email = request.POST['email']
+        full_name = request.POST.get('full_name', '').strip()
+        username = request.POST.get('username', '').strip()
+        password = request.POST.get('password', '').strip()
+        confirm_password = request.POST.get('confirm_password', '').strip()
+        phone_number = request.POST.get('phone_number', '').strip()
+        email = request.POST.get('email', '').strip()
 
-        # Check if password and confirm_password match
+        # Check for empty fields
+        if not full_name or not username or not password or not confirm_password or not email:
+            messages.error(request, 'All fields are required.')
+            return render(request, 'shop/signup.html')
+
+        # Check if passwords match
         if password != confirm_password:
-            return render(request, 'shop/signup.html', {'error': 'Passwords do not match'})
+            messages.error(request, 'Passwords do not match.')
+            return render(request, 'shop/signup.html')
 
-        # Check if username already exists
+        # Check if username exists
         if User.objects.filter(username=username).exists():
-            return render(request, 'shop/signup.html', {'error': 'Username already exists'})
+            messages.error(request, 'Username already exists.')
+            return render(request, 'shop/signup.html')
 
-        # Split full name into first name and last name
+        # Check if email exists
+        if User.objects.filter(email=email).exists():
+            messages.error(request, 'Email is already in use.')
+            return render(request, 'shop/signup.html')
+
+        # Split full name into first and last names
         name_parts = full_name.split(' ', 1)
         first_name = name_parts[0]
         last_name = name_parts[1] if len(name_parts) > 1 else ''
 
-        # Create user
-        user = User.objects.create_user(username=username, password=password, first_name=first_name,
-                                        last_name=last_name, email=email)
-
+        # Create the user
+        user = User.objects.create_user(
+            username=username,
+            password=password,
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+        )
         user.save()
-        Profile.objects.create(user=user,phone_number = phone_number )
 
-        # Log the user in
+        # Create the profile
+        Profile.objects.create(user=user, phone_number=phone_number)
+
+        messages.success(request, 'Account created successfully. You are now logged in.')
         login(request, user)
         return redirect('home')
 

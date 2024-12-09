@@ -44,7 +44,7 @@ max-height: 645px;
     border-radius: 24px;
 border: 1px solid  #733E20;
 background:  #FFFCF7;
-    padding: 56px 32px;
+    padding: 56px 32px 32px 32px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -139,7 +139,17 @@ background:  #BE8C60;
     color: #000000; /* Keep the text black on hover */
 }
 
-
+.error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+            direction: ltr;
+        }
 button:hover {
     opacity: 0.9;
 }

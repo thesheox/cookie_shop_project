@@ -38,13 +38,11 @@
 </head>
 <body>
 <header>
-    <nav class="navbar">
+    <nav class="navbar_logo">
         <div class="menu">
-           <a href="{% url 'home' %}">
-                 <img class="MiniLogo" src="{% static 'Pictures/logo_cropped.png' %}" width="40" height="40"/>
+           <a class="link_logo" href="{% url 'home' %}">
+                 <img class="MiniLogo" src="{% static 'Pictures/logo_cropped.png' %}"/>
             </a>
-
-
         </div>
         <div class="navbar">
             {% if user.is_authenticated and user.is_superuser %}
@@ -57,9 +55,21 @@
                 <img class="cart" src="{% static 'Pictures/cart.png' %}" width="24px" height="24px"/>
             </a>
             <img class="search" src="{% static 'Pictures/search.svg' %}" width="24px" height="24px"/>
+            {% if not user.is_authenticated %}
             <a class="enter" href="{% url 'login' %}">
                 عضویت/ورود
             </a>
+            {% endif %}
+
+            {% if  user.is_authenticated %}
+            <a class="enter" href="{% url 'logout' %}">
+                <img class="cart" src="{% static 'Pictures/logout.png' %}" width="24px" height="24px"/>
+            </a>
+            <p class="enter" >
+                {{user.username}}
+            </p>
+
+            {% endif %}
         </div>
 
     </nav>
@@ -88,8 +98,8 @@
 
         <div>
             <h3 class="text2"> مواد اولیه : </h3>
-            <h3 class="text2">کره،شکر،تخم مرغ،وانیل،جوش شیرین</h3>
-            <h3 class="text2">بیکینگ پودر،آرد،دارچین،نمک</h3>
+            <h3 class="text2">{{product.ingredient| safe}}</h3>
+<!--            <h3 class="text2">بیکینگ پودر،آرد،دارچین،نمک</h3>-->
         </div>
         <div>
 
@@ -111,13 +121,7 @@
 
 </main>
 <section class="product-description textF">
-  <p>تا حالا شده دلت بخواد…</p>
-    <br>
-  <p>در یک عصر سرد زمستانی، کنار دریا نشسته‌ باشی و گرمای بخار چای و غروب چهره‌ات رو نوازش کنه؟</p>
-     <br>
-  <p>با بافت لطیف، عطر گرم و صمیمانه کوکی دارچینی، کافیه هرجا که هستی، چشم‌هات رو ببندی تا غروبی شیرین برات بسازه.</p>
-     <br>
-  <p>برای ثبت سفارش با ما در ارتباط باشید</p>
+    <p>{{product.description | safe}}</p>
 </section>
 <footer>
     <div class="footer-content">

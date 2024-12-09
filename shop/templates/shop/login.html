@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cookie Lab</title>
     <link rel="stylesheet" href="{% static 'Login.css' %}">
+
 </head>
 <body>
 <div class="container">
@@ -18,17 +19,27 @@
 
         <form method="post">
             {% csrf_token %}
-            <label for="username">نام کاربری : </label>
-            <input type="text" name="username" id="username" >
+            <label for="username">نام کاربری :</label>
+<input type="text" name="username" id="username" required placeholder="نام کاربری خود را وارد کنید">
 
-            <label for="password">رمز عبور : </label>
-            <input type="password" name="password" id="password" >
+<label for="password">رمز عبور :</label>
+<input type="password" name="password" id="password" required placeholder="رمز عبور خود را وارد کنید">
+
 
             <div class="button-group">
                  <button type="submit" class="login-btn">ورود</button>
                  <a href="{% url 'signup' %}" class="signup-btn">عضویت</a>
             </div>
 
+            {% if messages %}
+                <div>
+                    {% for message in messages %}
+                        <div class="error-message">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </form>
     </div>
 </div>

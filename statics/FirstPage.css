@@ -4,53 +4,79 @@
     padding: 0;
     box-sizing: border-box;
     background-color: #fcfcfc;
+        direction: rtl;
 }
 @font-face {
     font-family: 'Shabnam';
     src: url("./Fonts/Shabnam.ttf");
 }
+.navbar_logo {
+    display: flex;
+    justify-content: space-between; /* فاصله بین لوگو و آیکون‌ها */
+    align-items: center; /* قرارگیری عمودی عناصر */
+    background-color: #CD9D65;
+    padding: 10px 20px; /* فضای داخلی بیشتر */
+    height: 100px; /* ارتفاع ثابت برای کل بخش */
+    box-sizing: border-box; /* اطمینان از رعایت padding در ارتفاع */
+    width: 100%; /* تمام عرض صفحه */
+    background-color: #CD9D65;
+}
 
-/* Navbar */
 .navbar {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    align-items: center; /* آیکون‌ها در یک خط وسط قرار می‌گیرند */
+    gap: 15px; /* فاصله مناسب بین آیکون‌ها */
+       background-color: #CD9D65;
+}
+
+.MiniLogo {
+    height: 60px; /* افزایش ارتفاع لوگو */
+    width: auto; /* عرض متناسب با ارتفاع */
+
+background-color: #CD9D65;
+
+}
+.menu{
     background-color: #CD9D65;
-    color: #CD9D65 ;
-    padding: 15px;
+}
+.link_logo{
+    background-color: #CD9D65;
+}
+
+
+.admin,
+.cart,
+.search,
+.enter img {
+    height: 24px; /* آیکون‌ها کمی بزرگ‌تر می‌شوند */
+    width: 24px;
+       background-color: #CD9D65;
 }
 
 .enter {
+    display: flex;
+    align-items: center;
     font-size: 14px;
-    font-family:'Shabnam';
-    font-style: normal;
+    font-family: 'Shabnam';
     color: black;
-    background-color: #CD9D65;
-    margin-right: 20px;
-    text-decoration:none
+    text-decoration: none;
+       background-color: #CD9D65;
 }
 
-.search{
-    background-color: #CD9D65;
+.enter p {
+    margin: 0 10px; /* فاصله مناسب بین متن و آیکون‌ها */
+    padding: 0;
+    color: black;
+       background-color: #CD9D65;
+}
 
-
-}
-.admin{
-    background-color: #CD9D65;
-
-}
-.cart{
-    background-color: #CD9D65;
-    margin-left: 20px;
-}
-.menuIcon{
-    background-color:#CD9D65;
-    color: #CD9D65;
-    float: right;
-}
-.MiniLogo{
-    background-color: #CD9D65;
-    float: left;
+.search,
+.admin,
+.cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+       background-color: #CD9D65;
 }
 
 /* Hero Section */
