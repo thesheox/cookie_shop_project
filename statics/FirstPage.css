@@ -4,13 +4,14 @@
     padding: 0;
     box-sizing: border-box;
     background-color: #fcfcfc;
-        direction: rtl;
+
 }
 @font-face {
     font-family: 'Shabnam';
     src: url("./Fonts/Shabnam.ttf");
 }
 .navbar_logo {
+    direction: rtl;
     display: flex;
     justify-content: space-between; /* فاصله بین لوگو و آیکون‌ها */
     align-items: center; /* قرارگیری عمودی عناصر */
