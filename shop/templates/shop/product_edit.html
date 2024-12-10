@@ -61,45 +61,51 @@
         </div>
 
 
-        <form method="post">
-            {% csrf_token %}
+   <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
 
-            <label for="product_name">اسم:</label>
-            <input type="text" name="product_name" class="product_input" required placeholder="اسم محصول">
+    <label for="product_name">اسم:</label>
+    <input type="text" name="product_name" class="product_input" required placeholder="اسم محصول" value="{{ product.name }}">
 
-            <label for="product_price">قیمت:</label>
-            <input type="number" name="product_price" class="product_input" required placeholder="قیمت محصول">
+    <label for="product_price">قیمت:</label>
+    <input type="number" name="product_price" class="product_input" required placeholder="قیمت محصول" value="{{ product.price }}">
 
-            <label for="product_quantity">تعداد:</label>
-            <input type="number" name="product_quantity" class="product_input" required placeholder="تعداد محصول">
+    <label for="product_quantity">تعداد:</label>
+    <input type="number" name="product_quantity" class="product_input" required placeholder="تعداد محصول" value="{{ product.quantity }}">
 
-            <label for="product_materials">مواد اولیه:</label>
-            <input type="text" name="product_materials" class="product_input" placeholder="مواد اولیه محصول">
+    <label for="product_materials">مواد اولیه:</label>
+    <input type="text" name="product_materials" class="product_input" placeholder="مواد اولیه محصول" value="{{ product.ingredient }}">
 
-            <label for="product_description">توضیحات:</label>
-            <input type="text"  class="product_input" rows="4" placeholder="توضیحات محصول"></textarea>
+    <label for="product_description">توضیحات:</label>
+    <input type="text" name="product_description" class="product_input" rows="4" placeholder="توضیحات محصول" value="{{ product.description }}">
 
-            <label for="product_image">عکس:</label>
-            <div class="file-input">
-                <input type="file" name="product_image" id="product_image" accept="image/*">
+    <label for="product_image">عکس:</label>
+    <div class="file-input">
+        <input type="file" name="product_image" id="product_image" accept="image/*">
+        {% if product.image %}
+        <div>
+            <img src="{{ product.image.url }}" alt="Current product image" width="50px" height="50px">
+        </div>
+    {% endif %}
 
-            </div>
+    </div>
 
-            <div class="button-group">
-                <button type="submit" class="login-btn">ذخیره</button>
-                <a href="{% url 'admin_panel' %}" class="signup-btn">برگشت</a>
-            </div>
+    <div class="button-group">
+        <button type="submit" class="login-btn">ذخیره</button>
+        <a href="{% url 'admin_panel' %}" class="signup-btn">برگشت</a>
+    </div>
 
-            {% if messages %}
-                <div>
-                    {% for message in messages %}
-                        <div class="error-message">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
+    {% if messages %}
+        <div>
+            {% for message in messages %}
+                <div class="error-message">
+                    {{ message }}
                 </div>
-            {% endif %}
-        </form>
+            {% endfor %}
+        </div>
+    {% endif %}
+</form>
+
     </div>
 </div>
 </main>

@@ -17,6 +17,7 @@ urlpatterns = [
     path('order-groups/', views.order_group_list, name='order_group_list'),  # List order groups
     path('admin-panel/', views.admin_panel, name='admin_panel'),  # Admin panel
     path('logout/', user_logout, name='logout'),
+    path('verify/', verify_order, name='verify'),
 
 
 ]

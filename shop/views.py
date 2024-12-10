@@ -36,27 +36,70 @@ def product_list(request):
     return render(request, 'shop/product_list.html', {'products': products})
 
 # View for adding a new product
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from .forms import ProductForm
+
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from .models import Product  # Import your Product model
+
 def product_add(request):
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('product_list')
-    else:
-        form = ProductForm()
-    return render(request, 'shop/product_form.html', {'form': form, 'title': 'Add Product'})
+        # Extract data from the POST request
+        product_name = request.POST.get('product_name')
+        product_price = request.POST.get('product_price')
+        product_quantity = request.POST.get('product_quantity')
+        product_materials = request.POST.get('product_materials')
+        product_description = request.POST.get('product_description')
+        product_image = request.FILES.get('product_image')
+
+        # Validation checks (optional)
+        if not product_name or not product_price or not product_quantity:
+            messages.error(request, 'لطفاً تمام فیلدهای ضروری را پر کنید.')
+        else:
+            try:
+                # Create and save a new product instance
+                Product.objects.create(
+                    name=product_name,
+                    price=product_price,
+                    quantity=product_quantity,
+                    ingredient=product_materials,
+                    description=product_description,
+                    image=product_image,
+                )
+                messages.success(request, 'محصول با موفقیت اضافه شد.')
+                return redirect('product_list')
+            except Exception as e:
+                messages.error(request, f'خطایی رخ داد: {e}')
+
+    return render(request, 'shop/product_form.html', {'title': 'اضافه کردن محصولات'})
 
 # View for editing an existing product
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Product
 def product_edit(request, pk):
     product = get_object_or_404(Product, pk=pk)
+
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES, instance=product)
-        if form.is_valid():
-            form.save()
-            return redirect('product_list')
-    else:
-        form = ProductForm(instance=product)
-    return render(request, 'shop/product_form.html', {'form': form, 'title': 'Edit Product'})
+        # Get the updated values from the POST data
+        product.product_name = request.POST.get('product_name')
+        product.product_price = request.POST.get('product_price')
+        product.product_quantity = request.POST.get('product_quantity')
+        product.product_materials = request.POST.get('product_materials')
+        product.product_description = request.POST.get('product_description')
+
+        # Handle file upload if applicable
+        if 'product_image' in request.FILES:
+            product.product_image = request.FILES['product_image']
+
+        # Save the updated product
+        product.save()
+
+        # Redirect to product list page
+        return redirect('product_list')
+
+    return render(request, 'shop/product_edit.html', {'product': product, 'title': 'ویرایش محصول'})
 
 def product_delete(request, pk):
     product = get_object_or_404(Product, pk=pk)
@@ -102,9 +145,11 @@ def checkout(request):
     request.session['cart'] = {}
 
     # Redirect to order list after checkout
-    return redirect('order_list')
+    return redirect('verify')
 
-
+@login_required
+def verify_order(request):
+    return render(request,'shop/verify_page.html')
 @login_required
 def order_list(request):
     # Get the orders grouped by OrderGroup
