@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #fcfcfc;
+
 
 }
 @font-face {
@@ -160,7 +160,7 @@ background-color: #CD9D65;
     padding: 8px 10px;
     gap: 4px;
     row-gap: 4px;
-    background-color: white;
+    background-color: #FFFCF7;
     border-radius: 8px;
     text-align: center;
     border: 1.5px solid #733E20;

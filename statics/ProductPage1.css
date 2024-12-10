@@ -194,26 +194,25 @@ body {
     background-color: #BE8C60;
 
 }
-.clickItem2Text{
+#quantity{
     display: flex;
     height: 48px;
-    width: 90px;
-    padding: 8px 24px;
+    width: 65px;
+
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border-radius: 16px;
     border: 1px solid #733E20;
-    background-color: white;
-
+    border-radius: 16px;
+    background-color: #BE8C60;
     font-family: 'Shabnam';
-    font-size: 20px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: 56px;
     text-align: center;
-    color: black;
-    background-color: white;
+
+    background-color: #ffffff;
 }
 .product-info button:hover {
     background: #b07d53;
