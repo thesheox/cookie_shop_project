@@ -47,20 +47,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سبد خرید</title>
-    <<link rel="stylesheet" href="{% static 'ShoppingCartPage.css' %}">
+    <link rel="stylesheet" href="{% static 'ShoppingCartPage.css' %}">
 </head>
 <body>
 <!-- هدر -->
 <header>
-    <nav class="navbar">
+    <nav class="navbar_logo">
         <div class="menu">
-            <img class="MiniLogo" src="./Pictures/logo_cropped.png" width="40" height="40"/>
-            <img class="menuIcon" src="./Pictures/Menu.svg" width="40" height="40"/>
+           <a class="link_logo" href="{% url 'home' %}">
+                 <img class="MiniLogo" src="{% static 'Pictures/logo_cropped.png' %}"/>
+            </a>
         </div>
-        <div class="navbar"><img class="search" src="./Pictures/search.svg" width="24px" height="24px"/><h4 class="enter"> عضویت/ورود </h4></div>
+        <div class="navbar">
+            {% if user.is_authenticated and user.is_superuser %}
+            <a class="admin" href="{% url 'admin_panel' %}">
+                <img class="cart_navbar" src="{% static 'Pictures/admin.png' %}" width="24px" height="24px"/>
+            </a>
+            {% endif %}
+
+            <a class="enter" href="{% url 'cart' %}">
+                <img class="cart_navbar" src="{% static 'Pictures/cart.png' %}" width="24px" height="24px"/>
+            </a>
+            <img class="search" src="{% static 'Pictures/search.svg' %}" width="24px" height="24px"/>
+            {% if not user.is_authenticated %}
+            <a class="enter" href="{% url 'login' %}">
+                عضویت/ورود
+            </a>
+            {% endif %}
+
+            {% if  user.is_authenticated %}
+            <a class="enter" href="{% url 'logout' %}">
+                <img class="cart_navbar" src="{% static 'Pictures/logout.png' %}" width="24px" height="24px"/>
+            </a>
+            <p class="enter" >
+                {{user.username}}
+            </p>
+
+            {% endif %}
+        </div>
+
     </nav>
 </header>
-
 <!-- محتوای اصلی -->
 <main>
     <section class="cart">
@@ -72,22 +99,38 @@
                 <th>محصول</th>
                 <th>تعداد</th>
                 <th>قیمت</th>
+                <th>مجموع</th>
                 <th>حذف</th>
+
             </tr>
             </thead>
             <tbody>
             {% for product_id, item in cart.items %}
             <tr>
-                <td><div class="product"><img class="cookieP" src="Pictures/chocolate.jpg" width="56px" height="56px"><span>{{item.name}}</span></div></td>
+                <td><div class="product"><img class="cookieP" src="{{ item.image }}" width="40px" height="40px"><span>{{item.name}}</span></div></td>
                 <td>{{item.quantity}}</td>
                 <td>{{item.price}}</td>
-                <td><div class="delete-cell"><img class="delete-btn" src="Pictures/deleteIcon.png" width="24px" height="24px"></div></td>
+                <td>{{item.total_price_sale}}</td>
+                <td>
+                    <div class="delete-cell">
+                       <a href="{% url 'delete_cart_item' product_id=product_id %}">
+                    <img class="delete-btn" src="{% static 'Pictures/deleteicon.png' %}" width="24px" height="24px">
+                           </a>
+                </div>
+                </td>
+
             </tr>
             {% endfor %}
             </tbody>
         </table>
+        <h3 id="total_price">
+            قیمت کل :
+            {{total_price }}
+        </h3>
     </section>
+    <div>
 
+    </div>
     <div class="cart">
         <table class="shipping-table">
             <thead>
@@ -114,15 +157,20 @@
         </table>
     </div>
     <div class="click">
-        <h3 class="clickItemText">تسویه حساب</h3>
-        <h3 class="clickItemText">ادامه خرید</h3>
+        <a class="tasvie" href="{% url 'checkout' %}">
+            <h3 class="clickItemText">تسویه حساب</h3>
+        </a>
+         <a class="tasvie" href="{% url 'home' %}">
+            <h3 class="clickItemText">ادامه خرید</h3>
+        </a>
+
     </div>
 </main>
 
 <!-- فوتر -->
 <footer>
     <div class="footer-content">
-        <img class="logo" src="./Pictures/logo.jpg" width="103.6px" height="99px"/>
+        <img class="logo" src="{% static 'Pictures/logo.jpg' %}" width="103.6px" height="99px"/>
         <p class="footer-text">راه های ارتباطی <br/>شعبه 1 معالی آباد(بهاران)<br/>07136389655<br/>شماره واتس اپ سفارشات روزانه شعبه<br/>09308201660</p>
         <p class="footer-text2">----------------------------<br/>شعبه2ابریشمی<br/>07132263829/07132263802<br/>شماره واتس اپ سفارشات روزانه شعبه<br/>09917578410<br/>ساعت کاری : 9 الی 22</p>
         <p class="media">رسانه های اجتماعی<br/>(coming soon)</p>

@@ -10,34 +10,73 @@
     src: url("./Fonts/Shabnam.ttf");
 }
 /* Navbar */
+.navbar_logo {
+    display: flex;
+    justify-content: space-between; /* فاصله بین لوگو و آیکون‌ها */
+    align-items: center; /* قرارگیری عمودی عناصر */
+    background-color: #CD9D65;
+    padding: 10px 20px; /* فضای داخلی بیشتر */
+    height: 100px; /* ارتفاع ثابت برای کل بخش */
+    box-sizing: border-box; /* اطمینان از رعایت padding در ارتفاع */
+    width: 100%; /* تمام عرض صفحه */
+    background-color: #CD9D65;
+}
+
 .navbar {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    align-items: center; /* آیکون‌ها در یک خط وسط قرار می‌گیرند */
+    gap: 15px; /* فاصله مناسب بین آیکون‌ها */
+       background-color: #CD9D65;
+}
+
+.MiniLogo {
+    height: 60px; /* افزایش ارتفاع لوگو */
+    width: auto; /* عرض متناسب با ارتفاع */
+
+background-color: #CD9D65;
+
+}
+.menu{
     background-color: #CD9D65;
-    color: #CD9D65 ;
-    padding: 15px;
+}
+.link_logo{
+    background-color: #CD9D65;
+}
+
+
+.admin,
+.cart_navbar,
+.search,
+.enter img {
+    height: 24px; /* آیکون‌ها کمی بزرگ‌تر می‌شوند */
+    width: 24px;
+       background-color: #CD9D65;
 }
 
 .enter {
+    display: flex;
+    align-items: center;
     font-size: 14px;
-    font-family:'Shabnam';
-    font-style: normal;
+    font-family: 'Shabnam';
     color: black;
-    background-color: #CD9D65;
-    margin-right: 20px;
+    text-decoration: none;
+       background-color: #CD9D65;
 }
-.search{
-    background-color: #CD9D65;
+
+.enter p {
+    margin: 0 10px; /* فاصله مناسب بین متن و آیکون‌ها */
+    padding: 0;
+    color: black;
+       background-color: #CD9D65;
 }
-.menuIcon{
-    background-color:#CD9D65;
-    color: #CD9D65;
-    float: right;
-}
-.MiniLogo{
-    background-color: #CD9D65;
-    float: left;
+
+.search,
+.admin,
+.cart_navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+       background-color: #CD9D65;
 }
 /* تنظیمات کلی */
 body {
@@ -52,7 +91,7 @@ body {
 main {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px;
+
     padding: 20px;
 }
 .text{
@@ -71,6 +110,7 @@ main {
     border: 1px solid gray;
     border-radius: 8px;
     overflow: hidden;
+    margin-bottom: 20px;
 }
 
 .cart th {
@@ -145,6 +185,16 @@ main {
     margin-top: 48px;
 
 }
+#total_price{
+     color: black;
+    text-align: right;
+    font-family: Shabnam;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    margin-right: 10px;
+}
 
 .shipping-table tr:first-child th:first-child {
     border-top-right-radius: 8px;
@@ -208,6 +258,10 @@ h3 {
     gap: 16px;
     justify-content: center;
     padding: 16px;
+
+}
+.tasvie{
+     text-decoration:none;
 }
 .clickItemText {
     display: flex;
@@ -230,6 +284,7 @@ h3 {
         grid-template-columns: 1fr;
         gap: 12px;
     }
+
 }
     .clickItemText {
         width: 100%;

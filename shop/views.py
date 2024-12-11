@@ -267,6 +267,7 @@ def buy_product(request, product_id):
                 'price': product.price,
                 'quantity': quantity,
                 'image': product.image.url if product.image else '',  # Handle image if available
+                'total_price_sale': product.price*quantity,
             }
 
         request.session['cart'] = cart  # Save cart to session
@@ -280,5 +281,19 @@ def cart(request):
     total_price = sum(item['price'] * item['quantity'] for item in cart.values())  # Calculate total price
     return render(request, 'shop/cart.html', {'cart': cart, 'total_price': total_price})
 
+@login_required
+def delete_cart_item(request, product_id):
+    # Retrieve the cart from the session
+    cart = request.session.get('cart', {})
+
+    # Check if the product is in the cart
+    if str(product_id) in cart:
+        del cart[str(product_id)]  # Remove the item from the cart
+
+        # Update the session
+        request.session['cart'] = cart
+        messages.success(request, 'Item removed from the cart.')
+
+    return redirect('cart')  # Redirect back to the cart page
 
 
