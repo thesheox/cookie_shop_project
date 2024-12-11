@@ -99,7 +99,7 @@
                 <th>محصول</th>
                 <th>تعداد</th>
                 <th>قیمت</th>
-                <th>مجموع</th>
+<!--                <th>مجموع</th>-->
                 <th>حذف</th>
 
             </tr>
@@ -109,8 +109,14 @@
             <tr>
                 <td><div class="product"><img class="cookieP" src="{{ item.image }}" width="40px" height="40px"><span>{{item.name}}</span></div></td>
                 <td>{{item.quantity}}</td>
-                <td>{{item.price}}</td>
-                <td>{{item.total_price_sale}}</td>
+                <td>
+                    {{item.price}}
+                    هزار
+                    تومان
+                </td>
+<!--                <td>{{item.total_price_sale}}-->
+<!--                هزارتومان-->
+<!--                </td>-->
                 <td>
                     <div class="delete-cell">
                        <a href="{% url 'delete_cart_item' product_id=product_id %}">
@@ -126,6 +132,7 @@
         <h3 id="total_price">
             قیمت کل :
             {{total_price }}
+            هزارتومان
         </h3>
     </section>
     <div>
