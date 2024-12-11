@@ -1,20 +1,57 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Admin Panel</title>-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+<!--</head>-->
+<!--<body>-->
+<!--    <div class="container mt-5">-->
+<!--        <h1>Admin Panel</h1>-->
+<!--        <div class="list-group mt-4">-->
+<!--            <a href="{% url 'product_list' %}" class="list-group-item list-group-item-action">-->
+<!--                Manage Products-->
+<!--            </a>-->
+<!--            <a href="{% url 'order_group_list' %}" class="list-group-item list-group-item-action">-->
+<!--                View Order Groups-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</body>-->
+<!--</html>-->
+{% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="rtl">
 <head>
-    <title>Admin Panel</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Admin Panel</title>
+     <link rel="stylesheet" href="{% static 'admin_panel.css' %}">
 </head>
 <body>
-    <div class="container mt-5">
-        <h1>Admin Panel</h1>
-        <div class="list-group mt-4">
-            <a href="{% url 'product_list' %}" class="list-group-item list-group-item-action">
-                Manage Products
-            </a>
-            <a href="{% url 'order_group_list' %}" class="list-group-item list-group-item-action">
-                View Order Groups
-            </a>
-        </div>
+<header class="header">
+    <div class="logo">لوگوی سایت</div>
+</header>
+<main class="container">
+
+    <div class="card">
+        <div class="icon">📋</div>
+        <a href="{% url 'order_group_list' %}">
+        <p>لیست سفارش‌ها</p>
+        </a>
     </div>
+
+    <div class="card">
+        <div class="icon">🗂️</div>
+        <a href="{% url 'product_list' %}">
+        <p>مدیریت محصولات</p>
+        </a>
+    </div>
+
+
+</main>
+<footer class="footer">
+    <p>© 2024 Cookie Lab Admin Panel. Version 1.0</p>
+</footer>
 </body>
 </html>
