@@ -1,53 +1,10 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <title>Your Cart</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--    <h2>Your Cart</h2>-->
-<!--    {% if cart %}-->
-<!--        <table>-->
-<!--            <thead>-->
-<!--                <tr>-->
-<!--                    <th>Product</th>-->
-<!--                    <th>Price</th>-->
-<!--                    <th>Quantity</th>-->
-<!--                    <th>Total</th>-->
-<!--                </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--                {% for product_id, item in cart.items %}-->
-<!--                    <tr>-->
-<!--                        <td>{{ item.name }}</td>-->
-<!--                        <td>{{ item.price }}</td>-->
-<!--                        <td>{{ item.quantity }}</td>-->
-<!--                        <td>{{ item.price }}</td>-->
-<!--                    </tr>-->
-<!--                {% endfor %}-->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--        <h3>Total Price: {{ total_price }}</h3>-->
-<!--        {% if error %}-->
-<!--            <p style="color: red;">{{ error }}</p>-->
-<!--        {% endif %}-->
-<!--        <form method="POST" action="{% url 'checkout' %}">-->
-<!--            {% csrf_token %}-->
-<!--            <button type="submit">Checkout</button>-->
-<!--        </form>-->
-<!--    {% else %}-->
-<!--        <p>Your cart is empty.</p>-->
-<!--    {% endif %}-->
-<!--    <a href="{% url 'home' %}">Continue Shopping</a>-->
-<!--</body>-->
-<!--</html>-->
-{%load static%}
 <!DOCTYPE html>
 <html lang="fa">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سبد خرید</title>
-    <<link rel="stylesheet" href="{% static 'ShoppingCartPage.css' %}">
+    <link rel="stylesheet" href="ShoppingCartPage.css">
 </head>
 <body>
 <!-- هدر -->
@@ -67,7 +24,6 @@
         <h2 class="text">سبد خرید :</h2>
         <table>
             <thead>
-            <thead>
             <tr>
                 <th>محصول</th>
                 <th>تعداد</th>
@@ -76,14 +32,18 @@
             </tr>
             </thead>
             <tbody>
-            {% for product_id, item in cart.items %}
             <tr>
-                <td><div class="product"><img class="cookieP" src="Pictures/chocolate.jpg" width="56px" height="56px"><span>{{item.name}}</span></div></td>
-                <td>{{item.quantity}}</td>
-                <td>{{item.price}}</td>
+                <td><div class="product"><img class="cookieP" src="Pictures/chocolate.jpg" width="56px" height="56px"><span>کوکی شکلات گردو</span></div></td>
+                <td>5</td>
+                <td>15,000</td>
                 <td><div class="delete-cell"><img class="delete-btn" src="Pictures/deleteIcon.png" width="24px" height="24px"></div></td>
             </tr>
-            {% endfor %}
+            <tr>
+                <td> <div class="product"> <img class="cookieP" src="Pictures/dabelchocolate.jpg" width="56px" height="56px"><span>کوکی دبل چاکلت</span></div></td>
+                <td>8</td>
+                <td>15,000</td>
+                <td><div class="delete-cell"><img class="delete-btn" src="Pictures/deleteIcon.png" width="24px" height="24px"></div></td>
+            </tr>
             </tbody>
         </table>
     </section>
@@ -130,4 +90,3 @@
 </footer>
 </body>
 </html>
-

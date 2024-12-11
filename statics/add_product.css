@@ -120,11 +120,11 @@ body::before {
     background: #fff;
     width: 100%;
     max-width: 576px;
-max-height: 700px;
+max-height: 2000px;
     border-radius: 24px;
 border: 1px solid  #733E20;
 background:  #FFFCF7;
-    padding: 32px 32px 32px 32px;
+    padding: 32px 32px 0 32px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
 
@@ -280,7 +280,7 @@ footer {
   display: flex;
   color: #898989;;
   padding: 20px;
-  position: fixed;
+
   bottom: 0;
   width: 100%;
   justify-content: center; /* Center the content horizontally */

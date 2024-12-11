@@ -1,0 +1,276 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: white;
+}
+@font-face {
+    font-family: 'Shabnam';
+    src: url("./Fonts/Shabnam.ttf");
+}
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #CD9D65;
+    color: #CD9D65 ;
+    padding: 15px;
+}
+
+.enter {
+    font-size: 14px;
+    font-family:'Shabnam';
+    font-style: normal;
+    color: black;
+    background-color: #CD9D65;
+    margin-right: 20px;
+}
+.search{
+    background-color: #CD9D65;
+}
+.menuIcon{
+    background-color:#CD9D65;
+    color: #CD9D65;
+    float: right;
+}
+.MiniLogo{
+    background-color: #CD9D65;
+    float: left;
+}
+/* تنظیمات کلی */
+body {
+    font-family: Arial, sans-serif;
+    direction: rtl;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #333;
+}
+/* محتوای اصلی */
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+.text{
+    font-family: 'Shabnam';
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 56px;
+    color: gray;
+    margin-bottom: 48px;
+    border-bottom: 1px solid #898989;
+}
+.cart table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid gray;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.cart th {
+    color: black;
+    text-align: right;
+    font-family: Shabnam;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    border: 1px solid gray;
+    border-bottom:2px solid #898989;
+    padding: 10px;
+    background-color: #f8f8f8;
+}
+.cart td {
+    color: gray;
+    text-align: right;
+    font-family: Shabnam;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 30px;
+    border: 1px solid gray;
+    padding: 15px;
+}
+.cart th:first-child {
+    border-top-right-radius: 8px;
+}
+
+.cart th:last-child {
+    border-top-left-radius: 8px;
+}
+
+.cart tr:last-child td:first-child {
+    border-bottom-right-radius: 8px;
+}
+
+.cart tr:last-child td:last-child {
+    border-bottom-left-radius: 8px;
+}
+
+.product {
+    display: flex; /* برای قرار دادن عکس و متن کنار هم */
+    align-items: center; /* تراز کردن عمودی در وسط */
+    gap: 15px; /* فاصله بین عکس و متن */
+}
+
+.cookieP {
+    border: 1px solid gray;
+    border-radius: 15px;
+}
+
+.delete-cell {
+    display: flex; /* استفاده از Flexbox برای وسط چین کردن */
+    justify-content: center; /* قرارگیری افقی در مرکز */
+    align-items: center; /* قرارگیری عمودی در مرکز */
+}
+
+.delete-btn {
+    background-color: white;
+}
+
+/* استایل برای بخش ارسال */
+.shipping-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid gray;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 48px;
+
+}
+
+.shipping-table tr:first-child th:first-child {
+    border-top-right-radius: 8px;
+}
+
+.shipping-table tr:first-child th:last-child {
+    border-top-left-radius: 8px;
+}
+
+.shipping-table tr:last-child td:first-child {
+    border-bottom-right-radius: 8px;
+}
+
+.shipping-table tr:last-child td:last-child {
+    border-bottom-left-radius: 8px;
+}
+.shipping-table th {
+    background-color: #f8f8f8;
+    color: black;
+    text-align: right;
+    font-family: Shabnam;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    border-bottom: 2px solid gray;
+}
+.shipping label {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* فاصله بین دایره رادیو و متن */
+    margin-bottom: 15px;
+    font-family: 'Shabnam';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 30px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.shipping input[type="radio"] {
+    transform: scale(2.1); /* بزرگتر کردن دایره */
+    accent-color: green;
+}
+
+
+h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+.cart table, .shipping-table {
+    margin-left: 10px; /* ایجاد فاصله از سمت چپ */
+    margin-right:5px;
+    width: calc(100% - 10px); /* کاهش عرض جدول به اندازه فاصله */
+}
+
+.click {
+    display: grid;
+    grid-template-columns: repeat(2, 400px);
+    gap: 16px;
+    justify-content: center;
+    padding: 16px;
+}
+.clickItemText {
+    display: flex;
+    height: 75px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    background-color: #BE8C60;
+    font-size: 20px;
+    font-family: 'Shabnam';
+    font-weight: 500;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    margin: 0;
+}
+
+@media (max-width: 850px) {
+    .click {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}
+    .clickItemText {
+        width: 100%;
+    }
+/* Footer */
+.footer-content {
+    background-color: #d9ae79;
+    color: black;
+    text-align: right;
+    padding: 10px;
+    font-size: 14px;
+    margin-top: 40px;
+}
+.footer-text {
+    background-color: #d9ae79;
+    color: black;
+    text-align: right;
+    padding: 10px;
+    font-size: 14px;
+    font-family: 'Shabnam';
+}
+.footer-text2 {
+    background-color: #d9ae79;
+    color: black;
+    text-align: right;
+    padding: 10px;
+    font-size: 14px;
+    font-family: 'Shabnam';
+    margin-right:110px;
+}
+.media{
+    background-color: #d9ae79;
+    color: black;
+    font-size: 14px;
+    font-family: 'Shabnam';
+}
+.logo{
+    float: right;
+    margin-left: 10px;
+    background-color: #d9ae79;
+    border: 4px solid #d9ae79;
+    border-radius: 50px;
+    color: #CD9D65;
+}
