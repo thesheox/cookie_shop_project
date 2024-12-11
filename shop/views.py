@@ -1,3 +1,4 @@
+from django.core.files.storage import default_storage
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
@@ -91,7 +92,11 @@ def product_edit(request, pk):
 
         # Handle file upload if applicable
         if 'product_image' in request.FILES:
-            product.product_image = request.FILES['product_image']
+            # Delete old image if it exists
+            if product.image:
+                if default_storage.exists(product.image.path):
+                    default_storage.delete(product.image.path)
+            product.image = request.FILES['product_image']
 
         # Save the updated product
         product.save()
