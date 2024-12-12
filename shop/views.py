@@ -84,11 +84,11 @@ def product_edit(request, pk):
 
     if request.method == 'POST':
         # Get the updated values from the POST data
-        product.product_name = request.POST.get('product_name')
-        product.product_price = request.POST.get('product_price')
-        product.product_quantity = request.POST.get('product_quantity')
-        product.product_materials = request.POST.get('product_materials')
-        product.product_description = request.POST.get('product_description')
+        product.name = request.POST.get('product_name')
+        product.price = request.POST.get('product_price')
+        product.quantity = request.POST.get('product_quantity')
+        product.ingredient = request.POST.get('product_materials')
+        product.description = request.POST.get('product_description')
 
         # Handle file upload if applicable
         if 'product_image' in request.FILES:
