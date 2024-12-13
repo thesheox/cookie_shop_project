@@ -245,7 +245,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Product
 
-@login_required
+
 def buy_product(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     cart = request.session.get('cart', {})  # Use session to store cart data
