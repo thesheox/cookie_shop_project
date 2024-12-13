@@ -78,6 +78,7 @@ background-color: #CD9D65;
     justify-content: center;
        background-color: #CD9D65;
 }
+
 /* تنظیمات کلی */
 body {
     font-family: Arial, sans-serif;
@@ -91,13 +92,13 @@ body {
 main {
     display: grid;
     grid-template-columns: 1fr;
-
+    gap: 20px;
     padding: 20px;
 }
 .text{
     font-family: 'Shabnam';
     font-weight: 500;
-    font-size: 24px;
+    font-size: 22px;
     line-height: 56px;
     color: gray;
     margin-bottom: 48px;
@@ -110,7 +111,6 @@ main {
     border: 1px solid gray;
     border-radius: 8px;
     overflow: hidden;
-    margin-bottom: 20px;
 }
 
 .cart th {
@@ -119,8 +119,8 @@ main {
     font-family: Shabnam;
     font-size: 20px;
     font-style: normal;
-    font-weight: 400;
-    line-height: 40px;
+    font-weight: 300;
+    line-height: 30px;
     border: 1px solid gray;
     border-bottom:2px solid #898989;
     padding: 10px;
@@ -132,8 +132,8 @@ main {
     font-family: Shabnam;
     font-size: 18px;
     font-style: normal;
-    font-weight: 300;
-    line-height: 30px;
+    font-weight: 200;
+    line-height: 20px;
     border: 1px solid gray;
     padding: 15px;
 }
@@ -185,16 +185,6 @@ main {
     margin-top: 48px;
 
 }
-#total_price{
-     color: black;
-    text-align: right;
-    font-family: Shabnam;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 40px;
-    margin-right: 10px;
-}
 
 .shipping-table tr:first-child th:first-child {
     border-top-right-radius: 8px;
@@ -218,8 +208,8 @@ main {
     font-family: Shabnam;
     font-size: 20px;
     font-style: normal;
-    font-weight: 400;
-    line-height: 40px;
+    font-weight: 300;
+    line-height: 30px;
     border-bottom: 2px solid gray;
 }
 .shipping label {
@@ -230,8 +220,8 @@ main {
     font-family: 'Shabnam';
     font-size: 18px;
     font-style: normal;
-    font-weight: 300;
-    line-height: 30px;
+    font-weight: 200;
+    line-height: 20px;
     cursor: pointer;
     margin-right: 10px;
 }
@@ -246,11 +236,6 @@ h3 {
     font-size: 1.2rem;
     margin-bottom: 10px;
 }
-.cart table, .shipping-table {
-    margin-left: 10px; /* ایجاد فاصله از سمت چپ */
-    margin-right:5px;
-    width: calc(100% - 10px); /* کاهش عرض جدول به اندازه فاصله */
-}
 
 .click {
     display: grid;
@@ -258,21 +243,21 @@ h3 {
     gap: 16px;
     justify-content: center;
     padding: 16px;
-
 }
 .tasvie{
-     text-decoration:none;
+    text-decoration: none;
 }
 .clickItemText {
+
     display: flex;
     height: 75px;
     justify-content: center;
     align-items: center;
     border-radius: 16px;
     background-color: #BE8C60;
-    font-size: 20px;
+    font-size: 18px;
     font-family: 'Shabnam';
-    font-weight: 500;
+    font-weight: 400;
     color: white;
     text-align: center;
     line-height: 40px;
@@ -284,7 +269,6 @@ h3 {
         grid-template-columns: 1fr;
         gap: 12px;
     }
-
 }
     .clickItemText {
         width: 100%;
@@ -328,4 +312,14 @@ h3 {
     border: 4px solid #d9ae79;
     border-radius: 50px;
     color: #CD9D65;
+}
+#total_price{
+     color: black;
+    text-align: right;
+    font-family: Shabnam;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    margin-right: 10px;
 }
