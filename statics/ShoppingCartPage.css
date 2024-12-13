@@ -227,7 +227,7 @@ main {
 }
 
 .shipping input[type="radio"] {
-    transform: scale(2.1); /* بزرگتر کردن دایره */
+    transform: scale(1.8); /* بزرگتر کردن دایره */
     accent-color: green;
 }
 
