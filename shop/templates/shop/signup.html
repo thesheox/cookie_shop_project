@@ -58,14 +58,16 @@
             </form>
 
             {% if messages %}
-                <div>
-                    {% for message in messages %}
+            <div>
+                {% for message in messages %}
+                    {% if "signup" in message.tags %}
                         <div class="error-message">
                             {{ message }}
                         </div>
-                    {% endfor %}
-                </div>
-            {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
         </div>
     </div>
 </div>

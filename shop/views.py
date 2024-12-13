@@ -179,10 +179,9 @@ def user_login(request):
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
-            messages.success(request, 'You have successfully logged in.')
             return redirect('home')
         else:
-            messages.error(request, 'Invalid username or password.')
+            messages.error(request, "نام کاربری یا رمز عبور اشتباه است", extra_tags="login")
 
     return render(request, 'shop/login.html')
 
@@ -198,22 +197,22 @@ def user_signup(request):
 
         # Check for empty fields
         if not full_name or not username or not password or not confirm_password or not email:
-            messages.error(request, 'All fields are required.')
+            messages.error(request, 'تمامی فیلدها اجباری هستند.', extra_tags="signup")
             return render(request, 'shop/signup.html')
 
         # Check if passwords match
         if password != confirm_password:
-            messages.error(request, 'Passwords do not match.')
+            messages.error(request, 'رمزهای عبور مطابقت ندارند.', extra_tags="signup")
             return render(request, 'shop/signup.html')
 
         # Check if username exists
         if User.objects.filter(username=username).exists():
-            messages.error(request, 'Username already exists.')
+            messages.error(request, 'نام کاربری قبلا ثبت شده است.', extra_tags="signup")
             return render(request, 'shop/signup.html')
 
         # Check if email exists
         if User.objects.filter(email=email).exists():
-            messages.error(request, 'Email is already in use.')
+            messages.error(request, 'ایمیل قبلا ثبت شده است.', extra_tags="signup")
             return render(request, 'shop/signup.html')
 
         # Split full name into first and last names
@@ -282,6 +281,7 @@ def buy_product(request, product_id):
 
 @login_required
 def cart(request):
+
     cart = request.session.get('cart', {})  # Retrieve cart from session
     total_price = sum(item['price'] * item['quantity'] for item in cart.values())  # Calculate total price
     return render(request, 'shop/cart.html', {'cart': cart, 'total_price': total_price})
