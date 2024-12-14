@@ -214,18 +214,20 @@ footer {
 
 }
 /* Responsive Adjustments */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
     .container {
         grid-template-columns: 1fr; /* Single column on small screens */
         gap: 20px; /* Reduce gap for smaller screens */
         margin:0px auto 0; /* Added margin to push container below the navbar */
-
+        width: 80%;
+        height: 70%;
     }
 
 
 
     .card .icon {
         font-size: 1.8rem;
+        margin: 34px 34px 24px 34px;
     }
 
     .card p {
