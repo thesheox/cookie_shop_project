@@ -1,23 +1,4 @@
-<!--<!DOCTYPE html>-->
-<!--<html>-->
-<!--<head>-->
-<!--    <title>Admin Panel</title>-->
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
-<!--</head>-->
-<!--<body>-->
-<!--    <div class="container mt-5">-->
-<!--        <h1>Admin Panel</h1>-->
-<!--        <div class="list-group mt-4">-->
-<!--            <a href="{% url 'product_list' %}" class="list-group-item list-group-item-action">-->
-<!--                Manage Products-->
-<!--            </a>-->
-<!--            <a href="{% url 'order_group_list' %}" class="list-group-item list-group-item-action">-->
-<!--                View Order Groups-->
-<!--            </a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</body>-->
-<!--</html>-->
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -29,29 +10,88 @@
      <link rel="stylesheet" href="{% static 'admin_panel.css' %}">
 </head>
 <body>
-<header class="header">
-    <div class="logo">لوگوی سایت</div>
+
+<header>
+    <nav class="navbar_logo">
+        <div class="menu">
+           <a class="link_logo" href="{% url 'home' %}">
+                 <img class="MiniLogo" src="{% static 'Pictures/logo_cropped.png' %}"/>
+            </a>
+        </div>
+        <div class="navbar">
+            {% if user.is_authenticated and user.is_superuser %}
+            <a class="admin" href="{% url 'admin_panel' %}">
+                <img class="cart" src="{% static 'Pictures/admin.png' %}" width="24px" height="24px"/>
+            </a>
+            {% endif %}
+
+            <a class="enter" href="{% url 'cart' %}">
+                <img class="cart" src="{% static 'Pictures/cart.png' %}" width="24px" height="24px"/>
+            </a>
+            <img class="search" src="{% static 'Pictures/search.svg' %}" width="24px" height="24px"/>
+            {% if not user.is_authenticated %}
+            <a class="enter" href="{% url 'login' %}">
+                عضویت/ورود
+            </a>
+            {% endif %}
+
+            {% if  user.is_authenticated %}
+            <a class="enter" href="{% url 'logout' %}">
+                <img class="cart" src="{% static 'Pictures/logout.png' %}" width="24px" height="24px"/>
+            </a>
+            <p class="enter" >
+                {{user.username}}
+            </p>
+
+            {% endif %}
+        </div>
+
+    </nav>
 </header>
 <main class="container">
 
+
     <div class="card">
-        <div class="icon">📋</div>
-        <a href="{% url 'order_group_list' %}">
-        <p>لیست سفارش‌ها</p>
+         <div class="icon">
+           <a  href="{% url 'order_group_list' %}">
+            <img class="icon_image_asli" src="{% static 'Pictures/icon1.png' %}" >
+               </a>
+        </div>
+        <div class="line">
+            <a class="no_underline" href="{% url 'product_list' %}">
+        <p>مدیریت محصولات</p>
         </a>
+        </div>
+
     </div>
 
     <div class="card">
-        <div class="icon">🗂️</div>
-        <a href="{% url 'product_list' %}">
-        <p>مدیریت محصولات</p>
+        <div class="icon">
+               <a  href="{% url 'order_group_list' %}">
+            <img class="icon_image_asli" src="{% static 'Pictures/icon2.png' %}" >
+               </a>
+        </div>
+        <div class="line">
+            <a class="no_underline" href="{% url 'order_group_list' %}">
+        <p>لیست سفارش‌ها</p>
         </a>
+        </div>
+
     </div>
+
 
 
 </main>
-<footer class="footer">
-    <p>© 2024 Cookie Lab Admin Panel. Version 1.0</p>
+<footer>
+  <div class="footer-content2">
+      <div class="footer-content">
+          <p>سوالات متداول</p>
+      <p>Version 1.0</p>
+      </div>
+
+    <p id="copyright">© 2024 Cookie Lab Admin Panel. </p>
+
+  </div>
 </footer>
 </body>
 </html>

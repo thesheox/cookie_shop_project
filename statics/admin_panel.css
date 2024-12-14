@@ -1,56 +1,255 @@
-/* Reset & Base Styles */
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #fdf6e3, #ede5d7);
-    color: #4a4a4a;
+@font-face {
+    font-family: 'Shabnam';
+    src: url("./Fonts/Shabnam.ttf");
 }
+
+/* Applying the Shabnam font */
+* {
+    font-family: 'Shabnam', sans-serif;
+
+}
+
+/* Navbar */
+.navbar_logo {
+    direction: rtl;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #CD9D65;
+    padding: 10px 20px;
+    height: 100px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #CD9D65;
+}
+
+.MiniLogo {
+    height: 60px;
+    width: auto;
+    background-color: #CD9D65;
+}
+
+.menu {
+    background-color: #CD9D65;
+}
+
+.link_logo {
+    background-color: #CD9D65;
+}
+
+.admin,
+.cart,
+.search,
+.enter img {
+    height: 24px;
+    width: 24px;
+    background-color: #CD9D65;
+}
+
+.enter {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-family: 'Shabnam';
+    color: black;
+    text-decoration: none;
+    background-color: #CD9D65;
+}
+
+.enter p {
+    margin: 0 10px;
+    padding: 0;
+    color: black;
+    background-color: #CD9D65;
+}
+
+.search,
+.admin,
+.cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #CD9D65;
+}
+
+/* Body and Background */
+body {
+    direction: rtl;
+    background: lightgray;
+    min-height: 100vh;
+    margin: 0; /* Remove default margins */
+    position: relative;
+      background: lightgray;
+}
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('Pictures/back.png') 50% / cover no-repeat;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+/* Container */
 .container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    max-width: 1200px;
-    margin: 50px auto;
-    padding: 0 20px;
+    gap: 300px; /* Adjusted to 200px gap as requested */
+    max-width: 1000px;
+    padding: 40px;
+    margin:100px auto 0; /* Added margin to push container below the navbar */
 }
-.header {
-    background-color: #e1c6a8;
-    padding: 10px;
-    text-align: center;
-}
-.logo {
-    font-size: 1.5rem;
-    color: #4a4a4a;
-}
+
+/* Cards */
 .card {
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    padding: 20px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border: 3px black solid;
+    width: 100%;
+    max-width: 350px;
 }
+
 .card .icon {
     font-size: 3rem;
     margin-bottom: 10px;
+    width: 176px;
+    height: 176px;
+    margin: 44px;
+
 }
+
+.no_underline {
+    text-decoration: none;
+    color: black;
+
+}
+.line {
+    border-top: 3px solid black;  /* Set border width */
+    width: 100%;  /* Set the length of the border */
+     /* Optional: Adds space above and below the line */
+    padding: 10px;
+}
+
+
 .card p {
     font-size: 1.2rem;
-    font-weight: bold;
+
 }
-.footer {
-    text-align: center;
-    padding: 20px;
-    font-size: 0.9rem;
-    background: #e1c6a8;
+
+/* Footer */
+footer {
+  display: flex;
+  color: #898989;;
+  padding: 20px;
     position: fixed;
-    bottom: 0;
-    width: 100%;
+  bottom: 0;
+  width: 100%;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Vertically center the content */
+    border-top: 2px solid #797575;
+
+
+}
+.product-image{
+
+  background-color: indigo;
+  color: white;
+  padding: 0.5rem;
+  font-family: sans-serif;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+
+}
+
+.footer-content2 {
+  display: flex;
+  justify-content: space-between; /* Space between the footer sections */
+  width: 100%;
+  max-width: 2000px; /* Optional: limit max width */
+  padding: 0 20px; /* Optional: padding for spacing */
+}
+
+.footer-content {
+  display: flex;
+  gap: 50px; /* Space between the two <p> elements */
+}
+
+.footer-content p {
+  margin: 0;
+  font-size: 14px;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+
+#copyright {
+    direction: ltr;
+}
+
+.icon_image_asli {
+    width: 90%;
+    height: 90%;
+
+}
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr; /* Single column on small screens */
+        gap: 20px; /* Reduce gap for smaller screens */
+        margin:0px auto 0; /* Added margin to push container below the navbar */
+
+    }
+
+
+
+    .card .icon {
+        font-size: 1.8rem;
+    }
+
+    .card p {
+        font-size: 0.9rem;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+  .footer-content2 {
+    flex-direction: column; /* Stack the sections vertically */
+    align-items: center; /* Center the content horizontally */
+  }
+
+  .footer-content {
+    gap: 20px; /* Reduce space between the elements on smaller screens */
+    justify-content: center; /* Center the items */
+  }
+
+  .footer-content p {
+    font-size: 14px; /* Reduce font size for smaller screens */
+  }
+}
+
+#copyright{
+    direction: ltr;
 }
