@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+from django_jalali.db import models as jmodels
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
@@ -14,8 +16,12 @@ class Product(models.Model):
 
 class OrderGroup(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = jmodels.jDateTimeField(auto_now_add=True)  # Jalali datetim
     order_number=models.PositiveIntegerField(null=True)
+
+    @property
+    def date_time(self):
+        return str(self.created_at)[:19]
 
     def __str__(self):
         return f"Order Group {self.id} by {self.user.username}"
