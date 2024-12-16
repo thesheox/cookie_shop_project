@@ -15,6 +15,7 @@ class Product(models.Model):
 class OrderGroup(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+    order_number=models.PositiveIntegerField(null=True)
 
     def __str__(self):
         return f"Order Group {self.id} by {self.user.username}"

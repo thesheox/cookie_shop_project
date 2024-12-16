@@ -10,7 +10,7 @@
 <body>
   <div class="modal">
     <div class="modal-content">
-       <a class="close-btn" href="{% url 'home' %}" target="_blank">
+       <a class="close-btn" href="{% url 'home' %}" >
          <img src="{% static 'Pictures/close.png' %}" alt="Cookie Lab Logo">
        </a>
       <div class="icon">
@@ -18,7 +18,7 @@
 
       </div>
       <p>سفارش شما با موفقیت ثبت شد!</p>
-      <p>شماره سفارش: <span class="order-number">XXXXXX</span></p>
+      <p>شماره سفارش: <span class="order-number">{{ order_groups.order_number }}</span></p>
     </div>
   </div>
 </body>

@@ -19,7 +19,7 @@
             </a>
         </div>
         <div class="navbar">
-            {% if user.is_authenticated and user.is_superuser %}
+            {% if user.is_authenticated and user.is_staff or user.is_superuser %}
             <a class="admin" href="{% url 'admin_panel' %}">
                 <img class="cart" src="{% static 'Pictures/admin.png' %}" width="24px" height="24px"/>
             </a>

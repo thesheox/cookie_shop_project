@@ -1,3 +1,5 @@
+import random
+
 from django.core.files.storage import default_storage
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
@@ -25,11 +27,15 @@ def user_logout(request):
     logout(request)
     return redirect('home')  # پس از خروج، کاربر به صفحه اصلی هدایت می‌شود
 
+@login_required
 def admin_panel(request):
-    return render(request, 'shop/admin_panel.html')
 
+    return render(request, 'shop/admin_panel.html')
+from datetime import date
 def order_group_list(request):
-    order_groups = OrderGroup.objects.all().order_by('-created_at')  # Order by newest first
+    # Filter objects created today and order them by created_at in descending order
+    order_groups = OrderGroup.objects.filter(created_at__date=date.today()).order_by('-created_at')
+
     return render(request, 'shop/order_group_list.html', {'order_groups': order_groups})
 
 def product_list(request):
@@ -121,11 +127,33 @@ def checkout(request):
     if not cart:
         return redirect('cart')  # Redirect to cart if no items
 
+
+    import random
+
+    # Set to keep track of already generated numbers
+    generated_numbers = set()
+
+    def generate_one_unique_random(start, end):
+        if len(generated_numbers) >= (end - start + 1):
+            raise ValueError("All possible unique numbers have been generated.")
+
+        while True:
+            number = random.randint(start, end)
+            if number not in generated_numbers:
+                generated_numbers.add(number)
+                return number
+
+    # Example usage
+
     # Create a new OrderGroup
-    order_group = OrderGroup.objects.create(user=request.user)
+    order_group = OrderGroup.objects.create(user=request.user,order_number=generate_one_unique_random(1000000, 9999999))
 
     # Initialize total price
     total_price = 0
+
+
+
+
 
     # Loop through cart and create an order for each product
     for product_id, item in cart.items():
@@ -138,12 +166,14 @@ def checkout(request):
         # Calculate the total price for the product
         total_price += product.price * quantity
 
+
+
         # Create an order item in the Order model
         Order.objects.create(
             order_group=order_group,
             product=product,
             quantity=quantity,
-            total_price=product.price * quantity
+            total_price=product.price * quantity,
         )
 
     # After creating orders, clear the cart
@@ -154,7 +184,8 @@ def checkout(request):
 
 @login_required
 def verify_order(request):
-    return render(request,'shop/verify_page.html')
+    order_groups = OrderGroup.objects.filter(user=request.user).order_by('-created_at')
+    return render(request,'shop/verify_page.html',{'order_groups': order_groups[0]})
 @login_required
 def order_list(request):
     # Get the orders grouped by OrderGroup
@@ -185,7 +216,7 @@ def user_login(request):
 
     return render(request, 'shop/login.html')
 
-
+import re
 def user_signup(request):
     if request.method == 'POST':
         full_name = request.POST.get('full_name', '').strip()
@@ -205,15 +236,35 @@ def user_signup(request):
             messages.error(request, 'رمزهای عبور مطابقت ندارند.', extra_tags="signup")
             return render(request, 'shop/signup.html')
 
+            # Password strength check
+        if len(password) < 8:
+            messages.error(request, 'رمز عبور باید حداقل ۸ کاراکتر باشد.', extra_tags="signup")
+            return render(request, 'shop/signup.html')
+
+        if not re.search(r'[A-Za-z]', password):
+            messages.error(request, 'رمز عبور باید شامل حداقل یک حرف باشد.', extra_tags="signup")
+            return render(request, 'shop/signup.html')
+
+        if not re.search(r'[0-9]', password):
+            messages.error(request, 'رمز عبور باید شامل حداقل یک عدد باشد.', extra_tags="signup")
+            return render(request, 'shop/signup.html')
+
+        if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
+            messages.error(request, 'رمز عبور باید شامل حداقل یک کاراکتر خاص باشد.', extra_tags="signup")
+            return render(request, 'shop/signup.html')
+
         # Check if username exists
         if User.objects.filter(username=username).exists():
             messages.error(request, 'نام کاربری قبلا ثبت شده است.', extra_tags="signup")
             return render(request, 'shop/signup.html')
 
+
         # Check if email exists
         if User.objects.filter(email=email).exists():
             messages.error(request, 'ایمیل قبلا ثبت شده است.', extra_tags="signup")
             return render(request, 'shop/signup.html')
+
+
 
         # Split full name into first and last names
         name_parts = full_name.split(' ', 1)

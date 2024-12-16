@@ -16,7 +16,7 @@ class OrderInline(admin.TabularInline):
 # Admin for OrderGroup
 @admin.register(OrderGroup)
 class OrderGroupAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'created_at', 'total_price')  # Fields to display in the list view
+    list_display = ('id', 'user', 'created_at', 'total_price','order_number')  # Fields to display in the list view
     inlines = [OrderInline]  # Add Order inline to OrderGroup
     readonly_fields = ('user', 'created_at')  # Make these fields read-only
     ordering = ('-created_at',)  # Order by the newest checkout first
