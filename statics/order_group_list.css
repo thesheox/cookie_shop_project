@@ -205,6 +205,19 @@ footer {
 
 /* Media Query for smaller screens */
 @media screen and (max-width: 768px) {
+    footer {
+  display: flex;
+  color: #898989;;
+  padding: 20px;
+    position:absolute;
+  bottom: 0;
+  width: 100%;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Vertically center the content */
+    border-top: 2px solid #797575;
+
+
+}
 
   .footer-content2 {
     flex-direction: column; /* Stack the sections vertically */

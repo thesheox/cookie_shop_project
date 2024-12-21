@@ -18,6 +18,7 @@ urlpatterns = [
     path('admin-panel/', views.admin_panel, name='admin_panel'),  # Admin panel
     path('logout/', user_logout, name='logout'),
     path('verify/', verify_order, name='verify'),
+    path('profile/', profile_page, name='profile'),
  path('cart/delete/<int:product_id>/', views.delete_cart_item, name='delete_cart_item'),
 
 ]

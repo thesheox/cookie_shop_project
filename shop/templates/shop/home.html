@@ -39,9 +39,9 @@
             <a class="enter" href="{% url 'logout' %}">
                 <img class="cart" src="{% static 'Pictures/logout.png' %}" width="24px" height="24px"/>
             </a>
-            <p class="enter" >
+            <a class="enter" href="{% url 'profile' %}">
                 {{user.username}}
-            </p>
+            </a>
 
             {% endif %}
         </div>

@@ -38,6 +38,12 @@ def order_group_list(request):
 
     return render(request, 'shop/order_group_list.html', {'order_groups': order_groups})
 
+
+
+@login_required
+def profile_page(request):
+    return render(request, 'shop/profile_page.html')
+
 def product_list(request):
     products = Product.objects.all()
     return render(request, 'shop/product_list.html', {'products': products})
