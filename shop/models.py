@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db import models
 from django_jalali.db import models as jmodels
+from django.utils.functional import cached_property
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
@@ -46,9 +47,47 @@ class Order(models.Model):
 from django.db import models
 from django.contrib.auth.models import User
 
+# class Profile(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)  # Link Profile to User
+#     phone_number = models.CharField(max_length=15, blank=True, null=True)  # Store phone number
+#     address = models.TextField(max_length=500, blank=True, null=True)
+#
+#     def __str__(self):
+#         return f"{self.user.username}'s profile"
+
+
+from django.db import models
+from django.contrib.auth.models import User
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)  # Link Profile to User
     phone_number = models.CharField(max_length=15, blank=True, null=True)  # Store phone number
+    default_address = models.ForeignKey('Address', null=True, blank=True, on_delete=models.SET_NULL, related_name='default_for')  # Default address link
 
     def __str__(self):
         return f"{self.user.username}'s profile"
+
+    def set_default_address(self, address):
+        """Set the default address for the profile."""
+        self.default_address = address
+        self.save()
+
+    def clear_default_address(self):
+        """Clear the default address for the profile."""
+        self.default_address = None
+        self.save()
+
+
+
+    @cached_property
+    def default_address(self):
+        # Use the correct related_name to access the addresses
+        return self.addresses.filter(is_default=True).first()
+
+class Address(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='addresses')  # Link Address to Profile
+    address_line = models.TextField(max_length=255)
+    is_default = models.BooleanField(default=False)  # Mark if this is the default address
+
+    def __str__(self):
+        return f"Address for {self.profile.user.username}: {self.address_line}"

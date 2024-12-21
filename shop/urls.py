@@ -19,6 +19,17 @@ urlpatterns = [
     path('logout/', user_logout, name='logout'),
     path('verify/', verify_order, name='verify'),
     path('profile/', profile_page, name='profile'),
- path('cart/delete/<int:product_id>/', views.delete_cart_item, name='delete_cart_item'),
+    path('profile/edit/<int:pk>/', profile_edit, name='profile_edit'),
+    path('cart/delete/<int:product_id>/', views.delete_cart_item, name='delete_cart_item'),
+    path('user/<int:user_id>/addresses/', views.show_addresses, name='show_addresses'),
+    path('user/<int:user_id>/add-address/', views.add_address, name='add_address'),
+    path('address/<int:address_id>/edit/', views.edit_address, name='edit_address'),
+    path('address/<int:address_id>/delete/', views.delete_address, name='delete_address'),
+    path('user/<int:user_id>/addresses/set_default/<int:address_id>/', views.set_default_address,
+         name='set_default_address'),
+
 
 ]
+
+
+

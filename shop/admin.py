@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Product, Order, OrderGroup
+from django.utils.functional import cached_property
 
 # Inline for Order
 class OrderInline(admin.TabularInline):
@@ -39,10 +40,71 @@ from django.contrib import admin
 from .models import Profile
 
 
+# class ProfileAdmin(admin.ModelAdmin):
+#     list_display = ('user', 'phone_number')  # Show user and phone_number in the list view
+#     search_fields = ('user__username', 'phone_number')  # Allow searching by username and phone number
+#     list_filter = ('user',)  # Filter by user
+#
+#
+# admin.site.register(Profile, ProfileAdmin)  # Register the Profile model with custom admin options
+
+from django.contrib import admin
+from .models import Profile, Address
+from django import forms
+
+from django.contrib import admin
+from .models import Profile, Address
+from django import forms
+
+# Inline form for managing addresses in Profile admin
+class AddressInline(admin.TabularInline):
+    model = Address
+    extra = 1  # Add one blank form for new address
+    fields = ['address_line', 'is_default']  # Show address line and default checkbox
+    max_num = None  # Allow unlimited addresses
+
+    # Ensure only one default address per profile
+    def save_model(self, request, obj, form, change):
+        if obj.is_default:
+            # Update all other addresses to be non-default for this profile
+            Address.objects.filter(profile=obj.profile).exclude(id=obj.id).update(is_default=False)
+        super().save_model(request, obj, form, change)
+
+# Custom form to edit the default address field in the Profile admin
+class ProfileForm(forms.ModelForm):
+    default_address = forms.ModelChoiceField(queryset=Address.objects.all(), required=False, label='Default Address')
+
+    class Meta:
+        model = Profile
+        fields = ['user', 'phone_number', 'default_address']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Preselect the current default address for the Profile
+        if self.instance and self.instance.default_address:
+            self.fields['default_address'].initial = self.instance.default_address
+
+# Profile admin with inline Address management
+@admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'phone_number')  # Show user and phone_number in the list view
-    search_fields = ('user__username', 'phone_number')  # Allow searching by username and phone number
-    list_filter = ('user',)  # Filter by user
+    list_display = ['user', 'phone_number', 'default_address_display']  # Show user, phone, and default address
+    search_fields = ['user__username', 'phone_number']  # Search by username or phone
+    inlines = [AddressInline]  # Add AddressInline for managing addresses
+    form = ProfileForm  # Use the custom form
 
+    # Display default address in the profile list
+    def default_address_display(self, obj):
+        return obj.default_address.address_line if obj.default_address else 'No default address'
+    default_address_display.short_description = 'Default Address'
 
-admin.site.register(Profile, ProfileAdmin)  # Register the Profile model with custom admin options
+    # Allow editing the default address in the form
+    def get_form(self, request, obj=None, change=False, **kwargs):
+        form = super().get_form(request, obj, change, **kwargs)
+        # You can add additional logic here to filter the available addresses if needed
+        return form
+
+# Address admin to manage individual addresses
+@admin.register(Address)
+class AddressAdmin(admin.ModelAdmin):
+    list_display = ['profile', 'address_line', 'is_default']  # Show profile, address line, and default status
+    search_fields = ['address_line', 'profile__user__username']  # Search by address or user

@@ -121,25 +121,32 @@ def product_edit(request, pk):
 
 
 def profile_edit(request, pk):
-    profile = get_object_or_404(User, pk=pk)
+    user = get_object_or_404(User, pk=pk)
+    profile = Profile.objects.get(user=user)
 
     if request.method == 'POST':
         # Get the updated values from the POST data
-        User.first_name = request.POST.get('product_name')
-        User.last_name = request.POST.get('product_price')
-        User.email= request.POST.get('product_quantity')
+        full_name = request.POST.get('user_name').split(' ')
+        print(full_name)
+        user.first_name = full_name[0]
+        user.last_name = full_name[1]
+
+        user.email= request.POST.get('user_email')
         # User = request.POST.get('product_materials')
         # product.description = request.POST.get('product_description')
+
+        profile.phone_number=request.POST.get('user_phone_number')
 
 
 
         # Save the updated product
-        User.save()
+        user.save()
+        profile.save()
 
         # Redirect to product list page
-        return redirect('product_list')
+        return redirect('profile')
 
-    return render(request, 'shop/product_edit.html', {'product': product, 'title': 'ویرایش محصول'})
+    return render(request, 'shop/profile_edit.html', {'user': user, 'profile':profile , 'title': 'ویرایش محصول'})
 
 def product_delete(request, pk):
     product = get_object_or_404(Product, pk=pk)
@@ -361,10 +368,17 @@ def buy_product(request, product_id):
 
 @login_required
 def cart(request):
+    user = request.user
+
+    # Get the default address for the user, if it exists
+    try:
+        default_address = user.profile.default_address
+    except AttributeError:
+        default_address = None
 
     cart = request.session.get('cart', {})  # Retrieve cart from session
     total_price = sum(item['price'] * item['quantity'] for item in cart.values())  # Calculate total price
-    return render(request, 'shop/cart.html', {'cart': cart, 'total_price': total_price})
+    return render(request, 'shop/cart.html', {'cart': cart, 'total_price': total_price,'default_address': default_address})
 
 @login_required
 def delete_cart_item(request, product_id):
@@ -382,3 +396,105 @@ def delete_cart_item(request, product_id):
     return redirect('cart')  # Redirect back to the cart page
 
 
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Profile, Address
+from django.contrib.auth.models import User
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Profile, Address
+from django.contrib.auth.models import User
+
+def show_addresses(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    addresses = Address.objects.filter(profile=user.profile)
+    return render(request, 'shop/show_addresses.html', {'user': user, 'addresses': addresses})
+
+def add_address(request, user_id):
+    profile = get_object_or_404(Profile, user_id=user_id)
+    if request.method == "POST":
+        address_line = request.POST.get('address_line', '').strip()
+        if address_line:
+            Address.objects.create(profile=profile, address_line=address_line)
+            return redirect('show_addresses', user_id=user_id)
+    return render(request, 'shop/add_address.html', {'user': profile.user})
+
+def edit_address(request, address_id):
+    address = get_object_or_404(Address, id=address_id)
+    if request.method == "POST":
+        new_address_line = request.POST.get('address_line', '').strip()
+        if new_address_line:
+            address.address_line = new_address_line
+            address.save()
+            return redirect('show_addresses', user_id=address.profile.user.id)
+    return render(request, 'shop/edit_address.html', {'address': address})
+
+def delete_address(request, address_id):
+    address = get_object_or_404(Address, id=address_id)
+    user_id = address.profile.user.id
+    if request.method == "POST":
+        address.delete()
+    return redirect('show_addresses', user_id=user_id)
+
+
+from django.shortcuts import get_object_or_404, redirect
+from .models import Profile, Address
+
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth.models import User
+from .models import Profile, Address
+
+
+# def set_default_address(request, user_id):
+#     if request.method == "POST":
+#         user = get_object_or_404(User, id=user_id)
+#         address_id = request.POST.get('default_address')
+#
+#         # Debugging: Check if address_id is received properly
+#         print(f"Received address_id: {address_id}")
+#
+#         if address_id:
+#             address = get_object_or_404(Address, id=address_id)
+#             profile = user.profile
+#             profile.default_address = address
+#             profile.save()
+#
+#             print("Default address updated.")  # Debugging message
+#         else:
+#             print("No address selected.")  # Debugging message
+#
+#     return redirect('show_addresses', user_id=user_id)
+
+
+from django.shortcuts import get_object_or_404, redirect
+from .models import Profile, Address
+from django.contrib import messages
+
+
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib import messages
+from .models import User, Address
+
+def set_default_address(request, user_id, address_id):
+    user = get_object_or_404(User, id=user_id)
+    address = get_object_or_404(Address, id=address_id)
+
+    # Get the profile associated with the user
+    profile = user.profile
+
+    # Set the selected address as the default
+    profile.default_address = address
+
+    # Unmark other addresses as default
+    Address.objects.filter(profile=profile).exclude(id=address.id).update(is_default=False)
+
+    # Mark the selected address as default
+    address.is_default = True
+
+    # Save the changes to both the address and profile
+    address.save()
+    profile.save()
+
+    # Show a success message
+    messages.success(request, f'Address "{address.address_line}" set as default.')
+
+    # Redirect to the page showing the list of addresses
+    return redirect('show_addresses', user_id=user_id)

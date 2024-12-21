@@ -1,0 +1,124 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فروشگاه کوکی</title>
+    <!-- لینک فایل CSS -->
+    <link rel="stylesheet" href="{% static 'profile_edit.css' %}">
+</head>
+<body>
+
+<header>
+    <nav class="navbar_logo">
+        <div class="menu">
+           <a class="link_logo" href="{% url 'home' %}">
+                 <img class="MiniLogo" src="{% static 'Pictures/logo_cropped.png' %}"/>
+            </a>
+        </div>
+        <div class="navbar">
+            {% if user.is_authenticated and user.is_staff or user.is_superuser %}
+            <a class="admin" href="{% url 'admin_panel' %}">
+                <img class="cart" src="{% static 'Pictures/admin.png' %}" width="24px" height="24px"/>
+            </a>
+            {% endif %}
+
+            <a class="enter" href="{% url 'cart' %}">
+                <img class="cart" src="{% static 'Pictures/cart.png' %}" width="24px" height="24px"/>
+            </a>
+            <img class="search" src="{% static 'Pictures/search.svg' %}" width="24px" height="24px"/>
+            {% if not user.is_authenticated %}
+            <a class="enter" href="{% url 'login' %}">
+                عضویت/ورود
+            </a>
+            {% endif %}
+
+            {% if  user.is_authenticated %}
+            <a class="enter" href="{% url 'logout' %}">
+                <img class="cart" src="{% static 'Pictures/logout.png' %}" width="24px" height="24px"/>
+            </a>
+            <a class="enter" href="{% url 'profile' %}">
+                {{user.username}}
+            </a>
+
+            {% endif %}
+        </div>
+
+    </nav>
+</header>
+
+<main>
+<div class="container">
+    <div class="card">
+<!--        <div class="logo">-->
+<!--            <a href="{% url 'home' %}" target="_blank">-->
+<!--                <img src="{% static 'Pictures/logo.jpg' %}" alt="Cookie Lab Logo">-->
+<!--            </a>-->
+<!--        </div>-->
+        <div class="title_add">
+            <p>ویرایش اطلاعات کاربری</p>
+        </div>
+
+
+   <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label for="user_name">نام و نام خانوادگی:</label>
+    <input type="text" name="user_name" class="product_input" required placeholder="نام نام خانوادگی" value="{{ user.first_name }} {{ user.last_name }}">
+
+    <label for="user_email">ایمیل:</label>
+    <input type="email" name="user_email" class="product_input" required placeholder="ایمیل" value="{{ user.email }}">
+
+    <label for="user_phone_number">شماره تلفن:</label>
+    <input type="number" name="user_phone_number" class="product_input" required placeholder="شماره تلفن" value="{{ profile.phone_number }}">
+
+
+    <div class="button-group">
+        <button type="submit" class="login-btn">ذخیره</button>
+        <a href="{% url 'admin_panel' %}" class="signup-btn">برگشت</a>
+    </div>
+
+    {% if messages %}
+        <div>
+            {% for message in messages %}
+                <div class="error-message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</form>
+
+    </div>
+</div>
+</main>
+<footer>
+  <div class="footer-content2">
+      <div class="footer-content">
+          <p>سوالات متداول</p>
+      <p>Version 1.0</p>
+      </div>
+
+    <p id="copyright">© 2024 Cookie Lab Admin Panel. </p>
+
+  </div>
+</footer>
+
+<!--<div class="container"><h6 class="card">تازه های بلاگ</h6></div>-->
+<!--<section class="blog">-->
+<!--    <div class="blog-item"><img class="image" src="{% static 'Pictures/blogBanana.png' %}" width="377px" height="227px"><p class="blogText">استفاده از بهترین و تازه ترین مواد اولیه</p><h5  class="blogText">1402/12/01</h5></div>-->
+<!--        <div class="blog-item"><img class="image" src="{% static 'Pictures/pro.jpg' %}" width="377px" height="227px"><p  class="blogText">لذت کوکی با طعم قدرت</p><h5  class="blogText">1402/12/01</h5></div>-->
+<!--        <div class="blog-item"><img class="image" src="{% static 'Pictures/cook.jpg' %}" width="377px" height="227px"><p  class="blogText">سفر به دنیای کوکی ها</p><h5  class="blogText">1402/12/01</h5></div>-->
+<!--    </section>-->
+<!--<footer>-->
+<!--    <div class="footer-content">-->
+<!--        <img class="logo" src="{% static 'Pictures/logo.jpg' %}" width="103.6px" height="99px"/>-->
+<!--        <p class="footer-text">راه های ارتباطی <br/>شعبه 1 معالی آباد(بهاران)<br/>07136389655<br/>شماره واتس اپ سفارشات روزانه شعبه<br/>09308201660</p>-->
+<!--        <p class="footer-text2">&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;<br/>شعبه2ابریشمی<br/>07132263829/07132263802<br/>شماره واتس اپ سفارشات روزانه شعبه<br/>09917578410<br/>ساعت کاری : 9 الی 22</p>-->
+<!--        <p class="media">رسانه های اجتماعی<br/>(coming soon)</p>-->
+<!--    </div>-->
+<!--</footer>-->
+</body>
+</html>

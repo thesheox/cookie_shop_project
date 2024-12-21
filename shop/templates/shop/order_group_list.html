@@ -55,19 +55,21 @@
     <link rel="stylesheet" href="{% static 'order_group_list.css' %}">
 </head>
 <body>
+
 <header>
     <nav class="navbar_logo">
         <div class="menu">
-            <a class="link_logo" href="{% url 'home' %}">
-                <img class="MiniLogo" src="{% static 'Pictures/logo_cropped.png' %}"/>
+           <a class="link_logo" href="{% url 'home' %}">
+                 <img class="MiniLogo" src="{% static 'Pictures/logo_cropped.png' %}"/>
             </a>
         </div>
         <div class="navbar">
-            {% if user.is_authenticated and user.is_superuser %}
+            {% if user.is_authenticated and user.is_staff or user.is_superuser %}
             <a class="admin" href="{% url 'admin_panel' %}">
                 <img class="cart" src="{% static 'Pictures/admin.png' %}" width="24px" height="24px"/>
             </a>
             {% endif %}
+
             <a class="enter" href="{% url 'cart' %}">
                 <img class="cart" src="{% static 'Pictures/cart.png' %}" width="24px" height="24px"/>
             </a>
@@ -77,13 +79,18 @@
                 عضویت/ورود
             </a>
             {% endif %}
-            {% if user.is_authenticated %}
+
+            {% if  user.is_authenticated %}
             <a class="enter" href="{% url 'logout' %}">
                 <img class="cart" src="{% static 'Pictures/logout.png' %}" width="24px" height="24px"/>
             </a>
-            <p class="enter">{{ user.username }}</p>
+            <a class="enter" href="{% url 'profile' %}">
+                {{user.username}}
+            </a>
+
             {% endif %}
         </div>
+
     </nav>
 </header>
 

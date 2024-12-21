@@ -53,12 +53,12 @@
 
     <div class="card">
          <div class="icon">
-           <a  href="{% url 'product_list' %}">
+           <a  href="{% url 'show_addresses' user.id %}">
             <img class="icon_image_asli" src="{% static 'Pictures/icon1.png' %}" >
                </a>
         </div>
         <div class="line">
-            <a class="no_underline" href="{% url 'product_list' %}">
+            <a class="no_underline" href="{% url 'show_addresses' user.id %}">
         <p>مدیریت آدرس ها</p>
         </a>
         </div>
@@ -67,12 +67,12 @@
 
     <div class="card">
         <div class="icon">
-               <a  href="{% url 'order_group_list' %}">
+               <a  href="{% url 'profile_edit' user.id %}">
             <img class="icon_image_asli" src="{% static 'Pictures/icon2.png' %}" >
                </a>
         </div>
         <div class="line">
-            <a class="no_underline" href="{% url 'order_group_list' %}">
+            <a class="no_underline" href="{% url 'profile_edit' user.id %}">
         <p>مدیریت اطلاعات کاربری</p>
         </a>
         </div>

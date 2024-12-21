@@ -1,0 +1,342 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@font-face {
+    font-family: 'Shabnam';
+    src: url("./Fonts/Shabnam.ttf");
+}
+
+/* Applying the Shabnam font */
+* {
+    font-family: 'Shabnam', sans-serif;
+}
+.navbar_logo {
+    direction: rtl;
+    display: flex;
+    justify-content: space-between; /* فاصله بین لوگو و آیکون‌ها */
+    align-items: center; /* قرارگیری عمودی عناصر */
+    background-color: #CD9D65;
+    padding: 10px 20px; /* فضای داخلی بیشتر */
+    height: 100px; /* ارتفاع ثابت برای کل بخش */
+    box-sizing: border-box; /* اطمینان از رعایت padding در ارتفاع */
+    width: 100%; /* تمام عرض صفحه */
+    background-color: #CD9D65;
+}
+
+.navbar {
+    display: flex;
+    align-items: center; /* آیکون‌ها در یک خط وسط قرار می‌گیرند */
+    gap: 15px; /* فاصله مناسب بین آیکون‌ها */
+       background-color: #CD9D65;
+}
+
+.MiniLogo {
+    height: 60px; /* افزایش ارتفاع لوگو */
+    width: auto; /* عرض متناسب با ارتفاع */
+
+background-color: #CD9D65;
+
+}
+.menu{
+    background-color: #CD9D65;
+}
+.link_logo{
+    background-color: #CD9D65;
+}
+
+
+.admin,
+.cart,
+.search,
+.enter img {
+    height: 24px; /* آیکون‌ها کمی بزرگ‌تر می‌شوند */
+    width: 24px;
+       background-color: #CD9D65;
+}
+
+.enter {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-family: 'Shabnam';
+    color: black;
+    text-decoration: none;
+       background-color: #CD9D65;
+}
+
+.enter p {
+    margin: 0 10px; /* فاصله مناسب بین متن و آیکون‌ها */
+    padding: 0;
+    color: black;
+       background-color: #CD9D65;
+}
+
+.search,
+.admin,
+.cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+       background-color: #CD9D65;
+}
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    direction: rtl;
+    position: relative;
+    background: lightgray; /* Solid background color */
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('Pictures/back.png') 50% / cover no-repeat;
+    opacity: 0.2;  /* Set opacity to 20% */
+    z-index: -1; /* Ensures the background stays behind the content */
+}
+
+
+.container {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    padding: 20px;
+    gap: 48px;
+}
+
+.card {
+    background: #fff;
+    width: 100%;
+    max-width: 576px;
+max-height: 2000px;
+    border-radius: 24px;
+border: 1px solid  #733E20;
+background:  #FFFCF7;
+    padding: 32px 32px 0 32px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+}
+
+.logo img {
+    width: 120px;
+    height: auto;
+    margin: 0 auto 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    text-align: right;
+}
+
+.product_input{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #D8B98C33;
+    border-radius: 16px;
+background: rgba(242, 221, 194, 0.50);
+    font-size: 14px;
+    color: #555;
+
+
+}
+.file-input{
+    margin-bottom: 20px;
+    display: flex;
+
+}
+
+form input::placeholder {
+    color: #aaa;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+}
+
+.signup-btn {
+display: flex;
+height: 48px;
+padding: 8px 24px;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+flex: 1 0 0;
+    border-radius: 16px;
+background:  #BE8C60;
+    text-decoration:none;
+    color: white;
+
+}
+
+.signup-btn:hover {
+    background-color: #C0A178; /* Darker shade for hover effect */
+    color: #000000; /* Keep the text black on hover */
+}
+
+
+
+
+
+
+.login-btn {
+display: flex;
+height: 48px;
+padding: 8px 24px;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+flex: 1 0 0;
+    border-radius: 16px;
+background:  #BE8C60;
+}
+.login-btn:hover {
+    background-color: #C0A178; /* Darker shade for hover effect */
+    color: #000000; /* Keep the text black on hover */
+}
+.title_add{
+text-align: right;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+            direction: ltr;
+        }
+  .password-container {
+            position: relative;
+        }
+
+        .password-container input {
+            width: 100%;
+            padding-right: 30px; /* Make space for the icon */
+            box-sizing: border-box; /* Ensure padding is included in width */
+        }
+
+        .password-container .eye-icon {
+            position: absolute;
+            left: 10px; /* Adjust this value to your preference */
+            top: 30%;
+            transform: translateY(-50%); /* Center the icon vertically */
+            cursor: pointer;
+            font-size: 20px;
+        }
+button:hover {
+    opacity: 0.9;
+}
+#password {
+    margin-bottom: 30px; /* Add space below the Confirm Password field */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card {
+        width: 90%;
+        padding: 15px;
+    }
+}
+.button-group{
+    margin-bottom: 30px;
+}
+footer {
+  display: flex;
+  color: #898989;;
+  padding: 20px;
+    position: absolute;
+  bottom: 0;
+  width: 100%;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Vertically center the content */
+    border-top: 2px solid #797575;
+
+
+}
+.product-image{
+
+  background-color: indigo;
+  color: white;
+  padding: 0.5rem;
+  font-family: sans-serif;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+
+}
+
+.footer-content2 {
+  display: flex;
+  justify-content: space-between; /* Space between the footer sections */
+  width: 100%;
+  max-width: 2000px; /* Optional: limit max width */
+  padding: 0 20px; /* Optional: padding for spacing */
+}
+
+.footer-content {
+  display: flex;
+  gap: 50px; /* Space between the two <p> elements */
+}
+
+.footer-content p {
+  margin: 0;
+  font-size: 14px;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Media Query for smaller screens */
+@media screen and (max-width: 768px) {
+  .footer-content2 {
+    flex-direction: column; /* Stack the sections vertically */
+    align-items: center; /* Center the content horizontally */
+  }
+
+  .footer-content {
+    gap: 20px; /* Reduce space between the elements on smaller screens */
+    justify-content: center; /* Center the items */
+  }
+
+  .footer-content p {
+    font-size: 14px; /* Reduce font size for smaller screens */
+  }
+}
+
+#copyright{
+    direction: ltr;
+}

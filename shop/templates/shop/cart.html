@@ -1,46 +1,4 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <title>Your Cart</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--    <h2>Your Cart</h2>-->
-<!--    {% if cart %}-->
-<!--        <table>-->
-<!--            <thead>-->
-<!--                <tr>-->
-<!--                    <th>Product</th>-->
-<!--                    <th>Price</th>-->
-<!--                    <th>Quantity</th>-->
-<!--                    <th>Total</th>-->
-<!--                </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--                {% for product_id, item in cart.items %}-->
-<!--                    <tr>-->
-<!--                        <td>{{ item.name }}</td>-->
-<!--                        <td>{{ item.price }}</td>-->
-<!--                        <td>{{ item.quantity }}</td>-->
-<!--                        <td>{{ item.price }}</td>-->
-<!--                    </tr>-->
-<!--                {% endfor %}-->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--        <h3>Total Price: {{ total_price }}</h3>-->
-<!--        {% if error %}-->
-<!--            <p style="color: red;">{{ error }}</p>-->
-<!--        {% endif %}-->
-<!--        <form method="POST" action="{% url 'checkout' %}">-->
-<!--            {% csrf_token %}-->
-<!--            <button type="submit">Checkout</button>-->
-<!--        </form>-->
-<!--    {% else %}-->
-<!--        <p>Your cart is empty.</p>-->
-<!--    {% endif %}-->
-<!--    <a href="{% url 'home' %}">Continue Shopping</a>-->
-<!--</body>-->
-<!--</html>-->
-{%load static%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="fa">
 <head>
@@ -48,6 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سبد خرید</title>
     <link rel="stylesheet" href="{% static 'ShoppingCartPage.css' %}">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const courierRadioButton = document.querySelector('input[name="delivery"][value="courier"]');
+            const defaultAddressContainer = document.getElementById('default-address-container');
+            const showAddressesButton = document.getElementById('show-addresses-btn');
+
+            function updateAddressDisplay() {
+                if (courierRadioButton.checked) {
+                    defaultAddressContainer.style.display = 'block';
+                } else {
+                    defaultAddressContainer.style.display = 'none';
+                }
+            }
+
+            // Initial check to display address if the radio button is checked
+            updateAddressDisplay();
+
+            // Event listener to update the display when the radio button is changed
+            document.querySelectorAll('input[name="delivery"]').forEach(function(radio) {
+                radio.addEventListener('change', updateAddressDisplay);
+            });
+        });
+    </script>
 </head>
 <body>
 <!-- هدر -->
@@ -79,10 +60,9 @@
             <a class="enter" href="{% url 'logout' %}">
                 <img class="cart_navbar" src="{% static 'Pictures/logout.png' %}" width="24px" height="24px"/>
             </a>
-            <p class="enter" >
+            <a class="enter" href="{% url 'profile' %}">
                 {{user.username}}
-            </p>
-
+            </a>
             {% endif %}
         </div>
 
@@ -112,30 +92,24 @@
                 <td>
                     {{item.price}}
                 </td>
-                <td>{{item.total_price_sale}}
-
-                </td>
+                <td>{{item.total_price_sale}}</td>
                 <td>
                     <div class="delete-cell">
                        <a href="{% url 'delete_cart_item' product_id=product_id %}">
                     <img class="delete-btn" src="{% static 'Pictures/deleteicon.png' %}" width="24px" height="24px">
                            </a>
-                </div>
+                    </div>
                 </td>
-
             </tr>
             {% endfor %}
             </tbody>
         </table>
         <h3 id="total_price">
             قیمت کل :
-            {{total_price }}
-
+            {{total_price}}
         </h3>
     </section>
-    <div>
 
-    </div>
     <div class="cart">
         <table class="shipping-table">
             <thead>
@@ -152,7 +126,7 @@
                             دریافت حضوری (دانشگاه صنعتی شیراز)
                         </label>
                         <label>
-                            <input type="radio" name="delivery">
+                            <input type="radio" name="delivery" value="courier">
                             ارسال با پیک (هزینه با مشتری)
                         </label>
                     </section>
@@ -161,14 +135,27 @@
             </tbody>
         </table>
     </div>
+
+    <div id="default-address-container" style="display:none;">
+        <!-- This is where the default address will be displayed -->
+        <h4>آدرس پیش‌فرض:</h4>
+        <p>
+            {% if default_address %}
+                {{ default_address.address_line  }}
+            {% else %}
+                آدرسی پیش‌فرض وجود ندارد.
+            {% endif %}
+        </p>
+        <a href="{% url 'show_addresses' user_id=user.id %}" id="show-addresses-btn" class="button">مشاهده آدرس‌ها</a>
+    </div>
+
     <div class="click">
         <a class="tasvie" href="{% url 'checkout' %}">
             <h3 class="clickItemText">تسویه حساب</h3>
         </a>
-         <a class="tasvie" href="{% url 'home' %}">
+        <a class="tasvie" href="{% url 'home' %}">
             <h3 class="clickItemText">ادامه خرید</h3>
         </a>
-
     </div>
 </main>
 
@@ -183,4 +170,3 @@
 </footer>
 </body>
 </html>
-

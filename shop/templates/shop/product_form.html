@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'add_product.css' %}">
 </head>
 <body>
+
 <header>
     <nav class="navbar_logo">
         <div class="menu">
@@ -18,7 +19,7 @@
             </a>
         </div>
         <div class="navbar">
-            {% if user.is_authenticated and user.is_superuser %}
+            {% if user.is_authenticated and user.is_staff or user.is_superuser %}
             <a class="admin" href="{% url 'admin_panel' %}">
                 <img class="cart" src="{% static 'Pictures/admin.png' %}" width="24px" height="24px"/>
             </a>
@@ -38,9 +39,9 @@
             <a class="enter" href="{% url 'logout' %}">
                 <img class="cart" src="{% static 'Pictures/logout.png' %}" width="24px" height="24px"/>
             </a>
-            <p class="enter" >
+            <a class="enter" href="{% url 'profile' %}">
                 {{user.username}}
-            </p>
+            </a>
 
             {% endif %}
         </div>
