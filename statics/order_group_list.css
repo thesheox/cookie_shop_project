@@ -1,0 +1,247 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@font-face {
+    font-family: 'Shabnam';
+    src: url("./Fonts/Shabnam.ttf");
+}
+
+/* Applying the Shabnam font */
+* {
+    font-family: 'Shabnam', sans-serif;
+}
+.navbar_logo {
+    direction: rtl;
+    display: flex;
+    justify-content: space-between; /* فاصله بین لوگو و آیکون‌ها */
+    align-items: center; /* قرارگیری عمودی عناصر */
+    background-color: #CD9D65;
+    padding: 10px 20px; /* فضای داخلی بیشتر */
+    height: 100px; /* ارتفاع ثابت برای کل بخش */
+    box-sizing: border-box; /* اطمینان از رعایت padding در ارتفاع */
+    width: 100%; /* تمام عرض صفحه */
+    background-color: #CD9D65;
+}
+
+.navbar {
+    display: flex;
+    align-items: center; /* آیکون‌ها در یک خط وسط قرار می‌گیرند */
+    gap: 15px; /* فاصله مناسب بین آیکون‌ها */
+       background-color: #CD9D65;
+}
+
+.MiniLogo {
+    height: 60px; /* افزایش ارتفاع لوگو */
+    width: auto; /* عرض متناسب با ارتفاع */
+
+background-color: #CD9D65;
+
+}
+.menu{
+    background-color: #CD9D65;
+}
+.link_logo{
+    background-color: #CD9D65;
+}
+
+
+.admin,
+.cart,
+.search,
+.enter img {
+    height: 24px; /* آیکون‌ها کمی بزرگ‌تر می‌شوند */
+    width: 24px;
+       background-color: #CD9D65;
+}
+
+.enter {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-family: 'Shabnam';
+    color: black;
+    text-decoration: none;
+       background-color: #CD9D65;
+}
+
+.enter p {
+    margin: 0 10px; /* فاصله مناسب بین متن و آیکون‌ها */
+    padding: 0;
+    color: black;
+       background-color: #CD9D65;
+}
+
+.search,
+.admin,
+.cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+       background-color: #CD9D65;
+}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f4ee;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th, .table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        @media screen and (max-width: 768px) {
+    thead {
+        visibility: hidden;
+        height: 0;
+        width: 0;
+    }
+
+    tbody {
+        margin-top: -68px;
+    }
+
+    .container {
+        width: 100%;
+        margin: 0;
+        padding: 10px;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .table {
+        display: block;
+        width: 100%;
+    }
+
+    .table tbody {
+        display: block;
+        width: 100%;
+    }
+
+    .table tr {
+        display: block;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid #ddd; /* Add this line */
+    }
+
+    .table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        text-align: right;
+        border: none;
+        border-bottom: 1px solid #f4f4f4;
+    }
+
+    .table td:last-child {
+        border-bottom: none;
+    }
+
+    .table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #333;
+    }
+}
+
+
+
+footer {
+  display: flex;
+  color: #898989;;
+  padding: 20px;
+
+  bottom: 0;
+  width: 100%;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Vertically center the content */
+    border-top: 2px solid #797575;
+
+
+}
+.product-image{
+
+  background-color: indigo;
+  color: white;
+  padding: 0.5rem;
+  font-family: sans-serif;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+
+}
+
+.footer-content2 {
+  display: flex;
+  justify-content: space-between; /* Space between the footer sections */
+  width: 100%;
+  max-width: 2000px; /* Optional: limit max width */
+  padding: 0 20px; /* Optional: padding for spacing */
+}
+
+.footer-content {
+  display: flex;
+  gap: 50px; /* Space between the two <p> elements */
+}
+
+.footer-content p {
+  margin: 0;
+  font-size: 14px;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Media Query for smaller screens */
+@media screen and (max-width: 768px) {
+  .footer-content2 {
+    flex-direction: column; /* Stack the sections vertically */
+    align-items: center; /* Center the content horizontally */
+  }
+
+  .footer-content {
+    gap: 20px; /* Reduce space between the elements on smaller screens */
+    justify-content: center; /* Center the items */
+  }
+
+  .footer-content p {
+    font-size: 14px; /* Reduce font size for smaller screens */
+  }
+}
+
+#copyright{
+    direction: ltr;
+}
+

@@ -1,47 +1,152 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Order Groups</title>-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+<!--</head>-->
+<!--<body>-->
+<!--    <div class="container mt-5">-->
+<!--        <h1>Order Groups</h1>-->
+<!--        <table class="table table-bordered">-->
+<!--            <thead>-->
+<!--                <tr>-->
+<!--                    <th>#</th>-->
+<!--                    <th>User</th>-->
+<!--                    <th>Created At</th>-->
+<!--                    <th>Total Price</th>-->
+<!--                    <th>Orders</th>-->
+<!--                </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--                {% for order_group in order_groups %}-->
+<!--                <tr>-->
+<!--                    <td>{{ order_group.id }}</td>-->
+<!--                    <td>{{ order_group.user.first_name }} {{ order_group.user.last_name }}</td>-->
+<!--                    <td>{{ order_group.date_time }}</td>-->
+<!--                    <td>${{ order_group.total_price }}</td>-->
+<!--                    <td>-->
+<!--                        <ul>-->
+<!--                            {% for order in order_group.orders.all %}-->
+<!--                            <li>-->
+<!--                                {{ order.product.name }} (x{{ order.quantity }}) - ${{ order.total_price }}-->
+<!--                            </li>-->
+<!--                            {% endfor %}-->
+<!--                        </ul>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--                {% empty %}-->
+<!--                <tr>-->
+<!--                    <td colspan="5" class="text-center">No Order Groups Found</td>-->
+<!--                </tr>-->
+<!--                {% endfor %}-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--        <a href="{% url 'product_list' %}" class="btn btn-primary">Back to Products</a>-->
+<!--    </div>-->
+<!--</body>-->
+<!--</html>-->
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="fa" dir="rtl">
 <head>
-    <title>Order Groups</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لیست سفارشات</title>
+    <link rel="stylesheet" href="{% static 'order_group_list.css' %}">
 </head>
 <body>
-    <div class="container mt-5">
-        <h1>Order Groups</h1>
-        <table class="table table-bordered">
+<header>
+    <nav class="navbar_logo">
+        <div class="menu">
+           <a class="link_logo" href="{% url 'home' %}">
+                 <img class="MiniLogo" src="{% static 'Pictures/logo_cropped.png' %}"/>
+            </a>
+        </div>
+        <div class="navbar">
+            {% if user.is_authenticated and user.is_superuser %}
+            <a class="admin" href="{% url 'admin_panel' %}">
+                <img class="cart" src="{% static 'Pictures/admin.png' %}" width="24px" height="24px"/>
+            </a>
+            {% endif %}
+
+            <a class="enter" href="{% url 'cart' %}">
+                <img class="cart" src="{% static 'Pictures/cart.png' %}" width="24px" height="24px"/>
+            </a>
+            <img class="search" src="{% static 'Pictures/search.svg' %}" width="24px" height="24px"/>
+            {% if not user.is_authenticated %}
+            <a class="enter" href="{% url 'login' %}">
+                عضویت/ورود
+            </a>
+            {% endif %}
+
+            {% if  user.is_authenticated %}
+            <a class="enter" href="{% url 'logout' %}">
+                <img class="cart" src="{% static 'Pictures/logout.png' %}" width="24px" height="24px"/>
+            </a>
+            <p class="enter" >
+                {{user.username}}
+            </p>
+
+            {% endif %}
+        </div>
+
+    </nav>
+</header>
+    <div class="container">
+        <h1>لیست سفارشات</h1>
+        <table class="table">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>User</th>
-                    <th>Created At</th>
-                    <th>Total Price</th>
-                    <th>Orders</th>
+                    <th>نام کاربری</th>
+                    <th>تاریخ ثبت سفارش</th>
+                    <th>مجموع مبلغ سفارش</th>
+                    <th>اقلام سفارش</th>
                 </tr>
             </thead>
             <tbody>
-                {% for order_group in order_groups %}
                 <tr>
-                    <td>{{ order_group.id }}</td>
-                    <td>{{ order_group.user.first_name }} {{ order_group.user.last_name }}</td>
-                    <td>{{ order_group.date_time }}</td>
-                    <td>${{ order_group.total_price }}</td>
-                    <td>
-                        <ul>
-                            {% for order in order_group.orders.all %}
-                            <li>
-                                {{ order.product.name }} (x{{ order.quantity }}) - ${{ order.total_price }}
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </td>
+                    <td data-label="#">1</td>
+                    <td data-label="نام کاربری">plum</td>
+                    <td data-label="تاریخ ثبت سفارش">07.DEC.2024</td>
+                    <td data-label="مجموع مبلغ سفارش">15,000</td>
+                    <td data-label="اقلام سفارش">• کوکی نیویورکی (1*)</td>
                 </tr>
-                {% empty %}
                 <tr>
-                    <td colspan="5" class="text-center">No Order Groups Found</td>
+                    <td data-label="#">2</td>
+                    <td data-label="نام کاربری">thesheox</td>
+                    <td data-label="تاریخ ثبت سفارش">22.NOV.2024</td>
+                    <td data-label="مجموع مبلغ سفارش">105,000</td>
+                    <td data-label="اقلام سفارش">• کوکی دبل چاکلت (5*)<br>• کوکی دارچینی (2*)</td>
                 </tr>
-                {% endfor %}
+                <tr>
+                    <td data-label="#">3</td>
+                    <td data-label="نام کاربری">shayan_asli</td>
+                    <td data-label="تاریخ ثبت سفارش">29.SEP.2024</td>
+                    <td data-label="مجموع مبلغ سفارش">90,000</td>
+                    <td data-label="اقلام سفارش">• کوکی کرنبری (6*)</td>
+                </tr>
+                <tr>
+                    <td data-label="#">4</td>
+                    <td data-label="نام کاربری">reyhaneh</td>
+                    <td data-label="تاریخ ثبت سفارش">07.SEP.2024</td>
+                    <td data-label="مجموع مبلغ سفارش">105,000</td>
+                    <td data-label="اقلام سفارش">• کوکی دبل چاکلت (5*)<br>• کوکی دارچینی (2*)<br>• کوکی نیویورکی (4*)</td>
+                </tr>
             </tbody>
         </table>
-        <a href="{% url 'product_list' %}" class="btn btn-primary">Back to Products</a>
     </div>
+
+<footer>
+  <div class="footer-content2">
+      <div class="footer-content">
+          <p>سوالات متداول</p>
+      <p>Version 1.0</p>
+      </div>
+
+    <p id="copyright">© 2024 Cookie Lab Admin Panel. </p>
+
+  </div>
+</footer>
 </body>
 </html>
