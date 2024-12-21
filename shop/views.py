@@ -118,6 +118,29 @@ def product_edit(request, pk):
 
     return render(request, 'shop/product_edit.html', {'product': product, 'title': 'ویرایش محصول'})
 
+
+
+def profile_edit(request, pk):
+    profile = get_object_or_404(User, pk=pk)
+
+    if request.method == 'POST':
+        # Get the updated values from the POST data
+        User.first_name = request.POST.get('product_name')
+        User.last_name = request.POST.get('product_price')
+        User.email= request.POST.get('product_quantity')
+        # User = request.POST.get('product_materials')
+        # product.description = request.POST.get('product_description')
+
+
+
+        # Save the updated product
+        User.save()
+
+        # Redirect to product list page
+        return redirect('product_list')
+
+    return render(request, 'shop/product_edit.html', {'product': product, 'title': 'ویرایش محصول'})
+
 def product_delete(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == 'POST':  # Confirm deletion
