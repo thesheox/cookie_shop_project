@@ -149,12 +149,13 @@ def profile_edit(request, pk):
     return render(request, 'shop/profile_edit.html', {'user': user, 'profile':profile , 'title': 'ویرایش محصول'})
 
 def product_delete(request, pk):
-    product = get_object_or_404(Product, pk=pk)
     if request.method == 'POST':  # Confirm deletion
+        product = get_object_or_404(Product, pk=pk)
         product.delete()
         messages.success(request, f'Product "{product.name}" has been deleted.')
         return redirect('product_list')
-    return render(request, 'shop/product_confirm_delete.html', {'product': product})
+
+
 @login_required
 def checkout(request):
     # Get the cart stored in session
@@ -498,3 +499,7 @@ def set_default_address(request, user_id, address_id):
 
     # Redirect to the page showing the list of addresses
     return redirect('show_addresses', user_id=user_id)
+
+
+def zarinpal(request):
+    return render(request, 'shop/zarinpal.txt')

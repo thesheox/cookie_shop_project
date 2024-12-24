@@ -107,7 +107,11 @@
                 <div class="price">{{ product.price }} تومان</div>
                 <div class="actions">
                     <a class="my_button" href="{% url 'product_edit' product.id %}" >ویرایش</a>
-                    <a class="my_button" href="{% url 'product_delete' product.id %}" >حدف</a>
+                    <form method="post" action="{% url 'product_delete' product.id %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="my_button">حدف</button>
+                    </form>
+
                 </div>
             </div>
         {% endfor%}

@@ -27,6 +27,7 @@ urlpatterns = [
     path('address/<int:address_id>/delete/', views.delete_address, name='delete_address'),
     path('user/<int:user_id>/addresses/set_default/<int:address_id>/', views.set_default_address,
          name='set_default_address'),
+    path('20618154.txt', views.zarinpal, name='zarinpal'),
 
 
 ]
