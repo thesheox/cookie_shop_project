@@ -1,0 +1,368 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+@font-face {
+    font-family: 'Shabnam';
+    src: url("./Fonts/Shabnam.ttf");
+}
+
+/* Navbar */
+.navbar_logo {
+    display: flex;
+    justify-content: space-between; /* فاصله بین لوگو و آیکون‌ها */
+    align-items: center; /* قرارگیری عمودی عناصر */
+    background-color: #CD9D65;
+    padding: 10px 20px; /* فضای داخلی بیشتر */
+    height: 100px; /* ارتفاع ثابت برای کل بخش */
+    box-sizing: border-box; /* اطمینان از رعایت padding در ارتفاع */
+    width: 100%; /* تمام عرض صفحه */
+    background-color: #CD9D65;
+}
+
+.navbar {
+    display: flex;
+    align-items: center; /* آیکون‌ها در یک خط وسط قرار می‌گیرند */
+    gap: 15px; /* فاصله مناسب بین آیکون‌ها */
+       background-color: #CD9D65;
+}
+
+.MiniLogo {
+    height: 60px; /* افزایش ارتفاع لوگو */
+    width: auto; /* عرض متناسب با ارتفاع */
+
+background-color: #CD9D65;
+
+}
+.menu{
+    background-color: #CD9D65;
+}
+.link_logo{
+    background-color: #CD9D65;
+}
+
+
+.admin,
+.cart_navbar,
+.search,
+.enter img {
+    height: 24px; /* آیکون‌ها کمی بزرگ‌تر می‌شوند */
+    width: 24px;
+       background-color: #CD9D65;
+}
+
+.enter {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-family: 'Shabnam';
+    color: black;
+    text-decoration: none;
+       background-color: #CD9D65;
+}
+
+.enter p {
+    margin: 0 10px; /* فاصله مناسب بین متن و آیکون‌ها */
+    padding: 0;
+    color: black;
+       background-color: #CD9D65;
+}
+
+.search,
+.admin,
+.cart_navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+       background-color: #CD9D65;
+}
+body {
+    margin: 0;
+    font-family: 'Tahoma', Arial, sans-serif;
+    background-color: #f5f5f5;
+    direction: rtl;
+    color: #333;
+}
+
+.container {
+
+    padding: 15px;
+}
+
+.header {
+    background-color: #f0c090;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.login-btn {
+    text-decoration: none;
+    color: #fff;
+    background-color: #b08558;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+.icons .icon {
+    margin: 0 5px;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.main-content {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.payment-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #000;
+    text-align: right;
+
+    /* Body1 */
+    font-family: Shabnam;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px; /* 166.667% */
+}
+
+.card-info {
+    text-align: center;
+}
+
+.card-image {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.card-number {
+    margin-top: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+
+
+
+.amount {
+    font-weight: bold;
+    color: #d9534f;
+}
+
+.upload-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.upload-label {
+    font-weight: bold;
+}
+.text{
+    font-family: 'Shabnam';
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 56px;
+    color: gray;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #898989;
+}
+.plus{
+    border-radius: 500px;
+    background: rgba(137, 137, 137, 0.25);
+    padding: 10px;
+}
+
+.payment-instructions,
+.upload-box,
+.dokme {
+    max-width: 800px; /* Ensure both elements have the same maximum width */
+    width: 100%; /* Make them stretch to their max width */
+    margin: 0 auto; /* Center horizontally */
+    padding: 15px; /* Optional: Inner spacing */
+    border-radius: 15px; /* Same rounded corners for consistency */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+
+.payment-instructions {
+    border: 2px solid #15C06D;
+    background: rgba(21, 192, 109, 0.30);
+    line-height: 1.8;
+}
+
+.payment-instructions,
+.upload-box,
+.dokme {
+    max-width: 800px; /* Ensure both elements have the same maximum width */
+    width: 100%; /* Make them stretch to their max width */
+    margin: 0 auto; /* Center horizontally */
+    padding: 15px; /* Optional: Inner spacing */
+    border-radius: 15px; /* Same rounded corners for consistency */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+
+.payment-instructions {
+    border: 2px solid #15C06D;
+    background: rgba(21, 192, 109, 0.30);
+    line-height: 1.8;
+}
+
+.upload-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 2px dashed #ccc; /* Optional: To define the upload area visually */
+    background: rgba(240, 240, 240, 0.5); /* Optional: Light background */
+}
+
+
+
+.upload-input {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+.jadid{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+/* Media Query for small screens */
+@media (max-width: 600px) {
+    .upload-box {
+        flex-direction: column; /* Stack the elements vertically on small screens */
+        align-items: stretch; /* Ensure they stretch to full width */
+    }
+
+    .upload-input {
+        width: 100%; /* Make the input field take full width */
+        margin-top: 10px; /* Add some space between the plus icon and input */
+    }
+
+    .plus {
+        align-self: flex-start; /* Keep the plus icon aligned to the start */
+    }
+}
+
+
+.dokme{
+    max-width: 800px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 0;
+    padding-top: 20px;
+}
+.fish{
+    color:  #898989;
+    text-align: right;
+
+    /* Body1 */
+    font-family: Shabnam;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px; /* 166.667% */
+}
+.upload-btn {
+    display: flex;
+    padding: 12px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #118F52;
+    text-align: right;
+    font-family: Shabnam;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+
+
+    border-radius: 8px;
+    border: 2px solid #118F52;
+    background: rgba(208, 255, 230, 0.05);
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.bank-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: fit-content;
+    margin: 10px auto;
+    margin-bottom: 30px;
+}
+
+.bank-card img {
+    width: 350px; /* Adjust the size if necessary */
+    border-radius: 10px;
+}
+
+/* Footer */
+.footer-content {
+    background-color: #d9ae79;
+    color: black;
+    text-align: right;
+    padding: 10px;
+    font-size: 14px;
+    margin-top: 40px;
+}
+.footer-text {
+    background-color: #d9ae79;
+    color: black;
+    text-align: right;
+    padding: 10px;
+    font-size: 14px;
+    font-family: 'Shabnam';
+}
+.footer-text2 {
+    background-color: #d9ae79;
+    color: black;
+    text-align: right;
+    padding: 10px;
+    font-size: 14px;
+    font-family: 'Shabnam';
+    margin-right:110px;
+}
+.media{
+    background-color: #d9ae79;
+    color: black;
+    font-size: 14px;
+    font-family: 'Shabnam';
+}
+.logo {
+    float: right;
+    margin-left: 10px;
+    background-color: #d9ae79;
+    border: 4px solid #d9ae79;
+    border-radius: 50px;
+}
+

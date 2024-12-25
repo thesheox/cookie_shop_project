@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحه پرداخت</title>
+    <link rel="stylesheet" href="{% static 'payement.css' %}">
+</head>
+<body>
+<header>
+    <nav class="navbar_logo">
+        <div class="menu">
+           <a class="link_logo" href="{% url 'home' %}">
+                 <img class="MiniLogo" src="{% static 'Pictures/logo_cropped.png' %}"/>
+            </a>
+        </div>
+        <div class="navbar">
+            {% if user.is_authenticated and user.is_staff or user.is_superuser %}
+            <a class="admin" href="{% url 'admin_panel' %}">
+                <img class="cart_navbar" src="{% static 'Pictures/admin.png' %}" width="24px" height="24px"/>
+            </a>
+            {% endif %}
+
+            <a class="enter" href="{% url 'cart' %}">
+                <img class="cart_navbar" src="{% static 'Pictures/cart.png' %}" width="24px" height="24px"/>
+            </a>
+            <img class="search" src="{% static 'Pictures/search.svg' %}" width="24px" height="24px"/>
+            {% if not user.is_authenticated %}
+            <a class="enter" href="{% url 'login' %}">
+                عضویت/ورود
+            </a>
+            {% endif %}
+
+            {% if  user.is_authenticated %}
+            <a class="enter" href="{% url 'logout' %}">
+                <img class="cart_navbar" src="{% static 'Pictures/logout.png' %}" width="24px" height="24px"/>
+            </a>
+            <a class="enter" href="{% url 'profile' %}">
+                {{user.username}}
+            </a>
+            {% endif %}
+        </div>
+
+    </nav>
+</header>
+<main class="main-content container">
+    <section class="payment-section">
+        <h2 class="text">واریز وجه :</h2>
+        <div class="bank-card">
+            <img src="{% static 'Pictures/iran-logo.png' %}" alt="Bank Card">
+        </div>
+
+        <div class="payment-instructions">
+
+            <p>
+                مشتری گرامی!<br>
+                مجموع هزینه خرید شما
+                <span class="amount">195,000</span>
+                تومان می‌باشد. لطفا هزینه را به شماره کارت نمایش داده شده انتقال دهید
+                و عکس فیش واریزی را در جایگاه مربوطه بارگذاری کنید.<br>
+                <br>
+                <span>با تشکر</span><br>
+                <span>cookie-lab</span>
+            </p>
+
+
+        </div>
+        <div class="upload-section">
+            <br>
+
+            <div class="upload-box">
+                <div class="jadid">
+                    <img class="plus" src="{% static 'Pictures/plus2.png' %}" width="40px" height="40px">
+                    <p class="fish">
+                        بارگزاری فیش واریزی:
+                    </p>
+                </div>
+
+                <input type="file" id="upload" class="upload-input">
+
+
+            </div>
+            <div class="dokme">
+                <button class="upload-btn">
+                    ارسال عکس
+                    <img src="{% static 'Pictures/folder.png' %}" width="20px" height="20px">
+                </button>
+
+            </div>
+
+        </div>
+    </section>
+</main>
+<footer>
+    <div class="footer-content">
+        <img class="logo" src="{% static 'Pictures/logo.jpg' %}" width="103.6px" height="99px"/>
+        <p class="footer-text">راه های ارتباطی <br/>شعبه 1 معالی آباد(بهاران)<br/>07136389655<br/>شماره واتس اپ سفارشات روزانه شعبه<br/>09308201660</p>
+        <p class="footer-text2">----------------------------<br/>شعبه2ابریشمی<br/>07132263829/07132263802<br/>شماره واتس اپ سفارشات روزانه شعبه<br/>09917578410<br/>ساعت کاری : 9 الی 22</p>
+        <p class="media">رسانه های اجتماعی<br/>(coming soon)</p>
+    </div>
+</footer>
+</body>
+</html>
