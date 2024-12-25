@@ -213,7 +213,7 @@ body {
 .upload-box,
 .dokme {
     max-width: 800px; /* Ensure both elements have the same maximum width */
-    width: 100%; /* Make them stretch to their max width */
+    width: 90%; /* Make them stretch to their max width */
     margin: 0 auto; /* Center horizontally */
     padding: 15px; /* Optional: Inner spacing */
     border-radius: 15px; /* Same rounded corners for consistency */
@@ -263,6 +263,7 @@ body {
     .plus {
         align-self: flex-start; /* Keep the plus icon aligned to the start */
     }
+
 }
 
 
@@ -322,7 +323,7 @@ body {
 }
 
 .bank-card img {
-    width: 350px; /* Adjust the size if necessary */
+    width: 250px; /* Adjust the size if necessary */
     border-radius: 10px;
 }
 
