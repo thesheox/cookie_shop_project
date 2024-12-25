@@ -151,22 +151,22 @@
                     <section class="shipping2">
                         <label>
 
-                            <p>
                                 {% if default_address %}
-                            <div id="this">
-                                {{ default_address.address_line  }}
-                            </div>
-                                <div class="default-address">
-                                    <a href="{% url 'show_addresses' user_id=user.id %}" id="show-addresses-btn" class="address-button">
-                                        <img class="icon-pencil" src="{% static 'Pictures/pencil.png' %}" width="24px" height="24px">
 
-                                    </a>
-                                </div>
+                                {{ default_address.address_line  }}
+
+                               <a href="{% url 'show_addresses' user_id=user.id %}" id="show-addresses-btn" class="address-button">
+                                        <img class="icon-pencil" src="{% static 'Pictures/pencil.png' %}" width="24px" height="24px">
+                               </a>
+
 
                                 {% else %}
                             آدرسی پیش‌فرض وجود ندارد.
+                            <a href="{% url 'show_addresses' user_id=user.id %}" id="show-addresses-btn" class="address-button">
+                                        <img class="icon-pencil" src="{% static 'Pictures/plus-icon.png' %}" width="24px" height="24px">
+                               </a>
                                 {% endif %}
-                            </p>
+
 
                         </label>
 
