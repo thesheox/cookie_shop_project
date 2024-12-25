@@ -153,9 +153,9 @@
 
                             <p>
                                 {% if default_address %}
-                            <p id="this">
+                            <div id="this">
                                 {{ default_address.address_line  }}
-                            </p>
+                            </div>
                                 <div class="default-address">
                                     <a href="{% url 'show_addresses' user_id=user.id %}" id="show-addresses-btn" class="address-button">
                                         <img class="icon-pencil" src="{% static 'Pictures/pencil.png' %}" width="24px" height="24px">
