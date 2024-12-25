@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سبد خرید</title>
     <link rel="stylesheet" href="{% static 'ShoppingCartPage.css' %}">
+
+    <!-- Body content -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const courierRadioButton = document.querySelector('input[name="delivery"][value="courier"]');
             const defaultAddressContainer = document.getElementById('default-address-container');
-            const showAddressesButton = document.getElementById('show-addresses-btn');
 
             function updateAddressDisplay() {
-                if (courierRadioButton.checked) {
+                if (courierRadioButton && courierRadioButton.checked) {
                     defaultAddressContainer.style.display = 'block';
                 } else {
                     defaultAddressContainer.style.display = 'none';
@@ -29,6 +30,7 @@
             });
         });
     </script>
+
 </head>
 <body>
 <!-- هدر -->
@@ -136,25 +138,38 @@
         </table>
     </div>
 
-    <div class="cart">
+    <div id="default-address-container" class="cart" style="display: none" >
         <table class="shipping-table">
             <thead>
             <tr>
-                <th>نحوه ارسال</th>
+                <th>آدرس انتخابی</th>
             </tr>
             </thead>
             <tbody>
             <tr>
                 <td>
-                    <section class="shipping">
+                    <section class="shipping2">
                         <label>
-                            <input type="radio" name="delivery" checked>
-                            دریافت حضوری (دانشگاه صنعتی شیراز)
+
+                            <p>
+                                {% if default_address %}
+                            <p id="this">
+                                {{ default_address.address_line  }}
+                            </p>
+                                <div class="default-address">
+                                    <a href="{% url 'show_addresses' user_id=user.id %}" id="show-addresses-btn" class="address-button">
+                                        <img class="icon-pencil" src="{% static 'Pictures/pencil.png' %}" width="24px" height="24px">
+
+                                    </a>
+                                </div>
+
+                                {% else %}
+                            آدرسی پیش‌فرض وجود ندارد.
+                                {% endif %}
+                            </p>
+
                         </label>
-                        <label>
-                            <input type="radio" name="delivery" value="courier">
-                            ارسال با پیک (هزینه با مشتری)
-                        </label>
+
                     </section>
                 </td>
             </tr>
@@ -162,18 +177,18 @@
         </table>
     </div>
 
-    <div id="default-address-container" style="display:none;">
-        <!-- This is where the default address will be displayed -->
-        <h4>آدرس پیش‌فرض:</h4>
-        <p>
-            {% if default_address %}
-                {{ default_address.address_line  }}
-            {% else %}
-                آدرسی پیش‌فرض وجود ندارد.
-            {% endif %}
-        </p>
-        <a href="{% url 'show_addresses' user_id=user.id %}" id="show-addresses-btn" class="button">مشاهده آدرس‌ها</a>
-    </div>
+<!--    <div id="default-address-container" style="display:none;">-->
+<!--        &lt;!&ndash; This is where the default address will be displayed &ndash;&gt;-->
+<!--        <h4>آدرس پیش‌فرض:</h4>-->
+<!--        <p>-->
+<!--            {% if default_address %}-->
+<!--                {{ default_address.address_line  }}-->
+<!--            {% else %}-->
+<!--                آدرسی پیش‌فرض وجود ندارد.-->
+<!--            {% endif %}-->
+<!--        </p>-->
+<!--        <a href="{% url 'show_addresses' user_id=user.id %}" id="show-addresses-btn" class="button">مشاهده آدرس‌ها</a>-->
+<!--    </div>-->
 
     <div class="click">
         <a class="tasvie" href="{% url 'checkout' %}">
