@@ -1,0 +1,287 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@font-face {
+    font-family: 'Shabnam';
+    src: url("./Fonts/Shabnam.ttf");
+}
+
+/* Applying the Shabnam font */
+* {
+    font-family: 'Shabnam', sans-serif;
+
+}
+.navbar_logo {
+    direction: rtl;
+    display: flex;
+    justify-content: space-between; /* فاصله بین لوگو و آیکون‌ها */
+    align-items: center; /* قرارگیری عمودی عناصر */
+    background-color: #CD9D65;
+    padding: 10px 20px; /* فضای داخلی بیشتر */
+    height: 100px; /* ارتفاع ثابت برای کل بخش */
+    box-sizing: border-box; /* اطمینان از رعایت padding در ارتفاع */
+    width: 100%; /* تمام عرض صفحه */
+    background-color: #CD9D65;
+}
+
+.navbar {
+    display: flex;
+    align-items: center; /* آیکون‌ها در یک خط وسط قرار می‌گیرند */
+    gap: 15px; /* فاصله مناسب بین آیکون‌ها */
+       background-color: #CD9D65;
+}
+
+.MiniLogo {
+    height: 60px; /* افزایش ارتفاع لوگو */
+    width: auto; /* عرض متناسب با ارتفاع */
+
+background-color: #CD9D65;
+
+}
+.menu{
+    background-color: #CD9D65;
+}
+.link_logo{
+    background-color: #CD9D65;
+}
+
+
+.admin,
+.cart,
+.search,
+.enter img {
+    height: 24px; /* آیکون‌ها کمی بزرگ‌تر می‌شوند */
+    width: 24px;
+       background-color: #CD9D65;
+}
+
+.enter {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-family: 'Shabnam';
+    color: black;
+    text-decoration: none;
+       background-color: #CD9D65;
+}
+
+.enter p {
+    margin: 0 10px; /* فاصله مناسب بین متن و آیکون‌ها */
+    padding: 0;
+    color: black;
+       background-color: #CD9D65;
+}
+
+.search,
+.admin,
+.cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+       background-color: #CD9D65;
+}
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f5f0;
+    color: #333;
+    direction: rtl;
+}
+
+.header {
+    background-color: #d2a679;
+    padding: 1rem;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-icons i {
+    margin-left: 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.button1{
+    display: flex;
+    width: auto;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border: 2px solid #950606; /* Dark red border */
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.custom-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #950606; /* Dark red color for text */
+    background-color: #f9f5f0; /* Same as background for contrast */
+    border: 2px solid #950606; /* Dark red border */
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    padding: 12px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.custom-button2 {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #950606; /* Dark red color for text */
+    background-color: #f9f5f0; /* Same as background for contrast */
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.custom-button:hover {
+    background-color: #950606;
+    color: #fff; /* White text on hover */
+}
+/*.custom-button2:hover {*/
+/*    background-color: #950606;*/
+/*    color: #fff; !* White text on hover *!*/
+/*}*/
+
+.adad{
+    border-left: 1px solid #898989;
+    padding-left: 1rem;
+}
+.main-container {
+    padding: 2rem;
+}
+
+.addresses {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.addresses h2 {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.address-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.address-item {
+    display: flex;
+    justify-content: space-between; /* Ensures the text and buttons are spaced */
+    align-items: center;
+    background: #fff;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    gap: 10px;
+}
+
+.address-text {
+    text-align: right;
+    padding-right: 1rem;
+    flex: 1; /* Allows the text to take up remaining space */
+
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem; /* Adds spacing between buttons */
+}
+.buttons2 {
+    display: flex;
+    justify-content: space-between; /* Positions buttons to the left and right */
+    align-items: center;
+    margin-top: 20px;
+    padding: 0 0rem; /* Optional padding to add space inside the parent div */
+}
+
+
+.my_button {
+
+    width: 25px;
+}
+.my_button3 {
+
+    width: 30px;
+}
+
+.my_button2{
+    border-right: 1px solid #898989;
+    padding-right: 15px;
+
+    width: 40px;
+}
+
+.new-address-btn,
+.continue-btn {
+    margin-top: 1rem;
+    display: block;
+    width: 100%;
+    background: #ff6347;
+}
+.text{
+    font-family: 'Shabnam';
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 56px;
+    color: gray;
+    margin-bottom: 100px;
+    border-bottom: 1px solid #898989;
+}
+
+/* Footer */
+.footer-content {
+    background-color: #d9ae79;
+    color: black;
+    text-align: right;
+    padding: 10px;
+    font-size: 14px;
+    margin-top: 100px;
+}
+.footer-text {
+    background-color: #d9ae79;
+    color: black;
+    text-align: right;
+    padding: 10px;
+    font-size: 14px;
+    font-family: 'Shabnam';
+}
+.footer-text2 {
+    background-color: #d9ae79;
+    color: black;
+    text-align: right;
+    padding: 10px;
+    font-size: 14px;
+    font-family: 'Shabnam';
+    margin-right:110px;
+}
+.media{
+    background-color: #d9ae79;
+    color: black;
+    font-size: 14px;
+    font-family: 'Shabnam';
+}
+.logo{
+    float: right;
+    margin-left: 10px;
+    background-color: #d9ae79;
+        border: 4px solid #d9ae79;
+        border-radius: 50px;
+        color: #CD9D65;
+    }
