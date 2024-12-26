@@ -503,3 +503,7 @@ def set_default_address(request, user_id, address_id):
 
 def zarinpal(request):
     return render(request, 'shop/zarinpal.txt')
+
+
+def payment(request):
+    return render(request, 'shop/payment.html')
