@@ -7,18 +7,23 @@
     <title>مدیریت آدرس‌ها</title>
     <link rel="stylesheet" href="{% static 'show_addresses.css' %}">
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Check if the user came from the cart page
-            const referrer = document.referrer;
-            const cartPageUrl = "{% url 'cart' %}"; // URL for the cart page
+document.addEventListener("DOMContentLoaded", function () {
+    const referrer = document.referrer;
+    const cartPageUrl = "{% url 'cart' %}"; // URL صفحه سبد خرید
+    const continueButton = document.getElementById("continue-buy-btn");
 
-            // Show the "ادامه خرید" button only if the user came from the cart page
-            if (referrer && referrer.includes(cartPageUrl)) {
-                document.getElementById("continue-buy-btn").style.display = "block";
-            } else {
-                document.getElementById("continue-buy-btn").style.display = "none";
-            }
-        });
+    if (continueButton) {
+        // بررسی اینکه آیا کاربر از صفحه سبد خرید آمده است
+        if (referrer && referrer.includes(cartPageUrl)) {
+            continueButton.style.display = "block";
+        } else {
+            continueButton.style.display = "none";
+        }
+    } else {
+        console.error("Button with id 'continue-buy-btn' not found.");
+    }
+});
+
     </script>
 </head>
 <body>

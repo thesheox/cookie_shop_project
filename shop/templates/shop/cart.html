@@ -112,92 +112,83 @@
         </h3>
     </section>
 
-    <div class="cart">
-        <table class="shipping-table">
-            <thead>
-            <tr>
-                <th>نحوه ارسال</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>
-                    <section class="shipping">
-                        <label>
-                            <input type="radio" name="delivery" checked>
-                            دریافت حضوری (دانشگاه صنعتی شیراز)
-                        </label>
-                        <label>
-                            <input type="radio" name="delivery" value="courier">
-                            ارسال با پیک (هزینه با مشتری)
-                        </label>
-                    </section>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <form action="{% url 'payment' %}" method="POST">
+        {% csrf_token %}
+        <div class="cart">
+            <table class="shipping-table">
+                <thead>
+                <tr>
+                    <th>نحوه ارسال</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <section class="shipping">
+                            <label>
+                                <input type="radio" name="delivery" checked value="pickup">
+                                دریافت حضوری (دانشگاه صنعتی شیراز)
+                            </label>
+                            <label>
+                                <input type="radio" name="delivery" value="courier">
+                                ارسال با پیک (هزینه با مشتری)
+                            </label>
+                        </section>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <div id="default-address-container" class="cart" style="display: none" >
-        <table class="shipping-table">
-            <thead>
-            <tr>
-                <th>آدرس انتخابی</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>
-                    <section class="shipping2">
-                        <label>
+        <div id="default-address-container" class="cart" style="display: none" >
+            <table class="shipping-table">
+                <thead>
+                <tr>
+                    <th>آدرس انتخابی</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <section class="shipping2">
+                            <label>
 
-                                {% if default_address %}
+                                    {% if default_address %}
 
-                                {{ default_address.address_line  }}
+                                    {{ default_address.address_line  }}
 
-                               <a href="{% url 'show_addresses' user_id=user.id %}" id="show-addresses-btn" class="address-button">
-                                        <img class="icon-pencil" src="{% static 'Pictures/pencil.png' %}" width="24px" height="24px">
-                               </a>
-
-
-                                {% else %}
-                            آدرسی پیش‌فرض وجود ندارد.
-                            <a href="{% url 'show_addresses' user_id=user.id %}" id="show-addresses-btn" class="address-button">
-                                        <img class="icon-pencil" src="{% static 'Pictures/plus-icon.png' %}" width="24px" height="24px">
-                               </a>
-                                {% endif %}
+                                   <a href="{% url 'show_addresses' user_id=user.id %}" id="show-addresses-btn" class="address-button">
+                                            <img class="icon-pencil" src="{% static 'Pictures/pencil.png' %}" width="24px" height="24px">
+                                   </a>
 
 
-                        </label>
+                                    {% else %}
+                                آدرسی پیش‌فرض وجود ندارد.
+                                <a href="{% url 'show_addresses' user_id=user.id %}" id="show-addresses-btn" class="address-button">
+                                            <img class="icon-pencil" src="{% static 'Pictures/plus-icon.png' %}" width="24px" height="24px">
+                                   </a>
+                                    {% endif %}
 
-                    </section>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
 
-<!--    <div id="default-address-container" style="display:none;">-->
-<!--        &lt;!&ndash; This is where the default address will be displayed &ndash;&gt;-->
-<!--        <h4>آدرس پیش‌فرض:</h4>-->
-<!--        <p>-->
-<!--            {% if default_address %}-->
-<!--                {{ default_address.address_line  }}-->
-<!--            {% else %}-->
-<!--                آدرسی پیش‌فرض وجود ندارد.-->
-<!--            {% endif %}-->
-<!--        </p>-->
-<!--        <a href="{% url 'show_addresses' user_id=user.id %}" id="show-addresses-btn" class="button">مشاهده آدرس‌ها</a>-->
-<!--    </div>-->
+                            </label>
 
-    <div class="click">
-        <a class="tasvie" href="{% url 'checkout' %}">
-            <h3 class="clickItemText">تسویه حساب</h3>
-        </a>
-        <a class="tasvie" href="{% url 'home' %}">
-            <h3 class="clickItemText">ادامه خرید</h3>
-        </a>
-    </div>
+                        </section>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="click">
+            <button type="submit" class="tasvie">
+                <h3 class="clickItemText">تسویه حساب</h3>
+            </button>
+            <a class="tasvie" href="{% url 'home' %}">
+                <h3 class="clickItemText">ادامه خرید</h3>
+            </a>
+        </div>
+    </form>
 </main>
 
 <!-- فوتر -->

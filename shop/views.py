@@ -156,14 +156,18 @@ def product_delete(request, pk):
         return redirect('product_list')
 
 
+from django.core.files.uploadedfile import InMemoryUploadedFile
+
 @login_required
 def checkout(request):
     # Get the cart stored in session
     cart = request.session.get('cart', {})
+    delivery_method = request.session.get('delivery_method', 'pickup')
+    total_price = request.session.get('total_price', 0)
+    address_line = request.session.get('default_address', '')
 
     if not cart:
         return redirect('cart')  # Redirect to cart if no items
-
 
     import random
 
@@ -180,17 +184,22 @@ def checkout(request):
                 generated_numbers.add(number)
                 return number
 
-    # Example usage
+    # Process uploaded image file
+    uploaded_image = request.FILES.get('image')  # Retrieve the uploaded file
+    if uploaded_image and isinstance(uploaded_image, InMemoryUploadedFile):
+        print(f"Image uploaded: {uploaded_image.name}")
 
     # Create a new OrderGroup
-    order_group = OrderGroup.objects.create(user=request.user,order_number=generate_one_unique_random(1000000, 9999999))
+    order_group = OrderGroup.objects.create(
+        user=request.user,
+        order_number=generate_one_unique_random(1000000, 9999999),
+        delivery_method=delivery_method,
+        address_line=address_line,
+        image=uploaded_image,  # Save the uploaded image
+    )
 
     # Initialize total price
     total_price = 0
-
-
-
-
 
     # Loop through cart and create an order for each product
     for product_id, item in cart.items():
@@ -318,6 +327,7 @@ def user_signup(request):
         )
         user.save()
 
+        # Create the profile
         # Create the profile
         Profile.objects.create(user=user, phone_number=phone_number)
 
@@ -504,6 +514,48 @@ def set_default_address(request, user_id, address_id):
 def zarinpal(request):
     return render(request, 'shop/zarinpal.txt')
 
+from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
 
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+
+@login_required
 def payment(request):
-    return render(request, 'shop/payment.html')
+    # دریافت اطلاعات پرداخت
+    cart = request.session.get('cart', {})
+    if not cart:
+        return redirect('cart')  # بازگشت به سبد خرید در صورت خالی بودن
+
+    # دریافت مقدار delivery
+    delivery_method = request.POST.get('delivery', 'pickup')  # مقدار پیش‌فرض 'pickup'
+    print(f"Selected delivery method: {delivery_method}")  # برای اشکال‌زدایی
+
+    user = request.user
+    default_address = user.profile.default_address
+    total_price = sum(item['price'] * item['quantity'] for item in cart.values())
+
+    # Handle the uploaded image
+    uploaded_image = request.FILES.get('image')  # Get the uploaded image
+    image_url = None
+
+    if uploaded_image:
+        # Save the uploaded image temporarily
+        file_path = default_storage.save(f'temp_images/{uploaded_image.name}', ContentFile(uploaded_image.read()))
+        image_url = default_storage.url(file_path)
+        request.session['uploaded_image'] = file_path  # Save the path in the session
+
+    # Save data in the session
+    request.session['delivery_method'] = delivery_method
+    request.session['total_price'] = total_price
+    request.session['default_address'] = default_address.address_line
+    request.session['cart'] = cart
+
+    # نمایش صفحه پرداخت
+    return render(request, 'shop/payment.html', {
+        'cart': cart,
+        'delivery_method': delivery_method,
+        'total_price': total_price,
+        'default_address': default_address,
+        'image_url': image_url,  # Pass the image URL to the template
+    })

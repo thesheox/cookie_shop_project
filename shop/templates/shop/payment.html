@@ -52,46 +52,44 @@
         </div>
 
         <div class="payment-instructions">
-
             <p>
                 مشتری گرامی!<br>
                 مجموع هزینه خرید شما
-                <span class="amount">195,000</span>
+                <span class="amount">{{total_price}}</span>
+                هزار
                 تومان می‌باشد. لطفا هزینه را به شماره کارت نمایش داده شده انتقال دهید
                 و عکس فیش واریزی را در جایگاه مربوطه بارگذاری کنید.<br>
                 <br>
                 <span>با تشکر</span><br>
                 <span>cookie-lab</span>
             </p>
-
-
         </div>
-        <div class="upload-section">
-            <br>
 
-            <div class="upload-box">
-                <div class="jadid">
-                    <img class="plus" src="{% static 'Pictures/plus2.png' %}" width="40px" height="40px">
-                    <p class="fish">
-                        بارگزاری فیش واریزی:
-                    </p>
+        <form method="POST" enctype="multipart/form-data" action="{% url 'checkout' %}">
+            {% csrf_token %}
+            <div class="upload-section">
+                <br>
+                <div class="upload-box">
+                    <div class="jadid">
+                        <img class="plus" src="{% static 'Pictures/plus2.png' %}" width="40px" height="40px">
+                        <p class="fish">
+                            بارگزاری فیش واریزی:
+                        </p>
+                    </div>
+                    <input type="file" id="upload" class="upload-input" name="image">
                 </div>
 
-                <input type="file" id="upload" class="upload-input">
-
-
+                <div class="dokme">
+                    <button type="submit" class="upload-btn">
+                        ارسال عکس
+                        <img src="{% static 'Pictures/folder.png' %}" width="20px" height="20px">
+                    </button>
+                </div>
             </div>
-            <div class="dokme">
-                <button class="upload-btn">
-                    ارسال عکس
-                    <img src="{% static 'Pictures/folder.png' %}" width="20px" height="20px">
-                </button>
-
-            </div>
-
-        </div>
+        </form>
     </section>
 </main>
+
 <footer>
     <div class="footer-content">
         <img class="logo" src="{% static 'Pictures/logo.jpg' %}" width="103.6px" height="99px"/>

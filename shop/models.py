@@ -16,9 +16,21 @@ class Product(models.Model):
         return self.name
 
 class OrderGroup(models.Model):
+    DELIVERY_CHOICES = [
+        ('pickup', 'Pickup'),
+        ('courier', 'Courier'),
+    ]
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = jmodels.jDateTimeField(auto_now_add=True)  # Jalali datetim
-    order_number=models.PositiveIntegerField(null=True)
+    created_at = jmodels.jDateTimeField(auto_now_add=True)  # Jalali datetime
+    order_number = models.PositiveIntegerField(null=True)
+    delivery_method = models.CharField(
+        max_length=10,
+        choices=DELIVERY_CHOICES,
+        default='pickup'
+    )
+    address_line = models.TextField(max_length=255, null=True, blank=True)  # Store the address line directly
+    image = models.ImageField(upload_to='order_images/', null=True, blank=True)  # New field for image
 
     @property
     def date_time(self):
@@ -31,6 +43,7 @@ class OrderGroup(models.Model):
     def total_price(self):
         # Calculate total price by summing the total_price of all related orders
         return sum(order.total_price for order in self.orders.all())  # 'orders' is the related_name of Order model
+
 class Order(models.Model):
     order_group = models.ForeignKey(OrderGroup, related_name='orders', on_delete=models.CASCADE,null=True,blank=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE,null=True)
