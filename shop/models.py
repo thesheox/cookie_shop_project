@@ -17,17 +17,17 @@ class Product(models.Model):
 
 class OrderGroup(models.Model):
     DELIVERY_CHOICES = [
-        ('pickup', 'Pickup'),
-        ('courier', 'Courier'),
+        ('تحویل حضوری','تحویل حضوری'),
+        ('ارسال با پیک','ارسال با پیک'),
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = jmodels.jDateTimeField(auto_now_add=True)  # Jalali datetime
     order_number = models.PositiveIntegerField(null=True)
     delivery_method = models.CharField(
-        max_length=10,
+        max_length=50,
         choices=DELIVERY_CHOICES,
-        default='pickup'
+        default='دریافت حضوری'
     )
     address_line = models.TextField(max_length=255, null=True, blank=True)  # Store the address line directly
     image = models.ImageField(upload_to='order_images/', null=True, blank=True)  # New field for image

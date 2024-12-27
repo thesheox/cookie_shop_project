@@ -162,7 +162,7 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 def checkout(request):
     # Get the cart stored in session
     cart = request.session.get('cart', {})
-    delivery_method = request.session.get('delivery_method', 'pickup')
+    delivery_method = request.session.get('delivery_method', 'تحویل حضوری')
     total_price = request.session.get('total_price', 0)
     address_line = request.session.get('default_address', '')
 
@@ -188,15 +188,24 @@ def checkout(request):
     uploaded_image = request.FILES.get('image')  # Retrieve the uploaded file
     if uploaded_image and isinstance(uploaded_image, InMemoryUploadedFile):
         print(f"Image uploaded: {uploaded_image.name}")
+    if delivery_method == 'ارسال با پیک':
+        order_group = OrderGroup.objects.create(
+            user=request.user,
+            order_number=generate_one_unique_random(1000000, 9999999),
+            delivery_method=delivery_method,
+            address_line=address_line,
+            image=uploaded_image,  # Save the uploaded image
+        )
+    elif delivery_method == 'تحویل حضوری':
+        order_group = OrderGroup.objects.create(
+            user=request.user,
+            order_number=generate_one_unique_random(1000000, 9999999),
+            delivery_method=delivery_method,
+            address_line='ندارد',
+            image=uploaded_image,  # Save the uploaded image
+        )
 
-    # Create a new OrderGroup
-    order_group = OrderGroup.objects.create(
-        user=request.user,
-        order_number=generate_one_unique_random(1000000, 9999999),
-        delivery_method=delivery_method,
-        address_line=address_line,
-        image=uploaded_image,  # Save the uploaded image
-    )
+
 
     # Initialize total price
     total_price = 0

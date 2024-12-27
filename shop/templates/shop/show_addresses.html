@@ -6,25 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مدیریت آدرس‌ها</title>
     <link rel="stylesheet" href="{% static 'show_addresses.css' %}">
-    <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const referrer = document.referrer;
-    const cartPageUrl = "{% url 'cart' %}"; // URL صفحه سبد خرید
-    const continueButton = document.getElementById("continue-buy-btn");
+<!--    <script>-->
+<!--document.addEventListener("DOMContentLoaded", function () {-->
+<!--    const referrer = document.referrer;-->
+<!--    const cartPageUrl = "{% url 'cart' %}"; // URL صفحه سبد خرید-->
+<!--    const continueButton = document.getElementById("continue-buy-btn");-->
 
-    if (continueButton) {
-        // بررسی اینکه آیا کاربر از صفحه سبد خرید آمده است
-        if (referrer && referrer.includes(cartPageUrl)) {
-            continueButton.style.display = "block";
-        } else {
-            continueButton.style.display = "none";
-        }
-    } else {
-        console.error("Button with id 'continue-buy-btn' not found.");
-    }
-});
+<!--    if (continueButton) {-->
+<!--        // بررسی اینکه آیا کاربر از صفحه سبد خرید آمده است-->
+<!--        if (referrer && referrer.includes(cartPageUrl)) {-->
+<!--            continueButton.style.display = "block";-->
+<!--        } else {-->
+<!--            continueButton.style.display = "none";-->
+<!--        }-->
+<!--    } else {-->
+<!--        console.error("Button with id 'continue-buy-btn' not found.");-->
+<!--    }-->
+<!--});-->
 
-    </script>
+<!--    </script>-->
 </head>
 <body>
 <header>
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         <div class="buttons2">
             <a href="{% url 'cart'%}" style="text-decoration: none">
-                <button id="continue-buy-btn" class="custom-button" style="display: none;">ادامه خرید</button>
+                <button id="continue-buy-btn" class="custom-button" ">ادامه خرید</button>
 
             </a>
                         <div class="button1">

@@ -71,11 +71,13 @@
                 <td data-label="#">{{ order_group.id }}</td>
                 <td data-label="نام و نام خانوادگی">{{ order_group.user.first_name }} {{ order_group.user.last_name }}</td>
                 <td class="left" data-label="تاریخ ثبت سفارش">{{ order_group.date_time}}</td>
-                <td data-label="مجموع مبلغ سفارش">{{ order_group.total_price|floatformat:0 }}</td>
+                <td data-label="مجموع مبلغ سفارش">
+                    {{ order_group.total_price|floatformat:0 }}
+                    هزار تومان </td>
                 <td data-label="اقلام سفارش">
                     <ul style="list-style-type: none;">
                         {% for order in order_group.orders.all %}
-                        <li>• {{ order.product.name }} (x{{ order.quantity }}) - {{ order.total_price|floatformat:0 }}</li>
+                        <li>• {{ order.product.name }} (x{{ order.quantity }}) - {{ order.total_price|floatformat:0 }} </li>
                         {% endfor %}
                     </ul>
                 </td>

@@ -10,7 +10,7 @@
     <!-- Body content -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const courierRadioButton = document.querySelector('input[name="delivery"][value="courier"]');
+            const courierRadioButton = document.querySelector('input[name="delivery"][value="ارسال با پیک"]');
             const defaultAddressContainer = document.getElementById('default-address-container');
 
             function updateAddressDisplay() {
@@ -126,11 +126,11 @@
                     <td>
                         <section class="shipping">
                             <label>
-                                <input type="radio" name="delivery" checked value="pickup">
+                                <input type="radio" name="delivery" checked value="تحویل حضوری">
                                 دریافت حضوری (دانشگاه صنعتی شیراز)
                             </label>
                             <label>
-                                <input type="radio" name="delivery" value="courier">
+                                <input type="radio" name="delivery" value="ارسال با پیک">
                                 ارسال با پیک (هزینه با مشتری)
                             </label>
                         </section>
