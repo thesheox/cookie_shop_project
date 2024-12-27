@@ -248,24 +248,7 @@ body {
     gap: 10px;
 }
 
-/* Media Query for small screens */
-@media (max-width: 600px) {
-    .upload-box {
-        flex-direction: column; /* Stack the elements vertically on small screens */
-        align-items: stretch; /* Ensure they stretch to full width */
-    }
 
-    .upload-input {
-        width: 100%; /* Make the input field take full width */
-        margin-top: 10px; /* Add some space between the plus icon and input */
-    }
-
-    .plus {
-        align-self: flex-start; /* Keep the plus icon aligned to the start */
-    }
-
-
-}
 
 
 .dokme{
@@ -324,7 +307,7 @@ body {
 }
 
 .bank-card img {
-    width: 250px; /* Adjust the size if necessary */
+    width: 400px; /* Adjust the size if necessary */
     border-radius: 10px;
 }
 
@@ -366,5 +349,27 @@ body {
     background-color: #d9ae79;
     border: 4px solid #d9ae79;
     border-radius: 50px;
+}
+
+/* Media Query for small screens */
+@media (max-width: 768px) {
+    .upload-box {
+        flex-direction: column; /* Stack the elements vertically on small screens */
+        align-items: stretch; /* Ensure they stretch to full width */
+    }
+
+    .upload-input {
+        width: 100%; /* Make the input field take full width */
+        margin-top: 10px; /* Add some space between the plus icon and input */
+    }
+
+    .plus {
+        align-self: flex-start; /* Keep the plus icon aligned to the start */
+    }
+    .bank-card img {
+    width: 250px; /* Adjust the size if necessary */
+    border-radius: 10px;
+}
+
 }
 

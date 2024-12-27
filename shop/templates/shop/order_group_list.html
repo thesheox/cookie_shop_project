@@ -1,52 +1,4 @@
-<!--<!DOCTYPE html>-->
-<!--<html>-->
-<!--<head>-->
-<!--    <title>Order Groups</title>-->
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
-<!--</head>-->
-<!--<body>-->
-<!--    <div class="container mt-5">-->
-<!--        <h1>Order Groups</h1>-->
-<!--        <table class="table table-bordered">-->
-<!--            <thead>-->
-<!--                <tr>-->
-<!--                    <th>#</th>-->
-<!--                    <th>User</th>-->
-<!--                    <th>Created At</th>-->
-<!--                    <th>Total Price</th>-->
-<!--                    <th>Orders</th>-->
-<!--                </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--                {% for order_group in order_groups %}-->
-<!--                <tr>-->
-<!--                    <td>{{ order_group.id }}</td>-->
-<!--                    <td>{{ order_group.user.first_name }} {{ order_group.user.last_name }}</td>-->
-<!--                    <td>{{ order_group.date_time }}</td>-->
-<!--                    <td>${{ order_group.total_price }}</td>-->
-<!--                    <td>-->
-<!--                        <ul>-->
-<!--                            {% for order in order_group.orders.all %}-->
-<!--                            <li>-->
-<!--                                {{ order.product.name }} (x{{ order.quantity }}) - ${{ order.total_price }}-->
-<!--                            </li>-->
-<!--                            {% endfor %}-->
-<!--                        </ul>-->
-<!--                    </td>-->
-<!--                </tr>-->
-<!--                {% empty %}-->
-<!--                <tr>-->
-<!--                    <td colspan="5" class="text-center">No Order Groups Found</td>-->
-<!--                </tr>-->
-<!--                {% endfor %}-->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--        <a href="{% url 'product_list' %}" class="btn btn-primary">Back to Products</a>-->
-<!--    </div>-->
-<!--</body>-->
-<!--</html>-->
-{% load static %}
-<!DOCTYPE html>
+{% load static%}
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -96,11 +48,10 @@
 
 <div class="container">
     <div class="title_asli">
-    <div class="footer-content2">
-
-        <h1 id="title_text">لیست سفارشات : </h1>
+        <div class="footer-content2">
+            <h1 id="title_text">لیست سفارشات : </h1>
+        </div>
     </div>
-</div>
     <table class="table">
         <thead>
             <tr>
@@ -109,6 +60,9 @@
                 <th>تاریخ ثبت سفارش</th>
                 <th>مجموع مبلغ سفارش</th>
                 <th>اقلام سفارش</th>
+                <th>روش ارسال</th>
+                <th>آدرس</th>
+                <th>فیش واریز وجه</th>
             </tr>
         </thead>
         <tbody>
@@ -125,10 +79,19 @@
                         {% endfor %}
                     </ul>
                 </td>
+                <td data-label="روش ارسال">{{ order_group.delivery_method }}</td>
+                <td data-label="آدرس">{{ order_group.address_line }}</td>
+                <td data-label="فیش واریز وجه">
+                    {% if order_group.image %}
+                    <a href="{{ order_group.image.url }}" download>دانلود تصویر</a>
+                    {% else %}
+                    <p>تصویری وجود ندارد</p>
+                    {% endif %}
+                </td>
             </tr>
             {% empty %}
             <tr>
-                <td colspan="5" class="text-center">هیچ گروه سفارشی یافت نشد</td>
+                <td colspan="8" class="text-center">هیچ گروه سفارشی یافت نشد</td>
             </tr>
             {% endfor %}
         </tbody>
