@@ -146,11 +146,11 @@ body {
     text-align: center;
     transition: all 0.3s ease;
 }
-.custom-button:hover {
-    background-color: #950606;
-    color: #fff; /* White text on hover */
-}
-/*.custom-button2:hover {*/
+/*.custom-button:hover {*/
+/*    background-color: #950606;*/
+/*    color: #fff; !* White text on hover *!*/
+/*}*/
+/*.button1:hover {*/
 /*    background-color: #950606;*/
 /*    color: #fff; !* White text on hover *!*/
 /*}*/

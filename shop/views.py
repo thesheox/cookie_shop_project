@@ -428,14 +428,31 @@ def show_addresses(request, user_id):
     addresses = Address.objects.filter(profile=user.profile)
     return render(request, 'shop/show_addresses.html', {'user': user, 'addresses': addresses})
 
+
+from django.shortcuts import get_object_or_404, redirect, render
+from .models import Profile, Address
+
+
 def add_address(request, user_id):
     profile = get_object_or_404(Profile, user_id=user_id)
+
     if request.method == "POST":
         address_line = request.POST.get('address_line', '').strip()
+
         if address_line:
-            Address.objects.create(profile=profile, address_line=address_line)
+            # بررسی اینکه آیا این اولین آدرس برای پروفایل است یا خیر
+            is_default = not Address.objects.filter(profile=profile).exists()
+
+            # ایجاد آدرس جدید
+            Address.objects.create(
+                profile=profile,
+                address_line=address_line,
+                is_default=is_default  # تنظیم به عنوان پیش‌فرض در صورت نبودن آدرس دیگر
+            )
             return redirect('show_addresses', user_id=user_id)
+
     return render(request, 'shop/add_address.html', {'user': profile.user})
+
 
 def edit_address(request, address_id):
     address = get_object_or_404(Address, id=address_id)
@@ -557,7 +574,14 @@ def payment(request):
     # Save data in the session
     request.session['delivery_method'] = delivery_method
     request.session['total_price'] = total_price
-    request.session['default_address'] = default_address.address_line
+    if delivery_method=='ارسال با پیک':
+        if not default_address:
+            return redirect('show_addresses', user_id=request.user.id)
+        else:
+            request.session['default_address'] = default_address.address_line
+    elif delivery_method == 'تحویل حضوری':
+        request.session['default_address'] = "ندارد"
+
     request.session['cart'] = cart
 
     # نمایش صفحه پرداخت

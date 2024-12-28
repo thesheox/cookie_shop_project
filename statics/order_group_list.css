@@ -163,7 +163,7 @@ footer {
   display: flex;
   color: #898989;;
   padding: 20px;
-    position: relative;
+    position: absolute;
   bottom: 0;
   width: 100%;
   justify-content: center; /* Center the content horizontally */

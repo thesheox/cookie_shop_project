@@ -64,36 +64,46 @@
 <main class="main-container">
     <section class="addresses">
         <h2 class="text">آدرس‌ها :</h2>
-        <div class="address-list">
-            {% for address in addresses %}
-                <div class="address-item">
-                    <p class="adad">1</p>
-                    <span class="address-text">{{ address.address_line }}</span>
+<div class="address-list">
+    {% if addresses %}
+        {% for address in addresses %}
+            <div class="address-item">
+                <p class="adad">{{ forloop.counter }}</p> <!-- نمایش شماره -->
+                <span class="address-text">{{ address.address_line }}</span>
 
-                    <div class="buttons">
-                        <a href="{% url 'edit_address' address.id %}">
-                            <img src="{% static 'Pictures/edit.png' %}" class="my_button2">
+                <div class="buttons">
+                    <a href="{% url 'edit_address' address.id %}">
+                        <img src="{% static 'Pictures/edit.png' %}" class="my_button2">
+                    </a>
+                    <form method="post" action="{% url 'delete_address' address.id %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" style="border: none; background: none; padding: 0;">
+                            <img src="{% static 'Pictures/delete2.jpg' %}" alt="Delete" style="width: 24px; height: 24px;">
+                        </button>
+                    </form>
+
+                    {% if forloop.first and not user.profile.default_address %} <!-- اگر اولین آدرس و پیش‌فرض تنظیم نشده -->
+                        <a href="{% url 'set_default_address' user.id address.id %}">
+                            <img src="{% static 'Pictures/tik-sabz.png' %}" class="my_button">
                         </a>
-                        <form method="post" action="{% url 'delete_address' address.id %}" style="display: inline;">
-                            {% csrf_token %}
-                            <button type="submit" style="border: none; background: none; padding: 0;">
-                                <img src="{% static 'Pictures/delete2.jpg' %}" alt="Delete" style="width: 24px; height: 24px;">
-                            </button>
-                        </form>
-
-                        {% if address == user.profile.default_address %}
-                            <a href="{% url 'set_default_address' user.id address.id %}">
-                                <img src="{% static 'Pictures/tik-sabz.png' %}" class="my_button">
-                            </a>
-                        {% else %}
-                            <a href="{% url 'set_default_address' user.id address.id %}">
-                                <img src="{% static 'Pictures/check.png' %}" class="my_button">
-                            </a>
-                        {% endif %}
-                    </div>
+                    {% elif address == user.profile.default_address %}
+                        <a href="{% url 'set_default_address' user.id address.id %}">
+                            <img src="{% static 'Pictures/tik-sabz.png' %}" class="my_button">
+                        </a>
+                    {% else %}
+                        <a href="{% url 'set_default_address' user.id address.id %}">
+                            <img src="{% static 'Pictures/check.png' %}" class="my_button">
+                        </a>
+                    {% endif %}
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>هیچ آدرسی وجود ندارد</p> <!-- اگر لیست آدرس‌ها خالی است -->
+    {% endif %}
+</div>
+
+
 
         <div class="buttons2">
             <a href="{% url 'cart'%}" style="text-decoration: none">
@@ -102,7 +112,7 @@
             </a>
                         <div class="button1">
                 <a style="text-decoration: none" href="{% url 'add_address' user.id %}" class="custom-button2">ثبت آدرس جدید</a>
-                <img src="{% static 'Pictures/location.png' %}" class="my_button">
+                <img src="{% static 'Pictures/map.svg' %}" class="my_button">
             </div>
         </div>
     </section>

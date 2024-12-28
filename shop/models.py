@@ -102,5 +102,10 @@ class Address(models.Model):
     address_line = models.TextField(max_length=255)
     is_default = models.BooleanField(default=False)  # Mark if this is the default address
 
+    def save(self, *args, **kwargs):
+        if not hasattr(self, 'profile') or not hasattr(self.profile, 'user'):
+            raise ValueError("Address must be linked to a profile with a user.")
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f"Address for {self.profile.user.username}: {self.address_line}"
